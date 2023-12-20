@@ -9,15 +9,8 @@ export const getUserInfo = async () => {
 export const register = async (payload: any) => {
     return await http.post(AuthAPI.REGISTER, payload)
 }
-export const login = async (
-    payload: { email: string; password: string },
-    authCode: string
-) => {
-    return await http.post(AuthAPI.LOGIN_WITH_PASSWORD, payload, {
-        params: {
-            authCode,
-        },
-    })
+export const login = async (payload: any) => {
+    return await http.post(AuthAPI.LOGIN_WITH_PASSWORD, payload)
 }
 export const forgotPassword = async (payload: { email: string }) => {
     return await http.post(AuthAPI.FORGOT_PASSWORD, payload)
@@ -62,12 +55,6 @@ export const logout = async () => {
     if (!ANONYMOUS_ALLOW_PATHS.includes(location.pathname)) {
         location.href = Paths.LOGIN + '?redirectUrl=' + location.href
     }
-}
-
-export const updateTokenForAuthCode = async (authCode: string) => {
-    return await http.post(AuthAPI.UPDATE_TOKEN_FOR_AUTH_CODE, {
-        authCode,
-    })
 }
 
 export const checkAdmin = async () => {

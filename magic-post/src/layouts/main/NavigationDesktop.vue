@@ -5,9 +5,11 @@
         class="desktop-navigation-menu"
         router
     >
-      <div class="desktop-logo-container">
-        <img src="@/assets/images/logo.svg" class="desktop-logo" />
-      </div>
+      <router-link :to="Paths.HOME">
+        <div class="desktop-logo-container">
+          <img src="@/assets/images/logo.svg" class="desktop-logo" />
+        </div>
+      </router-link>
 <!--      <el-menu-item-group v-if="roleList.includes(plans.ADMIN)">-->
 <!--        <template #title> Quản lý hệ thống</template>-->
 <!--        <el-menu-item-->

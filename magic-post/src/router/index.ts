@@ -5,6 +5,14 @@ import HomePageView from "@/views/main/HomePageView.vue";
 import UnauthenticatedLayout from "@/layouts/UnauthenticatedLayout.vue";
 import LoginView from "@/views/auth/LoginView.vue";
 import RegisterView from "@/views/auth/RegisterView.vue";
+import ForgotPasswordView from "@/views/auth/ForgotPasswordView.vue";
+import ResetPasswordView from "@/views/auth/ResetPasswordView.vue";
+import LoginCompleteView from "@/views/auth/LoginCompleteView.vue";
+import RegisterSuccessView from "@/views/auth/RegisterSuccessView.vue";
+import ConfirmRegistrationView from "@/views/auth/ConfirmRegistrationView.vue";
+import ResendConfirmRegistrationView from "@/views/auth/ResendConfirmRegistrationView.vue";
+import ResendConfirmRegistrationSuccessView from "@/views/auth/ResendConfirmRegistrationSuccessView.vue";
+import UserManageView from "@/views/main/UserManageView.vue";
 
 export const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,6 +25,10 @@ export const router = createRouter({
                     path: Paths.HOME,
                     // redirect: Paths.MANAGE_USER,
                     component: HomePageView,
+                },
+                {
+                    path: Paths.MANAGE_USER,
+                    component: UserManageView,
                 },
             ]
         },
@@ -31,6 +43,34 @@ export const router = createRouter({
                 {
                     path: Paths.REGISTER,
                     component: RegisterView,
+                },
+                {
+                    path: Paths.FORGOT_PASSWORD,
+                    component: ForgotPasswordView,
+                },
+                {
+                    path: Paths.RESET_PASSWORD,
+                    component: ResetPasswordView,
+                },
+                {
+                    path: Paths.LOGIN_COMPLETE,
+                    component: LoginCompleteView,
+                },
+                {
+                    path: Paths.REGISTER_SUCCESS,
+                    component: RegisterSuccessView,
+                },
+                {
+                    path: Paths.CONFIRM_REGISTRATION,
+                    component: ConfirmRegistrationView,
+                },
+                {
+                    path: Paths.REGISTRATION_RESEND_ACTIVATION,
+                    component: ResendConfirmRegistrationView,
+                },
+                {
+                    path: Paths.REGISTRATION_RESEND_ACTIVATION_SUCCESS,
+                    component: ResendConfirmRegistrationSuccessView,
                 },
             ]
         },

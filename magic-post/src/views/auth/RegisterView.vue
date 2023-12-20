@@ -13,15 +13,27 @@
               @keyup.enter.native="onSubmit"
               size="large"
           >
-            <el-form-item label="Họ tên" prop="name">
-              <el-input v-model="form.name" placeholder="Họ và tên"></el-input>
+            <el-form-item label="First name" prop="firstName">
+              <el-input v-model="form.firstName" placeholder="First name"></el-input>
             </el-form-item>
 
-            <el-form-item label="Email" prop="email">
+            <el-form-item label="Last name" prop="lastName">
+              <el-input v-model="form.lastName" placeholder="Last name"></el-input>
+            </el-form-item>
+
+            <el-form-item label="Address" prop="address">
+              <el-input v-model="form.address" placeholder="Address"></el-input>
+            </el-form-item>
+
+            <el-form-item label="Phone number" prop="phoneNumber">
+              <el-input v-model="form.phoneNumber" placeholder="Phone number"></el-input>
+            </el-form-item>
+
+            <el-form-item label="Username" prop="username">
               <el-input
-                  v-model="form.email"
-                  placeholder="Email"
-                  type="email"
+                  v-model="form.username"
+                  placeholder="Username"
+                  type="username"
               ></el-input>
             </el-form-item>
 
@@ -94,8 +106,11 @@ const validateConfirmPassword = (rule: any, value: any, callback: any) => {
   }
 }
 const form = ref({
-  name: '',
-  email: '',
+  firstName: '',
+  lastName: '',
+  address: '',
+  phoneNumber: '',
+  username: '',
   password: '',
   confirmPassword: '',
 })
@@ -105,16 +120,16 @@ const { refs, toRef } = useRefs<{
 }>()
 const rules = reactive<FormRules>({
   name: [{ required: true, message: 'Nhập tên người dùng để đăng ký' }],
-  email: [
+  username: [
     {
       min: 4,
-      message: 'Độ dài email phải có ít nhất 5 ký tự',
+      message: 'Độ dài username phải có ít nhất 5 ký tự',
       trigger: 'blur',
     },
-    { required: true, message: 'Hãy nhập email đăng ký', trigger: 'blur' },
+    { required: true, message: 'Hãy nhập username đăng ký', trigger: 'blur' },
     {
-      type: 'email',
-      message: 'Hãy nhập chính xác địa chỉ email',
+      type: 'username',
+      message: 'Hãy nhập chính xác địa chỉ username',
       trigger: 'change',
     },
   ],
@@ -152,14 +167,16 @@ function onSubmit() {
       refs.SUBMIT_BUTTON?.setLoading(true)
       try {
         await register({
-          name: form.value.name,
-          email: form.value.email,
+          firstname: form.value.firstName,
+          lastName: form.value.lastName,
+          address: form.value.address,
+          phoneNumber: form.value.phoneNumber,
+          username: form.value.username,
           password: form.value.password,
-          confirmPassword: form.value.confirmPassword,
         })
         ElMessage({
           message:
-              'Đăng ký thành công, hệ thống sẽ gửi email xác nhận trong giây lát',
+              'Đăng ký thành công, hệ thống sẽ gửi username xác nhận trong giây lát',
           type: 'success',
           duration: 5000,
         })
