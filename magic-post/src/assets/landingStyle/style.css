@@ -1,0 +1,25 @@
+
+@import url(./fonts.css);
+*{
+    transition:all .3s linear;
+    font-family:'SourceSansPro',sans-serif
+}
+.gradient{
+    background:linear-gradient(to right, #017a6e, #0dc2af)
+}
+@media (max-width:768px){
+    [data-aos]{opacity:1 !important;
+        transform:none !important;
+        visibility:visible !important}
+}
+html{
+    scroll-behavior:smooth
+}
+#customers,#pricing{
+    scroll-margin-top:100px
+}
+img{
+    user-select:none;
+    user-drag:none;
+    pointer-events:none
+}

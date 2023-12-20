@@ -6,13 +6,17 @@ import 'element-plus/theme-chalk/display.css'
 import App from './App.vue'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import {router} from "@/router";
-
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import './assets/tailwind.css'
 
 const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
 app.use(ElementPlus)
+
+AOS.init()
 
 app.mount('#app')
 

@@ -5,6 +5,7 @@ import HomePageView from "@/views/main/HomePageView.vue";
 import UnauthenticatedLayout from "@/layouts/UnauthenticatedLayout.vue";
 import LoginView from "@/views/auth/LoginView.vue";
 import RegisterView from "@/views/auth/RegisterView.vue";
+import LandingPageView from '@/views/main/LandingPageView.vue';
 import ForgotPasswordView from "@/views/auth/ForgotPasswordView.vue";
 import ResetPasswordView from "@/views/auth/ResetPasswordView.vue";
 import LoginCompleteView from "@/views/auth/LoginCompleteView.vue";
@@ -19,12 +20,12 @@ export const router = createRouter({
     routes: [
         {
             path: Paths.HOME,
-            component: MainLayout,
+            // component: MainLayout,
             children: [
                 {
                     path: Paths.HOME,
                     // redirect: Paths.MANAGE_USER,
-                    component: HomePageView,
+                    component: LandingPageView,
                 },
                 {
                     path: Paths.MANAGE_USER,
