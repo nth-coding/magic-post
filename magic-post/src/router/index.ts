@@ -14,22 +14,26 @@ import ConfirmRegistrationView from "@/views/auth/ConfirmRegistrationView.vue";
 import ResendConfirmRegistrationView from "@/views/auth/ResendConfirmRegistrationView.vue";
 import ResendConfirmRegistrationSuccessView from "@/views/auth/ResendConfirmRegistrationSuccessView.vue";
 import UserManageView from "@/views/main/UserManageView.vue";
+import AdminCustomerManageView from "@/views/admin/customer/AdminCustomerManageView.vue";
 
 export const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
         {
             path: Paths.HOME,
-            // component: MainLayout,
+            component: LandingPageView,
+        },
+        {
+            path: Paths.MAIN,
+            component: MainLayout,
             children: [
-                {
-                    path: Paths.HOME,
-                    // redirect: Paths.MANAGE_USER,
-                    component: LandingPageView,
-                },
                 {
                     path: Paths.MANAGE_USER,
                     component: UserManageView,
+                },
+                {
+                    path: Paths.ADMIN_MANAGE_USER,
+                    component: AdminCustomerManageView,
                 },
             ]
         },

@@ -5,6 +5,7 @@ import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/display.css'
 import App from './App.vue'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import '@fortawesome/fontawesome-free/css/all.css'
 import {router} from "@/router";
 import AOS from 'aos'
 import 'aos/dist/aos.css'
