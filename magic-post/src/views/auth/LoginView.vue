@@ -1,11 +1,10 @@
 <template>
-  <div class="login-form-container">
-    <el-row :gutter="10" type="flex" justify="center">
-      <el-col :lg="8" :md="12" :sm="24">
-        <el-card header="Đăng nhập">
-          <template #header>
-            <h2 class="login-title">Đăng nhập</h2>
-          </template>
+  <body>
+    <el-card 
+    class="w-[640px] h-[550px] mx-auto mt-[5px] bg-white rounded-3xl border border-stone-500 border-opacity-50 flex  justify-center  ">
+      <div class="mt-[20px] flex-col justify-center flex">
+        <div class="text-center text-zinc-800 text-[32px] font-medium font-['Poppins'] ">Đăng nhập</div>
+          
           <el-form
               class="login-form"
               :model="formLogin"
@@ -13,46 +12,36 @@
               :ref="toRef('LOGIN_FORM')"
               :size="formSize"
               @submit.native.prevent="loginWithPassword()"
+              
           >
-            <el-form-item prop="email">
+          <div class="mt-[40px] flex-col justify-start items-start flex">
+
+            <el-form-item prop="email" class="w-[528px] h-[87px] flex-col justify-start items-start  inline-flex">
+              <div class="text-stone-500 text-base font-normal font-['Poppins']">Tài khoản email của bạn:</div>
               <el-input
+                  class="w-[528px] h-14 relative"
                   type="email"
                   v-model="formLogin.email"
                   placeholder="Email"
               ></el-input>
             </el-form-item>
-            <el-form-item prop="password">
+
+            <el-form-item prop="password" class="w-[528px] h-[87px] flex-col justify-start items-start  inline-flex">
+              <div class="text-stone-500 text-base font-normal font-['Poppins']">Mật khẩu của bạn:</div>
               <el-input
+                  class="w-[528px] h-14 relative"
                   v-model="formLogin.password"
                   placeholder="Password"
                   type="password"
               ></el-input>
             </el-form-item>
-            <el-row>
-              <el-col :span="12">
-                <router-link
-                    class="is-underline forgot-password"
-                    type="primary"
-                    :to="Paths.FORGOT_PASSWORD"
-                >Quên mật khẩu?
-                </router-link>
-                &ensp;
-                <router-link
-                    class="is-underline forgot-password"
-                    type="primary"
-                    :to="Paths.REGISTER"
-                >Đăng ký
-                </router-link>
-                <br />
-                <router-link :to="Paths.REGISTRATION_RESEND_ACTIVATION">
-                  Gửi lại mail kích hoạt
-                </router-link>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item class="login-button-container">
+
+            <br>
+            <el-form-item>
                   <CommonButton
                       :ref="toRef('LOGIN_BTN')"
-                      class="login-button"
+                      class="w-[528px] h-16 pt-[15px] bg-blue-500 pb-4 rounded-[40px] inline-flex 
+                             text-center text-white text-[22px] font-medium font-['Poppins']"
                       size="large"
                       type="primary"
                       native-type="submit"
@@ -60,6 +49,7 @@
                   >Đăng nhập
                   </CommonButton>
                 </el-form-item>
+<<<<<<< Updated upstream
               </el-col>
             </el-row>
           </el-form>
@@ -73,6 +63,41 @@
       </el-col>
     </el-row>
   </div>
+=======
+          </div>
+          
+          <el-row >
+            <el-col :span="12">
+              <router-link
+                  class="is-underline forgot-password"
+                  type="primary"
+                  :to="Paths.FORGOT_PASSWORD"
+              >Quên mật khẩu?
+              </router-link>
+            </el-col>
+              
+              <br />
+            <el-col :span="12" class="text-right">
+              <router-link :to="Paths.REGISTRATION_RESEND_ACTIVATION">
+                Gửi lại mail kích hoạt
+              </router-link>
+            </el-col>
+          </el-row>
+          
+          <div class="text-center">
+            <router-link
+              type="primary"
+              :to="Paths.REGISTER"
+            >Đăng ký
+            </router-link>
+          </div>
+        </el-form>
+      </div>
+          
+    </el-card>
+  </body>
+  
+>>>>>>> Stashed changes
 </template>
 
 <script lang="ts" setup>
@@ -214,7 +239,13 @@ async function loginWithPassword() {
 <style lang="scss" scoped>
 $white: #fff;
 $google-blue: #409eff;
-$button-active-blue: #1669f2;
+
+
+body {
+  background:linear-gradient(to right, #017a6e, #0dc2af);
+  display: flex;
+  align-items: center;
+}
 
 .google-btn {
   cursor: pointer;
@@ -241,20 +272,9 @@ $button-active-blue: #1669f2;
     width: 18px;
     height: 18px;
   }
-
-  .btn-text {
-    position: relative;
-    left: 48px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    color: white;
-  }
 }
 
-.login-button-container {
-  float: right;
-}
+
 </style>
 
 <style lang="scss">
@@ -263,9 +283,7 @@ $button-active-blue: #1669f2;
   margin-bottom: 0;
 }
 
-.login-form-container {
-  margin-top: 5rem;
-}
+
 
 .router-link-custom {
   text-decoration: none;
