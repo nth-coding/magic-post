@@ -1,9 +1,9 @@
 export const AuthAPI = {
-    GET_USER_INFO: '/users/me',
+    GET_USER_INFO: '/user/me',
     LOGOUT: '/logout',
     LOGIN_WITH_GOOGLE: '/oauth2/authorize/google',
     UPDATE_TOKEN_FOR_AUTH_CODE: '/auth-codes/update-token',
-    LOGIN_WITH_PASSWORD: '/auth/login',
+    LOGIN_WITH_PASSWORD: '/auth/signin',
     FORGOT_PASSWORD: '/auth/forgot_password',
     RESET_PASSWORD: '/auth/reset_password',
     CHECK_TOKEN_RESET_PASSWORD: '/auth/reset_password/check',

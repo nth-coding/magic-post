@@ -79,6 +79,7 @@
         </ul>
         <button
           id="navLogin"
+          @click="navigateToLogin"
           class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
         >
           Đăng nhập
@@ -90,7 +91,9 @@
 </template>
 
 <script lang="ts">
+import { Paths } from "@/router/paths";
 import { defineComponent } from "vue";
+import { useRouter } from 'vue-router';
 
 export default defineComponent({
   name: "layout-nav",
@@ -100,12 +103,24 @@ export default defineComponent({
       mobileSidebar: false,
     };
   },
+  setup() {
+    const router = useRouter();
+
+    const navigateToLogin = () => {
+      router.push(Paths.LOGIN);
+    }
+
+    return {
+      navigateToLogin
+    }
+  },
   mounted() {
     this.scrollY = window.scrollY;
 
     // Listen to the scroll event to update the scrollY property dynamically
     window.addEventListener("scroll", this.handleScroll);
   },
+
 
   methods: {
     handleScroll() {

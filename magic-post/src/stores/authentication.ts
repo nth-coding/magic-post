@@ -16,10 +16,9 @@ export const useAuthenticationStore = defineStore({
             try {
                 const resUser = await getUserInfo()
                 this.user = resUser.data
-                const responseRoles = await checkAdmin()
-                const plans = responseRoles?.data?.data
-                this.roles = Array.isArray(plans) ? plans : []
-                // console.log('this.roles', this.roles)
+                // const responseRoles = await checkAdmin()
+                // const plans = responseRoles?.data?.data
+                this.roles = resUser.roles || []
             } catch (e: any) {
                 if (e.response && e.response.status === 401) {
                     this.user = null

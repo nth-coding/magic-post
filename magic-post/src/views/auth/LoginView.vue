@@ -91,7 +91,6 @@ import {
   // getGoogleFacebookUrl,
   // getGoogleLoginUrl,
   login,
-  updateTokenForAuthCode,
 } from '@/services/auth'
 import { Paths } from '@/router/paths'
 import { useRoute, useRouter } from 'vue-router'
@@ -149,37 +148,6 @@ const rules = reactive<FormRules>({
 
 const authenticationStore = useAuthenticationStore()
 const { authenticated } = storeToRefs(authenticationStore)
-onMounted(() => {
-  if (
-      $route.query.filePath &&
-      ['PC', 'Mac'].includes($route.query.platform as string)
-  ) {
-    putLocalStorage(
-        LocalStorageKeys.FILE_PATH_FOR_RETURN,
-        $route.query.filePath
-    )
-  } else {
-    removeLocalStorage(LocalStorageKeys.FILE_PATH_FOR_RETURN)
-  }
-})
-watch(
-    authenticated,
-    async (newAuth) => {
-      if (newAuth) {
-        if ($route.query.authCode) {
-          await updateTokenForAuthCode($route.query.authCode as string)
-          await $router.push(Paths.LOGIN_ADDIN_SUCCESS)
-        } else if ($route.query.redirectUrl) {
-          location.href = $route.query.redirectUrl as string
-        } else {
-          await $router.push(Paths.HOME)
-        }
-      }
-    },
-    {
-      immediate: true,
-    }
-)
 
 const router = useRouter()
 const route = useRoute()
@@ -190,12 +158,13 @@ async function loginWithPassword() {
       refs.LOGIN_BTN?.setLoading(true)
       try {
         const loginRes = await login(
-            formLogin.value,
-            route.query.authCode as string
-        )
-        if (loginRes.headers.loginbyauthcode === 'true') {
-          await router.push(Paths.LOGIN_ADDIN_SUCCESS)
-        } else if ($route.query.redirectUrl) {
+            {
+              username: formLogin.value.email,
+              password: formLogin.value.password,
+            })
+        // console.log(loginRes)
+        putLocalStorage(LocalStorageKeys.AUTHENTICATION_TOKEN, loginRes.data.accessToken)
+        if ($route.query.redirectUrl) {
           location.href = $route.query.redirectUrl as string
         } else {
           await router.push(Paths.HOME)

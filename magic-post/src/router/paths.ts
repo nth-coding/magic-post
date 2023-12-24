@@ -1,6 +1,7 @@
 export const Paths = {
     HOME: '/',
-    LOGIN: '/login',
+    MAIN: '/main',
+    LOGIN: '/signin',
     REGISTER: '/register',
     FORGOT_PASSWORD: '/forgot-password',
     RESET_PASSWORD: '/reset-password',
@@ -12,7 +13,7 @@ export const Paths = {
     CONFIRM_REGISTRATION: '/confirm-registration',
 
     MANAGE_USER: '/manage-user',
-    ADMIN_MANAGE_USER: '/admin/users',
+    ADMIN_MANAGE_USER: '/admin/customers',
 }
 
 export const ANONYMOUS_ALLOW_PATHS = [

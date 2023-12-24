@@ -5,20 +5,22 @@
         class="desktop-navigation-menu"
         router
     >
-      <div class="desktop-logo-container">
-        <img src="@/assets/images/logo.svg" class="desktop-logo" />
-      </div>
+      <router-link :to="Paths.HOME">
+        <div class="desktop-logo-container">
+          <img src="@/assets/images/logo.svg" class="desktop-logo" />
+        </div>
+      </router-link>
 <!--      <el-menu-item-group v-if="roleList.includes(plans.ADMIN)">-->
-<!--        <template #title> Quản lý hệ thống</template>-->
-<!--        <el-menu-item-->
-<!--            :route="Paths.ADMIN_MANAGE_USER"-->
-<!--            :index="Paths.ADMIN_MANAGE_USER"-->
-<!--            v-if="roleList.includes(plans.ADMIN)"-->
-<!--        >-->
-<!--          <FAIcon icon="fa-solid fa-user-group" />-->
-<!--          Quản lý tài khoản-->
-<!--        </el-menu-item>-->
-<!--      </el-menu-item-group>-->
+      <el-menu-item-group>
+        <template #title> Quản lý hệ thống</template>
+        <el-menu-item
+            :route="Paths.ADMIN_MANAGE_USER"
+            :index="Paths.ADMIN_MANAGE_USER"
+        >
+          <FAIcon icon="fa-solid fa-user-group" />
+          Quản lý tài khoản
+        </el-menu-item>
+      </el-menu-item-group>
 <!--      <el-menu-item-group v-if="roleList.includes(plans.ORG_ADMIN)">-->
 <!--        <template #title> Quản lý đơn vị</template>-->
 <!--        <el-menu-item-->
@@ -53,6 +55,7 @@ import {ElMessage} from "element-plus";
 import {storeToRefs} from "pinia";
 import {useAuthenticationStore} from "@/stores/authentication";
 import {useRoute} from "vue-router";
+import FAIcon from "@/components/common/FAIcon.vue";
 
 
 const $route = useRoute()
