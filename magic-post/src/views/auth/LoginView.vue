@@ -49,21 +49,7 @@
                   >Đăng nhập
                   </CommonButton>
                 </el-form-item>
-<<<<<<< Updated upstream
-              </el-col>
-            </el-row>
-          </el-form>
-<!--          <div class="google-btn" @click="loginWithGoogle">-->
-<!--            <div class="google-icon-wrapper">-->
-<!--              <img class="google-icon" src="@/assets/images/google.svg" />-->
-<!--            </div>-->
-<!--            <p class="btn-text"><b>Đăng nhập với Google</b></p>-->
-<!--          </div>-->
-        </el-card>
-      </el-col>
-    </el-row>
-  </div>
-=======
+
           </div>
           
           <el-row >
