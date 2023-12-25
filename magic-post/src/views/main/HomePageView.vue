@@ -1,8 +1,13 @@
 <template>
   <div class="home-page">
     <div class="user-info">
-      <div class="user-role">Role: <span class="role-name">{{ userRole }}</span></div>
-      <h1 class="user-greeting">Xin chào, {{ username }}</h1>
+      <div class="user-role">Role: <span class="role-name">
+        {{ form.role.substring(5) }}
+      </span></div>
+      <h1 class="user-greeting">Xin chào,
+        <span v-if="form.firstName">{{ form.firstName }}</span>
+        <span v-if="form.lastName">{{ form.lastName }}</span>
+      </h1>
     </div>
     <div class="services">
       <div class="service-card" v-for="service in services" :key="service.id">
@@ -14,7 +19,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import {ref, watch} from 'vue';
+import type {UserInfo} from "@/constants/Interfaces";
+import {useAuthenticationStore} from "@/stores/authentication";
+import {storeToRefs} from "pinia";
+import {roles} from "@/constants/Role";
+
+const form = ref({
+  firstName: '',
+  lastName: '',
+  role: '',
+})
 
 const username = ref('nth-coding');
 const userRole = ref('ADMIN');
@@ -23,6 +38,29 @@ const services = ref([
   { id: 2, name: 'Service 2', description: 'Description for Service 2' },
   // Add more services as needed
 ]);
+
+const authenticationStore = useAuthenticationStore()
+const {authenticated, user, roleList} = storeToRefs(authenticationStore)
+
+watch(
+    authenticated,
+    (newAuth) => {
+      if (newAuth && user.value) {
+        updateUserInfo(user.value as UserInfo, roleList.value)
+      }
+    },
+    {
+      immediate: true,
+    }
+)
+
+function updateUserInfo(userInfo: UserInfo, roleList: string[]) {
+  form.value = {
+    firstName: userInfo.firstName,
+    lastName: userInfo.lastName,
+    role: roleList[0],
+  }
+}
 </script>
 
 <style scoped lang="scss">
@@ -51,11 +89,12 @@ const services = ref([
       }
     }
     .user-greeting {
-      font-size: 2rem;
+      font-size: 1.9rem;
     }
   }
   .services {
     display: grid;
+    margin-top: 35px;
     gap: var(--spacing);
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     .service-card {

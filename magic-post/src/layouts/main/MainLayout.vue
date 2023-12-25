@@ -1,5 +1,5 @@
 <template>
-  <el-row type="flex" justify="center" v-if="!authenticated">
+  <el-row type="flex" justify="center" v-if="authenticated">
     <el-col :xs="24" :sm="0">
 <!--      <NavigationMobile />-->
     </el-col>

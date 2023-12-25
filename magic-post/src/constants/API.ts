@@ -1,5 +1,12 @@
 export const AuthAPI = {
     GET_USER_INFO: '/user/me',
+    GET_CUSTOMER_INFO: '/customer/me',
+    GET_BOSS_INFO: '/boss/me',
+    GET_HEADTRAN_INFO: '/headtran/me',
+    GET_HEADCOL_INFO: '/headcol/me',
+    GET_OFFICERTRAN_INFO: '/officertran/me',
+    GET_OFFICERCOL_INFO: '/officercol/me',
+
     LOGOUT: '/logout',
     LOGIN_WITH_GOOGLE: '/oauth2/authorize/google',
     UPDATE_TOKEN_FOR_AUTH_CODE: '/auth-codes/update-token',

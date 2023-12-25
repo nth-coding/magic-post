@@ -14,6 +14,9 @@ export const Paths = {
 
     MANAGE_USER: '/manage-user',
     ADMIN_MANAGE_USER: '/admin/customers',
+
+    HEADTRAN_MANAGE_USER: '/...',
+    HEADCOL_MANAGE_USER: '/...',
 }
 
 export const ANONYMOUS_ALLOW_PATHS = [

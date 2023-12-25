@@ -1,7 +1,7 @@
 import http from '@/services/http'
 import { AdminApi, AuthAPI } from '@/constants/API'
 
-export const CustomerService = {
+export const UserService = {
     listForAdmin: async (params: any) => {
         const bodyData = (
             await http.get(AdminApi.USER_MANAGE, {
@@ -25,4 +25,7 @@ export const CustomerService = {
     getOne: async (id: any) => {
         return await http.get(AdminApi.USER_MANAGE + '/' + id)
     },
+    editProfile: async (payload: any) => {
+        return await http.post(AuthAPI.EDIT_PROFILE, payload)
+    }
 }

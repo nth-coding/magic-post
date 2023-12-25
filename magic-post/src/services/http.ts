@@ -9,7 +9,7 @@ const http = axios.create({
     baseURL: import.meta.env.VITE_APP_ROOT_API,
     transformRequest: [
         function (data: any, headers: any) {
-            headers[RequestHeaders.TOKEN] = getLocalStorage(
+            headers[RequestHeaders.TOKEN] = 'Bearer ' + getLocalStorage(
                 LocalStorageKeys.AUTHENTICATION_TOKEN
             )
             return JSON.stringify(data)

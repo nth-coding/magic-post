@@ -1,5 +1,5 @@
 <template>
-  <h1>Quản lý người dùng</h1>
+  <h1>Quản lý người dùng tại điểm tập kết và giao dịch</h1>
   <br />
 <!--  <el-row :gutter="12">-->
 <!--    <el-col :md="16">-->
@@ -222,7 +222,7 @@ import useRefs from '@/common/useRefs'
 import { useCommonRepository } from '@/services/commonRepository'
 import AddCustomer from "@/views/admin/customer/AddCustomer.vue";
 import EditCustomer from "@/views/admin/customer/EditCustomer.vue";
-import {CustomerService} from "@/services/user";
+import {UserService} from "@/services/user";
 const idEdit = ref(null as unknown as number)
 
 const rules = reactive<FormRules>({})
@@ -254,7 +254,7 @@ const {
   sortDocument,
   serverParams,
   changePage,
-} = useCommonRepository(CustomerService.listForAdmin, PropertyEntityFullFilter)
+} = useCommonRepository(UserService.listForAdmin, PropertyEntityFullFilter)
 
 // create for me about 5 example to table has data
 const data = [
@@ -303,7 +303,7 @@ const data = [
 async function handleDelete(id: number) {
   refs.DELETE_BTN?.setLoading(true)
   try {
-    await CustomerService.delete(id)
+    await UserService.delete(id)
     await fetchRecords()
     ElMessage.success('Xóa người dùng thành công!')
   } catch (e) {

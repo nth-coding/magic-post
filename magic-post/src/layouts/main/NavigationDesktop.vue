@@ -10,8 +10,7 @@
           <img src="@/assets/images/logo.svg" class="desktop-logo" />
         </div>
       </router-link>
-<!--      <el-menu-item-group v-if="roleList.includes(plans.ADMIN)">-->
-      <el-menu-item-group>
+      <el-menu-item-group v-if="roleList.includes(roles.ROLE_BOSS)">
         <template #title> Quản lý hệ thống</template>
         <el-menu-item
             :route="Paths.ADMIN_MANAGE_USER"
@@ -21,17 +20,28 @@
           Quản lý tài khoản
         </el-menu-item>
       </el-menu-item-group>
-<!--      <el-menu-item-group v-if="roleList.includes(plans.ORG_ADMIN)">-->
-<!--        <template #title> Quản lý đơn vị</template>-->
-<!--        <el-menu-item-->
-<!--            :route="Paths.ADMIN_ORGANIZATION_MANAGE_USER"-->
-<!--            v-if="roleList.includes(plans.ORG_ADMIN)"-->
-<!--            :index="Paths.ADMIN_ORGANIZATION_MANAGE_USER"-->
-<!--        >-->
-<!--          <FAIcon icon="fa-solid fa-user-group" />-->
-<!--          Quản lý tài khoản-->
-<!--        </el-menu-item>-->
-<!--      </el-menu-item-group>-->
+      <el-menu-item-group v-if="roleList.includes(roles.ROLE_HEADCOL)">
+        <template #title> Quản lý điểm tập kết</template>
+        <el-menu-item
+            :route="Paths.HEADCOL_MANAGE_USER"
+            v-if="roleList.includes(roles.ROLE_HEADCOL)"
+            :index="Paths.HEADCOL_MANAGE_USER"
+        >
+          <FAIcon icon="fa-solid fa-user-group" />
+          Quản lý tài khoản
+        </el-menu-item>
+      </el-menu-item-group>
+      <el-menu-item-group v-if="roleList.includes(roles.ROLE_HEADTRAN)">
+        <template #title> Quản lý điểm giao dịch</template>
+        <el-menu-item
+              :route="Paths.HEADTRAN_MANAGE_USER"
+              v-if="roleList.includes(roles.ROLE_HEADTRAN)"
+              :index="Paths.HEADTRAN_MANAGE_USER"
+          >
+            <FAIcon icon="fa-solid fa-user-group" />
+            Quản lý tài khoản
+          </el-menu-item>
+      </el-menu-item-group>
       <el-menu-item-group>
         <template #title> Cá nhân</template>
 
@@ -56,6 +66,7 @@ import {storeToRefs} from "pinia";
 import {useAuthenticationStore} from "@/stores/authentication";
 import {useRoute} from "vue-router";
 import FAIcon from "@/components/common/FAIcon.vue";
+import {roles} from "@/constants/Role";
 
 
 const $route = useRoute()

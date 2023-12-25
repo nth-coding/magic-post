@@ -82,8 +82,6 @@
           
     </el-card>
   </body>
-  
->>>>>>> Stashed changes
 </template>
 
 <script lang="ts" setup>
@@ -167,7 +165,7 @@ async function loginWithPassword() {
         if ($route.query.redirectUrl) {
           location.href = $route.query.redirectUrl as string
         } else {
-          await router.push(Paths.HOME)
+          await router.push(Paths.MAIN)
         }
       } catch (e: any) {
         ElMessage.error(

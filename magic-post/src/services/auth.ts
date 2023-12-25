@@ -6,6 +6,30 @@ export const getUserInfo = async () => {
     const response = await http.get(AuthAPI.GET_USER_INFO)
     return response.data
 }
+export const getBossInfo = async () => {
+    const response = await http.get(AuthAPI.GET_BOSS_INFO)
+    return response.data
+}
+export const getHeadTranInfo = async () => {
+    const response = await http.get(AuthAPI.GET_HEADTRAN_INFO)
+    return response.data
+}
+export const getHeadColInfo = async () => {
+    const response = await http.get(AuthAPI.GET_HEADCOL_INFO)
+    return response.data
+}
+export const getOfficerTranInfo = async () => {
+    const response = await http.get(AuthAPI.GET_OFFICERTRAN_INFO)
+    return response.data
+}
+export const getOfficerColInfo = async () => {
+    const response = await http.get(AuthAPI.GET_OFFICERCOL_INFO)
+    return response.data
+}
+export const getCustomerInfo = async () => {
+    const response = await http.get(AuthAPI.GET_CUSTOMER_INFO)
+    return response.data
+}
 export const register = async (payload: any) => {
     return await http.post(AuthAPI.REGISTER, payload)
 }
