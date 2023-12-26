@@ -292,4 +292,9 @@ function resetForm() {
   padding-top: 10px;
   margin-bottom: 10px;
 }
+h1 {
+  color: #333;
+  font-size: 2em;
+  margin-bottom: 1rem;
+}
 </style>

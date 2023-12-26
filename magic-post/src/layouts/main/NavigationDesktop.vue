@@ -26,6 +26,13 @@
           <FAIcon icon="fa-solid fa-building" />
           Quản lý đơn vị
         </el-menu-item>
+        <el-menu-item
+            :route="Paths.ADMIN_MANAGE_PACKAGE"
+            :index="Paths.ADMIN_MANAGE_PACKAGE"
+        >
+          <FAIcon icon="fa-solid fa-box-archive" />
+          Quản lý đơn hàng
+        </el-menu-item>
       </el-menu-item-group>
       <el-menu-item-group v-if="roleList.includes(roles.ROLE_HEADCOL)">
         <template #title> Quản lý điểm tập kết</template>

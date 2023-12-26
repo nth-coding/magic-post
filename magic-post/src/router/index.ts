@@ -17,6 +17,7 @@ import UserManageView from "@/views/main/UserManageView.vue";
 import AdminCustomerManageView from "@/views/admin/customer/AdminCustomerManageView.vue";
 import LeaderOrderManageView from '@/views/collectionLeader/order/LeaderOrderManageView.vue';
 import AdminPointManageView from "@/views/admin/point/AdminPointManageView.vue";
+import AdminPackageManageView from "@/views/admin/package/AdminPackageManageView.vue";
 
 export const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,6 +45,10 @@ export const router = createRouter({
                 {
                     path: Paths.ADMIN_MANAGE_POINT,
                     component: AdminPointManageView,
+                },
+                {
+                    path: Paths.ADMIN_MANAGE_PACKAGE,
+                    component: AdminPackageManageView,
                 },
             ]
         },
@@ -75,10 +80,10 @@ export const router = createRouter({
                     path: Paths.REGISTER_SUCCESS,
                     component: RegisterSuccessView,
                 },
-                {
-                    path: Paths.CONFIRM_REGISTRATION,
-                    component: ConfirmRegistrationView,
-                },
+                // {
+                //     path: Paths.CONFIRM_REGISTRATION,
+                //     component: ConfirmRegistrationView,
+                // },
                 {
                     path: Paths.REGISTRATION_RESEND_ACTIVATION,
                     component: ResendConfirmRegistrationView,

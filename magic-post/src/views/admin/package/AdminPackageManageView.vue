@@ -1,5 +1,5 @@
 <template>
-  <h1>Quản lý đơn vị</h1>
+  <h1>Quản lý hàng hóa</h1>
   <br />
   <!--  <el-row :gutter="12">-->
   <!--    <el-col :md="16">-->
@@ -94,34 +94,6 @@
   <!--          <Refresh />-->
   <!--        </el-icon>-->
   <!--      </CommonButton>-->
-  <!--  <CommonButton size="large" @click="refs.FORM_ADD.openModal()">-->
-  <!--    Thêm đơn vị-->
-  <!--  </CommonButton>-->
-  <!--    </el-col>-->
-  <!--  </el-row>-->
-  <!--  <AddCustomer-->
-  <!--      :ref="toRef('FORM_ADD')"-->
-  <!--      @close="-->
-  <!--      () => {-->
-  <!--        fetchRecords()-->
-  <!--        refs.FORM_ADD.closeModal()-->
-  <!--      }-->
-  <!--    "-->
-  <!--  ></AddCustomer>-->
-  <!--  <EditCustomer-->
-  <!--      :id="idEdit"-->
-  <!--      :ref="toRef('FORM_EDIT')"-->
-  <!--      @close="-->
-  <!--      () => {-->
-  <!--        fetchRecords()-->
-  <!--        refs.FORM_EDIT.closeModal()-->
-  <!--      }-->
-  <!--    "-->
-  <!--  ></EditCustomer>-->
-
-  <!--  <AddUser :model="dialogAdd" @close="closeDialogAdd"></AddUser>-->
-  <!--  <EditUser v-if="idEdit" :id="idEdit" :model="dialogEdit" @close="closeDialogEdit"></EditUser>-->
-
   <el-table
       v-loading="loading"
       empty-text="Không có dữ liệu"
@@ -144,17 +116,27 @@
         header-align="center"
         align="left"
         sortable
-    >
-      <template #default="scope">
-        {{ scope.row.name }}
-      </template>
-    </el-table-column>
+    />
+    <el-table-column
+        prop="weight"
+        label="Weight"
+        width="140"
+        header-align="center"
+        align="center"
+    />
     <el-table-column
         prop="address"
         label="Địa chỉ"
         width="140"
         header-align="center"
-        align="left"
+        align="center"
+    />
+    <el-table-column
+        prop="description"
+        label="Description"
+        width="140"
+        header-align="center"
+        align="center"
     />
     <el-table-column
         prop="type"
@@ -163,69 +145,114 @@
         header-align="center"
         align="center"
     />
-<!--    <el-table-column-->
-<!--        fixed="right"-->
-<!--        label="Hành động"-->
-<!--        width="150"-->
-<!--        header-align="center"-->
-<!--        align="center"-->
-<!--    >-->
-<!--      <template #default="scope">-->
-<!--        <CommonButton-->
-<!--            link-->
-<!--            type="primary"-->
-<!--            @click="handleEdit(scope.row.id)"-->
-<!--            :ref="toRef(RefNames.EDIT_BTN) + scope.row.id"-->
-<!--        >Chỉnh sửa-->
-<!--        </CommonButton>-->
-<!--        <el-popconfirm-->
-<!--            :title="`Bạn chắc chắn muốn xóa đơn vị '${scope.row.name}'?`"-->
-<!--            confirm-button-text="Xác nhận"-->
-<!--            cancel-button-text="Hủy"-->
-<!--            @confirm="handleDelete(scope.row.id)"-->
-<!--        >-->
-<!--          <template #reference>-->
-<!--            <CommonButton link type="danger" :ref="toRef('DELETE_BTN')"-->
-<!--            >Xóa-->
-<!--            </CommonButton>-->
-<!--          </template>-->
-<!--        </el-popconfirm>-->
-<!--      </template>-->
-<!--    </el-table-column>-->
+    <el-table-column
+        prop="status"
+        label="Status"
+        width="140"
+        header-align="center"
+        align="center"
+    />
+    <el-table-column
+        prop="receiverFirstName"
+        label="Receiver First Name"
+        width="140"
+        header-align="center"
+        align="center"
+    />
+    <el-table-column
+        prop="receiverLastName"
+        label="Receiver Last Name"
+        width="140"
+        header-align="center"
+        align="center"
+    />
+    <el-table-column
+        prop="receiverAddress"
+        label="Receiver Address"
+        width="140"
+        header-align="center"
+        align="center"
+    />
+    <el-table-column
+        prop="receiverPhoneNumber"
+        label="Receiver Phone Number"
+        width="140"
+        header-align="center"
+        align="center"
+    />
+    <el-table-column
+        prop="sender"
+        label="Sender"
+        width="140"
+        header-align="center"
+        align="center"
+    />
+    <el-table-column
+        prop="pointDto.name"
+        label="Point"
+        width="140"
+        header-align="center"
+        align="center"
+    />
+    <el-table-column
+        prop="pointType"
+        label="Point Type"
+        width="140"
+        header-align="center"
+        align="center"
+    />
+    <el-table-column
+        fixed="right"
+        label="Hành động"
+        width="150"
+        header-align="center"
+        align="center"
+    >
+      <template #default="scope">
+        <CommonButton
+            link
+            type="primary"
+            @click="handleEdit(scope.row.id)"
+            :ref="toRef(RefNames.EDIT_BTN) + scope.row.id"
+        >Chỉnh sửa
+        </CommonButton>
+        <el-popconfirm
+            :title="`Bạn chắc chắn muốn xóa đơn vị '${scope.row.name}'?`"
+            confirm-button-text="Xác nhận"
+            cancel-button-text="Hủy"
+            @confirm="handleDelete(scope.row.id)"
+        >
+          <template #reference>
+            <CommonButton link type="danger" :ref="toRef('DELETE_BTN')"
+            >Xóa
+            </CommonButton>
+          </template>
+        </el-popconfirm>
+      </template>
+    </el-table-column>
   </el-table>
-  <!--  <div class="pagination-block">-->
-  <!--    <el-pagination-->
-  <!--        layout="prev, pager, next"-->
-  <!--        :page-size="serverParams.size"-->
-  <!--        :total="totalRecords"-->
-  <!--        :current-page="serverParams.page"-->
-  <!--        @current-change="changePage"-->
-  <!--    />-->
-  <!--  </div>-->
 </template>
 
 <script setup lang="ts">
 import {onMounted, reactive, ref} from 'vue'
-import {processErrorMessage} from '@/helper/responseErrorHandle'
-import type {FormRules} from 'element-plus'
-import {ElMessage} from 'element-plus'
+import { processErrorMessage } from '@/helper/responseErrorHandle'
+import type { FormRules } from 'element-plus'
+import { ElMessage } from 'element-plus'
+import { PropertyEntityFullFilter } from '@/common/models'
+
+import { useCommonRepository } from '@/services/commonRepository'
+import {UserService} from "@/services/user";
 import {CollectionPoint, TransactionPoint} from "@/services/point";
-import useRefs from "@/helper/useRef";
 import {useRouter} from "vue-router";
+import useRefs from "@/helper/useRef";
+import {PackageService} from "@/services/package";
 
 const dialogAdd = ref(false)
 const dialogEdit = ref(false)
-const idEdit = ref(null as unknown as number)
 
 const loading = ref(false)
 const usersData = ref<any[] | null>(null);
-const rules = reactive<FormRules>({})
-const form = ref({
-  id: '',
-  name: '',
-  address: '',
-})
-
+const idEdit = ref(null as unknown as number)
 function closeDialogEdit() {
   dialogEdit.value = false
   loadData()
@@ -238,14 +265,24 @@ function closeDialogAdd() {
 
 let {$refs, toRef} = useRefs();
 
-// const { refs, toRef } = useRefs<{
-//   DELETE_BTN: InstanceType<typeof CommonButton>
-//   EDIT_BTN: InstanceType<typeof CommonButton>
-//   RELOAD_BTN: InstanceType<typeof CommonButton>
-//   FORM_FILTER: InstanceType<any>
-//   FORM_ADD: InstanceType<typeof AddCustomer>
-//   FORM_EDIT: InstanceType<typeof EditCustomer>
-// }>()
+
+const rules = reactive<FormRules>({})
+const form = ref({
+  id: '',
+  name: '',
+  weight: 0.0,
+  address: '',
+  description: '',
+  type: '',
+  status: '',
+  receiverFirstName: '',
+  receiverLastName: '',
+  receiverAddress: '',
+  receiverPhoneNumber: '',
+  sender: '',
+  transactionPoint: '',
+  collectionPoint: '',
+})
 
 const RefNames = {
   DELETE_BTN: 'DELETE_BTN_',
@@ -264,19 +301,28 @@ async function loadData() {
     loading.value = true
     $refs.get(RefNames.RELOAD_BTN)?.setLoading(true)
 
-    // Fetch data from both services
-    const transactionPoints = await TransactionPoint.list()
-    const collectionPoints = await CollectionPoint.list()
+    let packages = await PackageService.list()
 
-    let maxId = Math.max(...transactionPoints.map((item: { id: any; }) => item.id));
-    collectionPoints.forEach((item: { id: number; }) => item.id += maxId);
-
-    // Add 'type' property to each item
-    transactionPoints.forEach((item: { type: string; }) => item.type = 'Giao dịch')
-    collectionPoints.forEach((item: { type: string; }) => item.type = 'Tập kết')
-
-    // Combine the two arrays
-    usersData.value = [...transactionPoints, ...collectionPoints]
+    usersData.value = packages.map((item: any) => {
+      return {
+        id: item.id,
+        name: item.name,
+        weight: item.weight,
+        address: item.address,
+        description: item.description,
+        type: item.type,
+        status: item.status,
+        receiverFirstName: item.receiverFirstName,
+        receiverLastName: item.receiverLastName,
+        receiverAddress: item.receiverAddress,
+        receiverPhoneNumber: item.receiverPhoneNumber,
+        sender: item.sender,
+        pointDto: item.pointDto,
+        transactionPoint: item.transactionPoint,
+        collectionPoint: item.collectionPoint,
+        pointType: item.transactionPoint === 0 ? 'Transaction' : 'Collection',
+      }
+    })
   } catch (e) {
     processErrorMessage(e, "Có lỗi đã xảy ra trong quá trình tải dữ liệu. " +
         "Vui lòng thử lại sau!")
@@ -307,8 +353,6 @@ async function handleDelete(id: number) {
     $refs.get(RefNames.DELETE_BTN + id)?.setLoading(false)
   }
 }
-
-
 </script>
 
 <style scoped>

@@ -26,4 +26,11 @@ export const AuthAPI = {
 
 export const AdminApi = {
     USER_MANAGE: '/users',
+    TRANSACTION_POINT: '/boss/tran-point',
+    COLLECTION_POINT: '/boss/col-point',
+    TRANSACTION_POINT_MANAGE: '/boss/tran-points',
+    COLLECTION_POINT_MANAGE: '/boss/col-points',
+    PACKAGE_BOSS_MANAGE: '/boss/packages',
+    STAFF_BOSS_MANAGE: '/boss/staff',
+    PACKAGE_MANAGE: '/packages',
 }

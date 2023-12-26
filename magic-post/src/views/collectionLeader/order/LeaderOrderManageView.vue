@@ -145,7 +145,6 @@
   import { useCommonRepository } from '@/services/commonRepository'
   import AddCustomer from "@/views/admin/customer/AddCustomer.vue";
   import EditCustomer from "@/views/admin/customer/EditCustomer.vue";
-  import {CustomerService} from "@/services/user";
   const idEdit = ref(null as unknown as number)
   
   const rules = reactive<FormRules>({})
