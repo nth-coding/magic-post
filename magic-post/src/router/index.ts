@@ -15,6 +15,7 @@ import ResendConfirmRegistrationView from "@/views/auth/ResendConfirmRegistratio
 import ResendConfirmRegistrationSuccessView from "@/views/auth/ResendConfirmRegistrationSuccessView.vue";
 import UserManageView from "@/views/main/UserManageView.vue";
 import AdminCustomerManageView from "@/views/admin/customer/AdminCustomerManageView.vue";
+import LeaderOrderManageView from '@/views/collectionLeader/order/LeaderOrderManageView.vue';
 import AdminPointManageView from "@/views/admin/point/AdminPointManageView.vue";
 
 export const router = createRouter({
