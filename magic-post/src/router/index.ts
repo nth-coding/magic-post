@@ -15,8 +15,8 @@ import ResendConfirmRegistrationView from "@/views/auth/ResendConfirmRegistratio
 import ResendConfirmRegistrationSuccessView from "@/views/auth/ResendConfirmRegistrationSuccessView.vue";
 import UserManageView from "@/views/main/UserManageView.vue";
 import AdminCustomerManageView from "@/views/admin/customer/AdminCustomerManageView.vue";
-import LeaderColOrderManageView from '@/views/collectionPoint/leader/LeaderColOrderManageView.vue';
-import LeaderTransOrderManageViewVue from '@/views/transactionPoint/leader/LeaderTransOrderManageView.vue';
+import LeaderColOrderManageView from '@/views/collectionPoint/leader/LeaderOrderManageView.vue';
+import LeaderTransOrderManageViewVue from '@/views/transactionPoint/leader/LeaderOrderManageView.vue';
 
 export const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
