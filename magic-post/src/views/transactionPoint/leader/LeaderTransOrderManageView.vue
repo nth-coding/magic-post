@@ -40,13 +40,12 @@
           label="Mô tả"
           header-align="center"
           align="left"
-          sortable
       />
 
       <el-table-column
           prop="type"
           min-width="180"
-          label="Loại"
+          label="chủng loại"
           header-align="center"
           align="left"
           sortable
@@ -58,7 +57,7 @@
           label="Trạng thái"
           header-align="center"
           align="left"
-          sortable
+          
       />
 
       <el-table-column
@@ -67,7 +66,6 @@
           label="Tên người gửi"
           header-align="center"
           align="left"
-          sortable
       >
         <template #default="scope">
             <strong>{{ scope.row.senderFirstName + ' ' + scope.row.senderLastName }}</strong>
@@ -96,7 +94,6 @@
           label="Tên người nhận"
           header-align="center"
           align="left"
-          sortable
       >
         <template #default="scope">
             <strong>{{ scope.row.receiverFirstName + ' ' + scope.row.receiverLastName }}</strong>
@@ -118,8 +115,24 @@
           prop="receiverPhoneNumber"
           width="160"
       />
-
       
+      <!--là hàng gửi cho khách hay hàng nhận để chuyển đến điểm tập kết-->
+      <el-table-column
+          align="center"
+          header-align="center"
+          label="Loại hàng"
+          prop="typeOfGoods"
+          width="160"
+          sortable
+      />
+
+      <el-table-column
+          align="center"
+          header-align="center"
+          label="Điểm tập kết tiếp theo"
+          prop="nextPoint"
+          width="170"
+      />
 
       
     </el-table>
@@ -198,6 +211,9 @@
       receiverLastName: 'Doe',
       receiverAddress: '456 Elm St',
       receiverPhoneNumber: '234-567-8901',
+
+      typeOfGoods: 'hàng gửi',
+      nextPoint: '',
     },
     {
       id: 2,
@@ -216,6 +232,30 @@
       receiverLastName: 'Doe',
       receiverAddress: '456 Elm St',
       receiverPhoneNumber: '234-567-8901',
+
+      typeOfGoods: 'hàng nhận',
+      nextPoint:'hahah',
+    },
+    {
+      id: 1,
+      name: 'quạt',
+      weight: '2 kg',
+      description: 'hơi to',
+      type: 'hàng nhẹ',
+      status: 'đang vận chuyển',
+
+      senderFirstName: 'John',
+      senderLastName: 'Doe',
+      senderAddress: '123 Main St',
+      senderPhoneNumber: '123-456-7890',
+
+      receiverFirstName: 'Jane',
+      receiverLastName: 'Doe',
+      receiverAddress: '456 Elm St',
+      receiverPhoneNumber: '234-567-8901',
+
+      typeOfGoods: 'hàng gửi',
+      nextPoint: '',
     },
   ];
   
