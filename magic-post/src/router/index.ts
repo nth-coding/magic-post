@@ -16,7 +16,9 @@ import ResendConfirmRegistrationSuccessView from "@/views/auth/ResendConfirmRegi
 import UserManageView from "@/views/main/UserManageView.vue";
 import AdminCustomerManageView from "@/views/admin/customer/AdminCustomerManageView.vue";
 import LeaderColOrderManageView from '@/views/collectionPoint/leader/LeaderOrderManageView.vue';
-import LeaderTransOrderManageViewVue from '@/views/transactionPoint/leader/LeaderOrderManageView.vue';
+import LeaderTransOrderManageView from '@/views/transactionPoint/leader/LeaderOrderManageView.vue';
+import LeaderColCustomerManageView from '@/views/collectionPoint/leader/LeaderCustomerManageView.vue';
+import LeaderTransCustomerManageView from '@/views/transactionPoint/leader/LeaderCustomerManageView.vue';
 
 export const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -83,6 +85,22 @@ export const router = createRouter({
                     path: Paths.REGISTRATION_RESEND_ACTIVATION_SUCCESS,
                     component: ResendConfirmRegistrationSuccessView,
                 },
+                {
+                    path: Paths.HEADCOL_MANAGE_ORDER,
+                    component: LeaderColOrderManageView,
+                },
+                {
+                    path: Paths.HEADTRAN_MANAGE_ORDER,
+                    component: LeaderTransOrderManageView,
+                },
+                {
+                    path: Paths.HEADCOL_MANAGE_USER,
+                    component: LeaderColCustomerManageView,
+                },
+                {
+                    path: Paths.HEADTRAN_MANAGE_USER,
+                    component: LeaderTransCustomerManageView,
+                }
             ]
         },
     ],
