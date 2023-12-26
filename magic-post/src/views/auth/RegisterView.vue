@@ -1,9 +1,10 @@
 <template>
-  <div class="login-form-container">
-    <el-row type="flex" justify="center">
-      <el-col :lg="8" :md="12" :sm="24">
-        <el-card header="Đăng ký">
-          <template #header><h2 class="login-title">Đăng ký</h2></template>
+  <body>
+  
+    
+        <el-card class="w-[800px] h-[1000px] mx-auto mt-[5px] bg-white rounded-3xl border border-stone-500 border-opacity-50 flex  justify-center" >
+          <div class="mt-[20px] flex-col justify-center flex">
+            <div class="text-center text-zinc-800 text-[32px] font-medium font-['Poppins'] ">Đăng ký</div>
           <el-form
               :ref="toRef('REGISTER_FORM')"
               :model="form"
@@ -13,7 +14,8 @@
               @keyup.enter.native="onSubmit"
               size="large"
           >
-            <el-form-item label="First name" prop="firstName">
+          
+            <el-form-item label="First name" prop="firstName" class="w-[528px] h-[87px] flex-col  inline-flex">
               <el-input v-model="form.firstName" placeholder="First name"></el-input>
             </el-form-item>
 
@@ -57,12 +59,14 @@
                 v-if="errorMessage"
                 class="error-message"
             ></el-alert>
+            <br>
             <el-row type="flex" justify="end">
               <el-col :span="24">
                 <CommonButton
                     size="large"
                     :ref="toRef('SUBMIT_BUTTON')"
-                    class="width-full"
+                    class="w-[528px] h-16 pt-[15px] bg-blue-500 pb-4 rounded-[40px] inline-flex 
+                             text-center text-white text-[22px] font-medium font-['Poppins']"
                     type="primary"
                     @click="onSubmit"
                 >
@@ -71,15 +75,15 @@
               </el-col>
             </el-row>
             <br />
-            <el-row>
+            <el-row class="justify-center">
               Đã có tài khoản? &nbsp
               <router-link :to="Paths.LOGIN">Đăng nhập</router-link>
             </el-row>
           </el-form>
+        </div>
         </el-card>
-      </el-col>
-    </el-row>
-  </div>
+      
+</body>
 </template>
 
 <script lang="ts" setup>
@@ -195,6 +199,11 @@ function onSubmit() {
 </script>
 
 <style scoped>
+body {
+  background:linear-gradient(to right, #017a6e, #0dc2af);
+  display: flex;
+  align-items: center;
+}
 .error-message {
   margin: 20px 0 15px 0;
 }
