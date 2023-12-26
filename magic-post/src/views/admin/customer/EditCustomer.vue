@@ -65,7 +65,7 @@ import { processErrorMessage } from '@/helper/responseErrorHandle'
 import { ElMessage } from 'element-plus/es'
 import CommonButton from '@/components/common/CommonButton.vue'
 import useRefs from '@/common/useRefs'
-import {CustomerService} from "@/services/user";
+import {UserService} from "@/services/user";
 
 const form = ref({
   username: '',
@@ -144,7 +144,7 @@ onMounted(async () => {
 async function refreshData() {
   try {
     if (!props.id) return
-    const response = await CustomerService.getOne(props.id)
+    const response = await UserService.getOne(props.id)
     const user = response?.data?.data
     form.value = {
       username: user?.username,
@@ -166,7 +166,7 @@ function submitForm() {
       refs.SUBMIT_BTN?.setLoading(true)
       try {
         const now = new Date()
-        await CustomerService.edit(props.id, {
+        await UserService.edit(props.id, {
           firstName: form.value.firstName,
           lastName: form.value.lastName,
           address: form.value.address,

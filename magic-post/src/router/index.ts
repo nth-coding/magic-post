@@ -30,6 +30,10 @@ export const router = createRouter({
             component: MainLayout,
             children: [
                 {
+                    path: Paths.MAIN,
+                    component: HomePageView,
+                },
+                {
                     path: Paths.MANAGE_USER,
                     component: UserManageView,
                 },

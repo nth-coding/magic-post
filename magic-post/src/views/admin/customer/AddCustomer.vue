@@ -64,7 +64,7 @@ import { processErrorMessage } from '@/helper/responseErrorHandle'
 import { ElMessage } from 'element-plus/es'
 import CommonButton from '@/components/common/CommonButton.vue'
 import useRefs from '@/common/useRefs'
-import {CustomerService} from "@/services/user";
+import {UserService} from "@/services/user";
 
 const show = ref(false)
 const form = ref({
@@ -134,7 +134,7 @@ function submitForm() {
     if (valid) {
       refs.SUBMIT_BTN?.setLoading(true)
       try {
-        await CustomerService.add({
+        await UserService.add({
           username: form.value.username,
           firstName: form.value.firstName,
           lastName: form.value.lastName,

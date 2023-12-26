@@ -23,6 +23,7 @@ export const Paths = {
 }
 
 export const ANONYMOUS_ALLOW_PATHS = [
+    Paths.HOME,
     Paths.LOGIN,
     Paths.REGISTER,
 ]

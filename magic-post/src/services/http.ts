@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { LocalStorageKeys } from '@/constants/LocalStorageKey'
-import { getLocalStorage } from '@/helper/LocalStorageHelper'
+import {getLocalStorage, removeLocalStorage} from '@/helper/LocalStorageHelper'
 import { logout } from '@/services/auth.js'
 import { RequestHeaders } from '@/constants/HTTP'
 
@@ -9,10 +9,11 @@ const http = axios.create({
     baseURL: import.meta.env.VITE_APP_ROOT_API,
     transformRequest: [
         function (data: any, headers: any) {
-            headers[RequestHeaders.TOKEN] = getLocalStorage(
-                LocalStorageKeys.AUTHENTICATION_TOKEN
-            )
-            return JSON.stringify(data)
+            const authToken = getLocalStorage(LocalStorageKeys.AUTHENTICATION_TOKEN);
+            if (authToken) {
+                headers[RequestHeaders.TOKEN] = 'Bearer ' + authToken;
+            }
+            return JSON.stringify(data);
         },
     ],
     headers: {
@@ -32,5 +33,10 @@ http.interceptors.response.use(
         return Promise.reject(error)
     }
 )
+
+export const clearAuthToken = () => {
+    delete http.defaults.headers.common['Authorization'];
+    removeLocalStorage(LocalStorageKeys.AUTHENTICATION_TOKEN);
+}
 
 export default http

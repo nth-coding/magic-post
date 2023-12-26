@@ -1,5 +1,9 @@
-import { defineStore } from 'pinia'
-import { checkAdmin, getUserInfo, logout } from '@/services/auth'
+import {defineStore} from 'pinia'
+import {
+    getUserInfo,
+    logout
+} from '@/services/auth'
+import {roles} from "@/constants/Role";
 
 export const useAuthenticationStore = defineStore({
     id: 'authentication',
@@ -15,10 +19,12 @@ export const useAuthenticationStore = defineStore({
         async loadFromServer() {
             try {
                 const resUser = await getUserInfo()
-                this.user = resUser.data
-                // const responseRoles = await checkAdmin()
-                // const plans = responseRoles?.data?.data
-                this.roles = resUser.roles || []
+                this.user = resUser
+
+                for (const item of resUser.roles) {
+                    this.roles.push(item.name)
+                }
+
             } catch (e: any) {
                 if (e.response && e.response.status === 401) {
                     this.user = null

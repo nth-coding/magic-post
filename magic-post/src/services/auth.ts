@@ -1,4 +1,4 @@
-import http from '@/services/http'
+import http, {clearAuthToken} from '@/services/http'
 import { AuthAPI } from '@/constants/API'
 import { ANONYMOUS_ALLOW_PATHS, Paths } from '@/router/paths'
 
@@ -50,11 +50,12 @@ export const checkTokenResetPassword = async (token: any) => {
         },
     })
 }
+
 export const logout = async () => {
-    await http.post(AuthAPI.LOGOUT, {})
     if (!ANONYMOUS_ALLOW_PATHS.includes(location.pathname)) {
         location.href = Paths.LOGIN + '?redirectUrl=' + location.href
     }
+    clearAuthToken();
 }
 
 export const checkAdmin = async () => {
