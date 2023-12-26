@@ -1,10 +1,5 @@
 import {defineStore} from 'pinia'
 import {
-    getBossInfo, getCustomerInfo,
-    getHeadColInfo,
-    getHeadTranInfo,
-    getOfficerColInfo,
-    getOfficerTranInfo,
     getUserInfo,
     logout
 } from '@/services/auth'
@@ -37,7 +32,7 @@ export const useAuthenticationStore = defineStore({
             }
         },
         async logout() {
-            // await logout().then()
+            await logout().then()
             this.user = null
         },
     },

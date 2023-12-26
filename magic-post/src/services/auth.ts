@@ -1,33 +1,9 @@
-import http from '@/services/http'
+import http, {clearAuthToken} from '@/services/http'
 import { AuthAPI } from '@/constants/API'
 import { ANONYMOUS_ALLOW_PATHS, Paths } from '@/router/paths'
 
 export const getUserInfo = async () => {
     const response = await http.get(AuthAPI.GET_USER_INFO)
-    return response.data
-}
-export const getBossInfo = async () => {
-    const response = await http.get(AuthAPI.GET_BOSS_INFO)
-    return response.data
-}
-export const getHeadTranInfo = async () => {
-    const response = await http.get(AuthAPI.GET_HEADTRAN_INFO)
-    return response.data
-}
-export const getHeadColInfo = async () => {
-    const response = await http.get(AuthAPI.GET_HEADCOL_INFO)
-    return response.data
-}
-export const getOfficerTranInfo = async () => {
-    const response = await http.get(AuthAPI.GET_OFFICERTRAN_INFO)
-    return response.data
-}
-export const getOfficerColInfo = async () => {
-    const response = await http.get(AuthAPI.GET_OFFICERCOL_INFO)
-    return response.data
-}
-export const getCustomerInfo = async () => {
-    const response = await http.get(AuthAPI.GET_CUSTOMER_INFO)
     return response.data
 }
 export const register = async (payload: any) => {
@@ -74,11 +50,12 @@ export const checkTokenResetPassword = async (token: any) => {
         },
     })
 }
+
 export const logout = async () => {
-    await http.post(AuthAPI.LOGOUT, {})
     if (!ANONYMOUS_ALLOW_PATHS.includes(location.pathname)) {
         location.href = Paths.LOGIN + '?redirectUrl=' + location.href
     }
+    clearAuthToken();
 }
 
 export const checkAdmin = async () => {

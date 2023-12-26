@@ -67,6 +67,7 @@ import {useAuthenticationStore} from "@/stores/authentication";
 import {useRoute} from "vue-router";
 import FAIcon from "@/components/common/FAIcon.vue";
 import {roles} from "@/constants/Role";
+import {router} from "@/router";
 
 
 const $route = useRoute()
@@ -77,6 +78,7 @@ const { roleList } = storeToRefs(authenticationStore)
 
 function logout() {
   authenticationStore.logout()
+  router.push(Paths.HOME)
   ElMessage.success({ message: 'Đăng xuất thành công' })
 }
 </script>
