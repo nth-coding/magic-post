@@ -1,7 +1,7 @@
 <template>
   <body>
     <el-card 
-    class="w-[640px] h-[550px] mx-auto mt-[5px] bg-white rounded-3xl border border-stone-500 border-opacity-50 flex  justify-center  ">
+    class="w-[640px] h-[550px] mx-auto mt-[5px] bg-white rounded-3xl border border-stone-500 border-opacity-50 flex  justify-center">
       <div class="mt-[20px] flex-col justify-center flex">
         <div class="text-center text-zinc-800 text-[32px] font-medium font-['Poppins'] ">Đăng nhập</div>
           

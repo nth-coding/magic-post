@@ -15,13 +15,14 @@ import ResendConfirmRegistrationView from "@/views/auth/ResendConfirmRegistratio
 import ResendConfirmRegistrationSuccessView from "@/views/auth/ResendConfirmRegistrationSuccessView.vue";
 import UserManageView from "@/views/main/UserManageView.vue";
 import AdminCustomerManageView from "@/views/admin/customer/AdminCustomerManageView.vue";
+import LeaderOrderManageView from '@/views/collectionLeader/order/LeaderOrderManageView.vue';
 
 export const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
         {
             path: Paths.HOME,
-            component: LandingPageView,
+            component: LeaderOrderManageView,
         },
         {
             path: Paths.MAIN,
