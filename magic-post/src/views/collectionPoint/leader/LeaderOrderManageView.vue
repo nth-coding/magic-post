@@ -40,7 +40,6 @@
           label="Mô tả"
           header-align="center"
           align="left"
-          sortable
       />
 
       <el-table-column
@@ -67,7 +66,7 @@
           label="Tên người gửi"
           header-align="center"
           align="left"
-          sortable
+          
       >
         <template #default="scope">
             <strong>{{ scope.row.senderFirstName + ' ' + scope.row.senderLastName }}</strong>
@@ -96,7 +95,7 @@
           label="Tên người nhận"
           header-align="center"
           align="left"
-          sortable
+          
       >
         <template #default="scope">
             <strong>{{ scope.row.receiverFirstName + ' ' + scope.row.receiverLastName }}</strong>
@@ -119,19 +118,16 @@
           width="160"
       />
 
-      
+      <el-table-column
+          align="center"
+          header-align="center"
+          label="Điểm đến tiếp theo"
+          prop="nextPoint"
+          width="160"
+      />
 
       
     </el-table>
-    <div class="pagination-block">
-      <el-pagination
-          layout="prev, pager, next"
-          :page-size="serverParams.size"
-          :total="totalRecords"
-          :current-page="serverParams.page"
-          @current-change="changePage"
-      />
-    </div>
   </template>
   
   <script setup lang="ts">
@@ -145,7 +141,7 @@
   import { useCommonRepository } from '@/services/commonRepository'
   import AddCustomer from "@/views/admin/customer/AddCustomer.vue";
   import EditCustomer from "@/views/admin/customer/EditCustomer.vue";
-  import {CustomerService} from "@/services/user";
+
   const idEdit = ref(null as unknown as number)
   
   const rules = reactive<FormRules>({})
@@ -167,17 +163,6 @@
     FORM_EDIT: InstanceType<typeof EditCustomer>
   }>()
   
-  const {
-    records,
-    totalRecords,
-    filter,
-    fetching,
-    fetchRecords,
-    resetFilter,
-    sortDocument,
-    serverParams,
-    changePage,
-  } = useCommonRepository(CustomerService.listForAdmin, PropertyEntityFullFilter)
   
   // create for me about 5 example to table has data
   const data = [
@@ -198,6 +183,8 @@
       receiverLastName: 'Doe',
       receiverAddress: '456 Elm St',
       receiverPhoneNumber: '234-567-8901',
+      
+      nextPoint: '123 Main St',
     },
     {
       id: 2,
@@ -216,6 +203,8 @@
       receiverLastName: 'Doe',
       receiverAddress: '456 Elm St',
       receiverPhoneNumber: '234-567-8901',
+
+      nextPoint: '456 Elm St',
     },
   ];
   
