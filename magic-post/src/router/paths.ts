@@ -14,6 +14,9 @@ export const Paths = {
 
     MANAGE_USER: '/manage-user',
     ADMIN_MANAGE_USER: '/admin/customers',
+
+    TRANS_LEADER_MANAGE_ORDER: '/transactionPoint/leader/manage-order',
+    COL_LEADER_MANAGE_ORDER: '/collectionPoint/leader/manage-order',
 }
 
 export const ANONYMOUS_ALLOW_PATHS = [
