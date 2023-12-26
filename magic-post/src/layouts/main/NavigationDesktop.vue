@@ -19,6 +19,13 @@
           <FAIcon icon="fa-solid fa-user-group" />
           Quản lý tài khoản
         </el-menu-item>
+        <el-menu-item
+            :route="Paths.ADMIN_MANAGE_POINT"
+            :index="Paths.ADMIN_MANAGE_POINT"
+        >
+          <FAIcon icon="fa-solid fa-building" />
+          Quản lý đơn vị
+        </el-menu-item>
       </el-menu-item-group>
       <el-menu-item-group v-if="roleList.includes(roles.ROLE_HEADCOL)">
         <template #title> Quản lý điểm tập kết</template>
