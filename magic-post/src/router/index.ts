@@ -15,14 +15,17 @@ import ResendConfirmRegistrationView from "@/views/auth/ResendConfirmRegistratio
 import ResendConfirmRegistrationSuccessView from "@/views/auth/ResendConfirmRegistrationSuccessView.vue";
 import UserManageView from "@/views/main/UserManageView.vue";
 import AdminCustomerManageView from "@/views/admin/customer/AdminCustomerManageView.vue";
-import LeaderOrderManageView from '@/views/collectionLeader/order/LeaderOrderManageView.vue';
+import LeaderColOrderManageView from '@/views/collectionPoint/leader/LeaderOrderManageView.vue';
+import LeaderTransOrderManageView from '@/views/transactionPoint/leader/LeaderOrderManageView.vue';
+import LeaderColCustomerManageView from '@/views/collectionPoint/leader/LeaderCustomerManageView.vue';
+import LeaderTransCustomerManageView from '@/views/transactionPoint/leader/LeaderCustomerManageView.vue';
 
 export const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
         {
             path: Paths.HOME,
-            component: LeaderOrderManageView,
+            component: LeaderTransCustomerManageView,
         },
         {
             path: Paths.MAIN,
@@ -82,6 +85,22 @@ export const router = createRouter({
                     path: Paths.REGISTRATION_RESEND_ACTIVATION_SUCCESS,
                     component: ResendConfirmRegistrationSuccessView,
                 },
+                {
+                    path: Paths.HEADCOL_MANAGE_ORDER,
+                    component: LeaderColOrderManageView,
+                },
+                {
+                    path: Paths.HEADTRAN_MANAGE_ORDER,
+                    component: LeaderTransOrderManageView,
+                },
+                {
+                    path: Paths.HEADCOL_MANAGE_USER,
+                    component: LeaderColCustomerManageView,
+                },
+                {
+                    path: Paths.HEADTRAN_MANAGE_USER,
+                    component: LeaderTransCustomerManageView,
+                }
             ]
         },
     ],

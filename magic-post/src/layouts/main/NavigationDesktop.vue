@@ -30,6 +30,14 @@
           <FAIcon icon="fa-solid fa-user-group" />
           Quản lý tài khoản
         </el-menu-item>
+        <el-menu-item
+            :route="Paths.HEADCOL_MANAGE_ORDER"
+            v-if="roleList.includes(roles.ROLE_HEADCOL)"
+            :index="Paths.HEADCOL_MANAGE_ORDER"
+        >
+          <FAIcon icon="fa-solid fa-box"/>
+          Quản lý đơn hàng
+        </el-menu-item>
       </el-menu-item-group>
       <el-menu-item-group v-if="roleList.includes(roles.ROLE_HEADTRAN)">
         <template #title> Quản lý điểm giao dịch</template>
@@ -41,6 +49,14 @@
             <FAIcon icon="fa-solid fa-user-group" />
             Quản lý tài khoản
           </el-menu-item>
+          <el-menu-item
+            :route="Paths.HEADTRAN_MANAGE_ORDER"
+            v-if="roleList.includes(roles.ROLE_HEADCOL)"
+            :index="Paths.HEADTRAN_MANAGE_ORDER"
+        >
+          <FAIcon icon="fa-solid fa-box"/>
+          Quản lý đơn hàng
+        </el-menu-item>
       </el-menu-item-group>
       <el-menu-item-group>
         <template #title> Cá nhân</template>
