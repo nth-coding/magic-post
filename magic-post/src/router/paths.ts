@@ -17,8 +17,10 @@ export const Paths = {
     ADMIN_MANAGE_POINT: '/admin/points',
     ADMIN_MANAGE_PACKAGE: '/admin/packages',
 
-    HEADTRAN_MANAGE_USER: '/...',
-    HEADCOL_MANAGE_USER: '/...',
+    HEADTRAN_MANAGE_USER: '/trans-leader/customers',
+    HEADTRAN_MANAGE_ORDER: '/trans-leader/order',
+    HEADCOL_MANAGE_USER: '/col-leader/customers',
+    HEADCOL_MANAGE_ORDER: '/col-leader/order',
 }
 
 export const ANONYMOUS_ALLOW_PATHS = [
