@@ -15,14 +15,8 @@ import ResendConfirmRegistrationView from "@/views/auth/ResendConfirmRegistratio
 import ResendConfirmRegistrationSuccessView from "@/views/auth/ResendConfirmRegistrationSuccessView.vue";
 import UserManageView from "@/views/main/UserManageView.vue";
 import AdminCustomerManageView from "@/views/admin/customer/AdminCustomerManageView.vue";
-import LeaderColOrderManageView from '@/views/collectionPoint/leader/LeaderOrderManageView.vue';
-import LeaderTransOrderManageView from '@/views/leader/headTransaction/HeadTransactionUserManageView.vue';
-import LeaderColCustomerManageView from '@/views/collectionPoint/leader/LeaderCustomerManageView.vue';
-import LeaderTransCustomerManageView from '@/views/leader/headCollection/HeadCollectionPackageManageView.vue';
 import AdminPointManageView from "@/views/admin/point/AdminPointManageView.vue";
 import AdminPackageManageView from "@/views/admin/package/AdminPackageManageView.vue";
-import LeaderCustomerManageView from "@/views/leader/headCollection/HeadCollectionPackageManageView.vue";
-import LeaderOrderManageView from "@/views/leader/headTransaction/HeadTransactionUserManageView.vue";
 import HeadCollectionUserManageView from "@/views/leader/headCollection/HeadCollectionUserManageView.vue";
 import HeadTransactionUserManageView from "@/views/leader/headTransaction/HeadTransactionUserManageView.vue";
 import HeadCollectionPackageManageView from "@/views/leader/headCollection/HeadCollectionPackageManageView.vue";
@@ -117,22 +111,6 @@ export const router = createRouter({
                     path: Paths.REGISTRATION_RESEND_ACTIVATION_SUCCESS,
                     component: ResendConfirmRegistrationSuccessView,
                 },
-                {
-                    path: Paths.HEADCOL_MANAGE_ORDER,
-                    component: LeaderColOrderManageView,
-                },
-                {
-                    path: Paths.HEADTRAN_MANAGE_ORDER,
-                    component: LeaderTransOrderManageView,
-                },
-                {
-                    path: Paths.HEADCOL_MANAGE_USER,
-                    component: LeaderColCustomerManageView,
-                },
-                {
-                    path: Paths.HEADTRAN_MANAGE_USER,
-                    component: LeaderTransCustomerManageView,
-                }
             ]
         },
     ],
