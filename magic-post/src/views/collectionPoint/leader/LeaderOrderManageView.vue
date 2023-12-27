@@ -66,7 +66,7 @@
           label="Tên người gửi"
           header-align="center"
           align="left"
-          
+
       >
         <template #default="scope">
             <strong>{{ scope.row.senderFirstName + ' ' + scope.row.senderLastName }}</strong>
@@ -95,7 +95,7 @@
           label="Tên người nhận"
           header-align="center"
           align="left"
-          
+          sortable
       >
         <template #default="scope">
             <strong>{{ scope.row.receiverFirstName + ' ' + scope.row.receiverLastName }}</strong>
@@ -162,7 +162,7 @@
     FORM_ADD: InstanceType<typeof AddCustomer>
     FORM_EDIT: InstanceType<typeof EditCustomer>
   }>()
-  
+
   
   // create for me about 5 example to table has data
   const data = [
@@ -183,7 +183,7 @@
       receiverLastName: 'Doe',
       receiverAddress: '456 Elm St',
       receiverPhoneNumber: '234-567-8901',
-      
+
       nextPoint: '123 Main St',
     },
     {

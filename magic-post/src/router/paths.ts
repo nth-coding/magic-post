@@ -14,6 +14,8 @@ export const Paths = {
 
     MANAGE_USER: '/manage-user',
     ADMIN_MANAGE_USER: '/admin/customers',
+    ADMIN_MANAGE_POINT: '/admin/points',
+    ADMIN_MANAGE_PACKAGE: '/admin/packages',
 
     HEADTRAN_MANAGE_USER: '/trans-leader/customers',
     HEADTRAN_MANAGE_ORDER: '/trans-leader/order',

@@ -29,3 +29,11 @@ export const UserService = {
         return await http.post(AuthAPI.EDIT_PROFILE, payload)
     }
 }
+
+export const StaffService = {
+    list: async () => {
+        return (
+            await http.get(AdminApi.STAFF_BOSS_MANAGE, {})
+        ).data
+    },
+}

@@ -19,13 +19,16 @@ import LeaderColOrderManageView from '@/views/collectionPoint/leader/LeaderOrder
 import LeaderTransOrderManageView from '@/views/transactionPoint/leader/LeaderOrderManageView.vue';
 import LeaderColCustomerManageView from '@/views/collectionPoint/leader/LeaderCustomerManageView.vue';
 import LeaderTransCustomerManageView from '@/views/transactionPoint/leader/LeaderCustomerManageView.vue';
+import LeaderOrderManageView from '@/views/collectionLeader/order/LeaderOrderManageView.vue';
+import AdminPointManageView from "@/views/admin/point/AdminPointManageView.vue";
+import AdminPackageManageView from "@/views/admin/package/AdminPackageManageView.vue";
 
 export const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
         {
             path: Paths.HOME,
-            component: LeaderTransCustomerManageView,
+            component: LandingPageView,
         },
         {
             path: Paths.MAIN,
@@ -42,6 +45,14 @@ export const router = createRouter({
                 {
                     path: Paths.ADMIN_MANAGE_USER,
                     component: AdminCustomerManageView,
+                },
+                {
+                    path: Paths.ADMIN_MANAGE_POINT,
+                    component: AdminPointManageView,
+                },
+                {
+                    path: Paths.ADMIN_MANAGE_PACKAGE,
+                    component: AdminPackageManageView,
                 },
             ]
         },
@@ -73,10 +84,10 @@ export const router = createRouter({
                     path: Paths.REGISTER_SUCCESS,
                     component: RegisterSuccessView,
                 },
-                {
-                    path: Paths.CONFIRM_REGISTRATION,
-                    component: ConfirmRegistrationView,
-                },
+                // {
+                //     path: Paths.CONFIRM_REGISTRATION,
+                //     component: ConfirmRegistrationView,
+                // },
                 {
                     path: Paths.REGISTRATION_RESEND_ACTIVATION,
                     component: ResendConfirmRegistrationView,
