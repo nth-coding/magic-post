@@ -2,12 +2,12 @@
   <h1>Quản lý đơn hàng</h1>
   <br />
   <el-table
-      v-loading="fetching"
+      v-loading="loading"
       empty-text="Không có dữ liệu"
       :data="data"
       border
       style="width: 100%"
-      @sort-change="sortDocument"
+      
   >
     <el-table-column
         prop="id"
@@ -139,39 +139,6 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
-import CommonButton from '@/components/common/CommonButton.vue'
-import { processErrorMessage } from '@/helper/responseErrorHandle'
-import type { FormRules } from 'element-plus'
-import { ElMessage } from 'element-plus'
-import { PropertyEntityFullFilter } from '@/common/models'
-import useRefs from '@/common/useRefs'
-import { useCommonRepository } from '@/services/commonRepository'
-import AddCustomer from "@/views/admin/customer/AddCustomer.vue";
-import EditCustomer from "@/views/admin/customer/EditCustomer.vue";
-
-const idEdit = ref(null as unknown as number)
-
-const rules = reactive<FormRules>({})
-const form = ref({
-  id: '',
-  email: '',
-  name: '',
-  plan: '0',
-  organization: '0',
-  emailConfirmed: null,
-})
-
-const { refs, toRef } = useRefs<{
-  DELETE_BTN: InstanceType<typeof CommonButton>
-  EDIT_BTN: InstanceType<typeof CommonButton>
-  RELOAD_BTN: InstanceType<typeof CommonButton>
-  FORM_FILTER: InstanceType<any>
-  FORM_ADD: InstanceType<typeof AddCustomer>
-  FORM_EDIT: InstanceType<typeof EditCustomer>
-}>()
-
-
 // create for me about 5 example to table has data
 const data = [
   {
@@ -218,23 +185,6 @@ const data = [
   },
 ];
 
-async function handleDelete(id: number) {
-  refs.DELETE_BTN?.setLoading(true)
-  try {
-    await CustomerService.delete(id)
-    await fetchRecords()
-    ElMessage.success('Xóa người dùng thành công!')
-  } catch (e) {
-    processErrorMessage(
-        e,
-        'Có lỗi đã xảy ra trong quá trình xóa người dùng. ' +
-        'Vui lòng thử lại sau!'
-    )
-  } finally {
-    refs.DELETE_BTN?.setLoading(false)
-    await fetchRecords()
-  }
-}
 </script>
 
 <style scoped>
