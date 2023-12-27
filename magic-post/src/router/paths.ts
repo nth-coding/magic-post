@@ -21,6 +21,9 @@ export const Paths = {
     HEADTRAN_MANAGE_ORDER: '/trans-leader/order',
     HEADCOL_MANAGE_USER: '/col-leader/customers',
     HEADCOL_MANAGE_ORDER: '/col-leader/order',
+
+    LEADER_MANAGE_USER: '/leader/customers',
+    LEADER_MANAGE_ORDER: '/leader/order',
 }
 
 export const ANONYMOUS_ALLOW_PATHS = [

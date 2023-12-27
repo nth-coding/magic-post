@@ -116,24 +116,44 @@
         header-align="center"
         align="left"
         sortable
+    >
+      <template #default="scope">
+        <strong>{{ scope.row.name }}</strong>
+        <br />
+        {{ scope.row.description }}
+      </template>
+    </el-table-column>
+    <el-table-column
+        prop="sender"
+        label="Sender"
+        width="140"
+        header-align="center"
+        align="center"
+    />
+    <el-table-column
+        prop="receiverName"
+        label="Receiver Name"
+        width="140"
+        header-align="center"
+        align="center"
+    />
+    <el-table-column
+        prop="receiverAddress"
+        label="Receiver Address"
+        width="180"
+        header-align="center"
+        align="center"
+    />
+    <el-table-column
+        prop="receiverPhoneNumber"
+        label="Receiver Phone Number"
+        width="140"
+        header-align="center"
+        align="center"
     />
     <el-table-column
         prop="weight"
-        label="Weight"
-        width="140"
-        header-align="center"
-        align="center"
-    />
-    <el-table-column
-        prop="address"
-        label="Địa chỉ"
-        width="140"
-        header-align="center"
-        align="center"
-    />
-    <el-table-column
-        prop="description"
-        label="Description"
+        label="Weight (kg)"
         width="140"
         header-align="center"
         align="center"
@@ -148,41 +168,6 @@
     <el-table-column
         prop="status"
         label="Status"
-        width="140"
-        header-align="center"
-        align="center"
-    />
-    <el-table-column
-        prop="receiverFirstName"
-        label="Receiver First Name"
-        width="140"
-        header-align="center"
-        align="center"
-    />
-    <el-table-column
-        prop="receiverLastName"
-        label="Receiver Last Name"
-        width="140"
-        header-align="center"
-        align="center"
-    />
-    <el-table-column
-        prop="receiverAddress"
-        label="Receiver Address"
-        width="140"
-        header-align="center"
-        align="center"
-    />
-    <el-table-column
-        prop="receiverPhoneNumber"
-        label="Receiver Phone Number"
-        width="140"
-        header-align="center"
-        align="center"
-    />
-    <el-table-column
-        prop="sender"
-        label="Sender"
         width="140"
         header-align="center"
         align="center"
@@ -312,11 +297,10 @@ async function loadData() {
         description: item.description,
         type: item.type,
         status: item.status,
-        receiverFirstName: item.receiverFirstName,
-        receiverLastName: item.receiverLastName,
+        receiverName: item.receiverFirstName + item.receiverLastName,
         receiverAddress: item.receiverAddress,
         receiverPhoneNumber: item.receiverPhoneNumber,
-        sender: item.sender,
+        sender: item.userDto.firstName + " " + item.userDto.lastName,
         pointDto: item.pointDto,
         transactionPoint: item.transactionPoint,
         collectionPoint: item.collectionPoint,

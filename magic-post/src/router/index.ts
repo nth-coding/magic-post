@@ -19,9 +19,10 @@ import LeaderColOrderManageView from '@/views/collectionPoint/leader/LeaderOrder
 import LeaderTransOrderManageView from '@/views/transactionPoint/leader/LeaderOrderManageView.vue';
 import LeaderColCustomerManageView from '@/views/collectionPoint/leader/LeaderCustomerManageView.vue';
 import LeaderTransCustomerManageView from '@/views/transactionPoint/leader/LeaderCustomerManageView.vue';
-import LeaderOrderManageView from '@/views/collectionLeader/order/LeaderOrderManageView.vue';
 import AdminPointManageView from "@/views/admin/point/AdminPointManageView.vue";
 import AdminPackageManageView from "@/views/admin/package/AdminPackageManageView.vue";
+import LeaderCustomerManageView from "@/views/transactionPoint/leader/LeaderCustomerManageView.vue";
+import LeaderOrderManageView from "@/views/transactionPoint/leader/LeaderOrderManageView.vue";
 
 export const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -54,6 +55,14 @@ export const router = createRouter({
                     path: Paths.ADMIN_MANAGE_PACKAGE,
                     component: AdminPackageManageView,
                 },
+                {
+                    path: Paths.LEADER_MANAGE_ORDER,
+                    component: LeaderOrderManageView,
+                },
+                {
+                    path: Paths.LEADER_MANAGE_USER,
+                    component: LeaderCustomerManageView,
+                }
             ]
         },
         {
