@@ -1,11 +1,11 @@
 <template>
-  <h1>Quản lý giao dịch viên</h1>
+  <h1>Quản lý nhân viên tập kết</h1>
   <br/>
 
-  <CommonButton size="large" @click="dialogAdd = true; console.log(dialogAdd)">Thêm người dùng</CommonButton>
+  <CommonButton size="large" @click="dialogAdd = true; console.log(dialogAdd)">Thêm nhân viên</CommonButton>
 
   <AddStaff v-model="dialogAdd" @close="closeDialogAdd"></AddStaff>
-  <EditStaff v-if="idEdit" :id="idEdit" v-model="dialogEdit" @close="closeDialogEdit"></EditStaff>
+  <EditStaff v-if="idEdit" :form-edit="form_edit"  v-model="dialogEdit" @close="closeDialogEdit"></EditStaff>
 
   <el-table
       v-loading="loading"
@@ -84,18 +84,16 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted, reactive, ref} from 'vue'
+import {VueElement, onMounted, reactive, ref} from 'vue'
 import CommonButton from '@/components/common/CommonButton.vue'
 import {processErrorMessage} from '@/helper/responseErrorHandle'
 import type {FormRules} from 'element-plus'
 import {ElMessage} from 'element-plus'
 import useRefs from '@/helper/useRef'
-import AddCustomer from "@/views/admin/customer/AddCustomer.vue";
-import EditCustomer from "@/views/admin/customer/EditCustomer.vue";
-import {PackageService} from "@/services/package";
 import {useRouter} from "vue-router";
 import AddStaff from "@/views/leader/headCollection/AddStaff.vue";
 import EditStaff from "@/views/leader/headCollection/EditStaff.vue";
+
 
 const dialogAdd = ref(false)
 const dialogEdit = ref(false)
@@ -199,10 +197,11 @@ async function loadData() {
 }
 
 const router = useRouter()
-
+var form_edit = {}
 function handleEdit(id: number) {
   idEdit.value = id
   dialogEdit.value = true
+  form_edit = data[id - 1]
 }
 
 async function handleDelete(id: number) {
