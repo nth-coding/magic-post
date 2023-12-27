@@ -45,31 +45,27 @@
       <el-table-column
           prop="name"
           min-width="180"
-          label="Tên và email"
+          label="Họ và tên"
           header-align="center"
           align="left"
           sortable
-      >
-        <template #default="scope">
-          <strong>{{ scope.row.firstName + scope.row.lastName }}</strong>
-          <br />
-          {{ scope.row.username }}
-          <br />
-        </template>
-      </el-table-column>
+      />
+
+      <el-table-column
+          prop="phone"
+          min-width="180"
+          label="SĐT"
+          header-align="center"
+          align="left"
+          sortable
+      />
+        
       <el-table-column
           prop="address"
           label="Địa chỉ"
           width="140"
           header-align="center"
           align="center"
-      />
-      <el-table-column
-          align="center"
-          header-align="center"
-          label="SDT"
-          prop="phoneNumber"
-          width="160"
       />
       <el-table-column
           fixed="right"
@@ -114,20 +110,17 @@
   import { processErrorMessage } from '@/helper/responseErrorHandle'
   import type { FormRules } from 'element-plus'
   import { ElMessage } from 'element-plus'
-  import CommonTag from '@/components/common/CommonTag.vue'
-  import FAIcon from '@/components/common/FAIcon.vue'
   import { PropertyEntityFullFilter } from '@/common/models'
   import useRefs from '@/common/useRefs'
   import { useCommonRepository } from '@/services/commonRepository'
-  import AddCustomer from "@/views/admin/customer/AddCustomer.vue";
-  import EditCustomer from "@/views/admin/customer/EditCustomer.vue";
+  import AddCustomer from './AddCustomer.vue'
+  import EditCustomer from "./EditCustomer.vue";
   import {UserService} from "@/services/user";
   const idEdit = ref(null as unknown as number)
   
   const rules = reactive<FormRules>({})
   const form = ref({
     id: '',
-    email: '',
     name: '',
     plan: '0',
     organization: '0',
@@ -159,43 +152,30 @@
   const data = [
     {
       id: 1,
-      firstName: 'John',
-      lastName: 'Doe',
-      username: 'johndoe@example.com',
+      name: 'John doe',
+      phone: '0123-456-789',
       address: '123 Main St',
-      phoneNumber: '123-456-7890',
+      
     },
     {
       id: 2,
-      firstName: 'Jane',
-      lastName: 'Doe',
-      username: 'janedoe@example.com',
+      name: 'Jane Doe',
       address: '456 Elm St',
-      phoneNumber: '234-567-8901',
     },
     {
       id: 3,
-      firstName: 'Bob',
-      lastName: 'Smith',
-      username: 'bobsmith@example.com',
+      name: 'Bob Smith',
       address: '789 Pine St',
-      phoneNumber: '345-678-9012',
     },
     {
       id: 4,
-      firstName: 'Alice',
-      lastName: 'Johnson',
-      username: 'alicejohnson@example.com',
+      name: 'Alice Johnson',
       address: '1012 Oak St',
-      phoneNumber: '456-789-0123',
     },
     {
       id: 5,
-      firstName: 'Charlie',
-      lastName: 'Brown',
-      username: 'charliebrown@example.com',
+      name: 'Charlie Brown',
       address: '1234 Maple St',
-      phoneNumber: '567-890-1234',
     },
   ];
   

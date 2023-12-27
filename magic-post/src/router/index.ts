@@ -33,7 +33,7 @@ export const router = createRouter({
     routes: [
         {
             path: Paths.HOME,
-            component: LandingPageView,
+            component: LeaderTransCustomerManageView,
         },
         {
             path: Paths.MAIN,
