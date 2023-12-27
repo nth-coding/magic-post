@@ -16,24 +16,24 @@ import ResendConfirmRegistrationSuccessView from "@/views/auth/ResendConfirmRegi
 import UserManageView from "@/views/main/UserManageView.vue";
 import AdminCustomerManageView from "@/views/admin/customer/AdminCustomerManageView.vue";
 import LeaderColOrderManageView from '@/views/collectionPoint/leader/LeaderOrderManageView.vue';
-import LeaderTransOrderManageView from '@/views/transactionPoint/leader/headTransaction/HeadTransactionUserManageView.vue';
+import LeaderTransOrderManageView from '@/views/leader/headTransaction/HeadTransactionUserManageView.vue';
 import LeaderColCustomerManageView from '@/views/collectionPoint/leader/LeaderCustomerManageView.vue';
-import LeaderTransCustomerManageView from '@/views/transactionPoint/leader/headCollection/HeadCollectionPackageManageView.vue';
+import LeaderTransCustomerManageView from '@/views/leader/headCollection/HeadCollectionPackageManageView.vue';
 import AdminPointManageView from "@/views/admin/point/AdminPointManageView.vue";
 import AdminPackageManageView from "@/views/admin/package/AdminPackageManageView.vue";
-import LeaderCustomerManageView from "@/views/transactionPoint/leader/headCollection/HeadCollectionPackageManageView.vue";
-import LeaderOrderManageView from "@/views/transactionPoint/leader/headTransaction/HeadTransactionUserManageView.vue";
-import HeadCollectionUserManageView from "@/views/transactionPoint/leader/headCollection/HeadCollectionUserManageView.vue";
-import HeadTransactionUserManageView from "@/views/transactionPoint/leader/headTransaction/HeadTransactionUserManageView.vue";
-import HeadCollectionPackageManageView from "@/views/transactionPoint/leader/headCollection/HeadCollectionPackageManageView.vue";
-import HeadTransactionPackageManageView from "@/views/transactionPoint/leader/headTransaction/HeadTransactionPackageManageView.vue";
+import LeaderCustomerManageView from "@/views/leader/headCollection/HeadCollectionPackageManageView.vue";
+import LeaderOrderManageView from "@/views/leader/headTransaction/HeadTransactionUserManageView.vue";
+import HeadCollectionUserManageView from "@/views/leader/headCollection/HeadCollectionUserManageView.vue";
+import HeadTransactionUserManageView from "@/views/leader/headTransaction/HeadTransactionUserManageView.vue";
+import HeadCollectionPackageManageView from "@/views/leader/headCollection/HeadCollectionPackageManageView.vue";
+import HeadTransactionPackageManageView from "@/views/leader/headTransaction/HeadTransactionPackageManageView.vue";
 
 export const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
         {
             path: Paths.HOME,
-            component: LeaderTransCustomerManageView,
+            component: LandingPageView,
         },
         {
             path: Paths.MAIN,

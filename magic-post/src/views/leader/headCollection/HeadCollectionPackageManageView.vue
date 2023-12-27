@@ -113,8 +113,6 @@
   import { PropertyEntityFullFilter } from '@/common/models'
   import useRefs from '@/common/useRefs'
   import { useCommonRepository } from '@/services/commonRepository'
-  import AddCustomer from './AddCustomer.vue'
-  import EditCustomer from "./EditCustomer.vue";
   import {UserService} from "@/services/user";
   const idEdit = ref(null as unknown as number)
   
