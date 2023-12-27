@@ -106,15 +106,6 @@
         </template>
       </el-table-column>
     </el-table>
-    <div class="pagination-block">
-      <el-pagination
-          layout="prev, pager, next"
-          :page-size="serverParams.size"
-          :total="totalRecords"
-          :current-page="serverParams.page"
-          @current-change="changePage"
-      />
-    </div>
   </template>
   
   <script setup lang="ts">

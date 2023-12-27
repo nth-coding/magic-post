@@ -16,13 +16,17 @@ import ResendConfirmRegistrationSuccessView from "@/views/auth/ResendConfirmRegi
 import UserManageView from "@/views/main/UserManageView.vue";
 import AdminCustomerManageView from "@/views/admin/customer/AdminCustomerManageView.vue";
 import LeaderColOrderManageView from '@/views/collectionPoint/leader/LeaderOrderManageView.vue';
-import LeaderTransOrderManageView from '@/views/transactionPoint/leader/LeaderOrderManageView.vue';
+import LeaderTransOrderManageView from '@/views/transactionPoint/leader/headTransaction/HeadTransactionUserManageView.vue';
 import LeaderColCustomerManageView from '@/views/collectionPoint/leader/LeaderCustomerManageView.vue';
-import LeaderTransCustomerManageView from '@/views/transactionPoint/leader/LeaderCustomerManageView.vue';
+import LeaderTransCustomerManageView from '@/views/transactionPoint/leader/headCollection/HeadCollectionPackageManageView.vue';
 import AdminPointManageView from "@/views/admin/point/AdminPointManageView.vue";
 import AdminPackageManageView from "@/views/admin/package/AdminPackageManageView.vue";
-import LeaderCustomerManageView from "@/views/transactionPoint/leader/LeaderCustomerManageView.vue";
-import LeaderOrderManageView from "@/views/transactionPoint/leader/LeaderOrderManageView.vue";
+import LeaderCustomerManageView from "@/views/transactionPoint/leader/headCollection/HeadCollectionPackageManageView.vue";
+import LeaderOrderManageView from "@/views/transactionPoint/leader/headTransaction/HeadTransactionUserManageView.vue";
+import HeadCollectionUserManageView from "@/views/transactionPoint/leader/headCollection/HeadCollectionUserManageView.vue";
+import HeadTransactionUserManageView from "@/views/transactionPoint/leader/headTransaction/HeadTransactionUserManageView.vue";
+import HeadCollectionPackageManageView from "@/views/transactionPoint/leader/headCollection/HeadCollectionPackageManageView.vue";
+import HeadTransactionPackageManageView from "@/views/transactionPoint/leader/headTransaction/HeadTransactionPackageManageView.vue";
 
 export const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -56,12 +60,20 @@ export const router = createRouter({
                     component: AdminPackageManageView,
                 },
                 {
-                    path: Paths.LEADER_MANAGE_ORDER,
-                    component: LeaderOrderManageView,
+                    path: Paths.HEADCOL_MANAGE_USER,
+                    component: HeadCollectionUserManageView,
                 },
                 {
-                    path: Paths.LEADER_MANAGE_USER,
-                    component: LeaderCustomerManageView,
+                    path: Paths.HEADTRAN_MANAGE_USER,
+                    component: HeadTransactionUserManageView,
+                },
+                {
+                    path: Paths.HEADCOL_MANAGE_ORDER,
+                    component: HeadCollectionPackageManageView,
+                },
+                {
+                    path: Paths.HEADTRAN_MANAGE_ORDER,
+                    component: HeadTransactionPackageManageView,
                 }
             ]
         },

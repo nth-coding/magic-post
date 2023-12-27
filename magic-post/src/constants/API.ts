@@ -26,11 +26,22 @@ export const AuthAPI = {
 
 export const AdminApi = {
     USER_MANAGE: '/users',
+    PACKAGE_MANAGE: '/packages',
+
     TRANSACTION_POINT: '/boss/tran-point',
     COLLECTION_POINT: '/boss/col-point',
     TRANSACTION_POINT_MANAGE: '/boss/tran-points',
     COLLECTION_POINT_MANAGE: '/boss/col-points',
     PACKAGE_BOSS_MANAGE: '/boss/packages',
     STAFF_BOSS_MANAGE: '/boss/staff',
-    PACKAGE_MANAGE: '/packages',
+
+    HEAD_COL_USER_MANAGE: '/manager/col/staff',
+    HEAD_COL_SENT_ORDER_MANAGE: '/manager/col/sent-packages',
+    HEAD_COL_CURRENT_ORDER_MANAGE: '/manager/col/curr-packages',
+    HEAD_COL_RECEIVED_ORDER_MANAGE: '/manager/col/rec-packages',
+
+    HEAD_TRAN_USER_MANAGE: '/manager/tran/staff',
+    HEAD_TRAN_SENT_ORDER_MANAGE: '/manager/tran/sent-packages',
+    HEAD_TRAN_CURRENT_ORDER_MANAGE: '/manager/tran/curr-packages',
+    HEAD_TRAN_RECEIVED_ORDER_MANAGE: '/manager/tran/rec-packages',
 }

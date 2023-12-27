@@ -99,25 +99,25 @@
   <!--  </CommonButton>-->
   <!--    </el-col>-->
   <!--  </el-row>-->
-  <!--  <AddCustomer-->
-  <!--      :ref="toRef('FORM_ADD')"-->
-  <!--      @close="-->
-  <!--      () => {-->
-  <!--        fetchRecords()-->
-  <!--        refs.FORM_ADD.closeModal()-->
-  <!--      }-->
-  <!--    "-->
-  <!--  ></AddCustomer>-->
-  <!--  <EditCustomer-->
-  <!--      :id="idEdit"-->
-  <!--      :ref="toRef('FORM_EDIT')"-->
-  <!--      @close="-->
-  <!--      () => {-->
-  <!--        fetchRecords()-->
-  <!--        refs.FORM_EDIT.closeModal()-->
-  <!--      }-->
-  <!--    "-->
-  <!--  ></EditCustomer>-->
+<!--    <AddCustomer-->
+<!--        :ref="toRef('FORM_ADD')"-->
+<!--        @close="-->
+<!--        () => {-->
+<!--          fetchRecords()-->
+<!--          refs.FORM_ADD.closeModal()-->
+<!--        }-->
+<!--      "-->
+<!--    ></AddCustomer>-->
+<!--    <EditCustomer-->
+<!--        :id="idEdit"-->
+<!--        :ref="toRef('FORM_EDIT')"-->
+<!--        @close="-->
+<!--        () => {-->
+<!--          fetchRecords()-->
+<!--          refs.FORM_EDIT.closeModal()-->
+<!--        }-->
+<!--      "-->
+<!--    ></EditCustomer>-->
 
   <!--  <AddUser :model="dialogAdd" @close="closeDialogAdd"></AddUser>-->
   <!--  <EditUser v-if="idEdit" :id="idEdit" :model="dialogEdit" @close="closeDialogEdit"></EditUser>-->
