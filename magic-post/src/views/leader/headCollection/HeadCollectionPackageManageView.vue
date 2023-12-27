@@ -1,6 +1,7 @@
 <template>
   <h1>Quản lý đơn hàng</h1>
   <br />
+
   <el-table
       v-loading="loading"
       empty-text="Không có dữ liệu"
@@ -134,6 +135,41 @@
 
 
 // create for me about 5 example to table has data
+import AddStaff from "@/views/leader/headCollection/AddStaff.vue";
+import EditStaff from "@/views/leader/headCollection/EditStaff.vue";
+import {onMounted, reactive, ref} from "vue";
+import {ElMessage, type FormRules} from "element-plus";
+import useRefs from "@/helper/useRef";
+import {CollectionPoint, TransactionPoint} from "@/services/point";
+import {processErrorMessage} from "@/helper/responseErrorHandle";
+import {useRouter} from "vue-router";
+import CommonButton from "@/components/common/CommonButton.vue";
+
+const dialogAdd = ref(false)
+const dialogEdit = ref(false)
+const idEdit = ref(null as unknown as number)
+
+const loading = ref(false)
+const usersData = ref<any[] | null>(null);
+const rules = reactive<FormRules>({})
+const form = ref({
+  id: '',
+  name: '',
+  address: '',
+})
+
+function closeDialogEdit() {
+  dialogEdit.value = false
+  loadData()
+}
+
+function closeDialogAdd() {
+  dialogAdd.value = false
+  loadData()
+}
+
+let {$refs, toRef} = useRefs();
+
 const data = [
   {
     id: 1,
@@ -176,6 +212,55 @@ const data = [
     nextPoint: '456 Elm St',
   },
 ];
+
+const RefNames = {
+  DELETE_BTN: 'DELETE_BTN_',
+  EDIT_BTN: 'EDIT_BTN_',
+  TABLE: 'TABLE',
+  FORM_FILTER: 'FORM_FILTER',
+  RELOAD_BTN: 'RELOAD_BTN'
+}
+
+onMounted(async () => {
+  await loadData()
+})
+
+async function loadData() {
+  try {
+    loading.value = true
+    $refs.get(RefNames.RELOAD_BTN)?.setLoading(true)
+
+    let users = await TransactionPoint.list()
+  } catch (e) {
+    processErrorMessage(e, "Có lỗi đã xảy ra trong quá trình tải dữ liệu. " +
+        "Vui lòng thử lại sau!")
+  } finally {
+    $refs.get(RefNames.RELOAD_BTN)?.setLoading(false)
+    loading.value = false
+  }
+}
+
+const router = useRouter()
+
+function handleEdit(id: number) {
+  idEdit.value = id
+  dialogEdit.value = true
+}
+
+async function handleDelete(id: number) {
+  $refs.get(RefNames.DELETE_BTN + id)?.setLoading(true)
+  try {
+    // await deleteUser(id)
+    await loadData()
+    ElMessage.success("Xóa người dùng thành công!")
+  } catch (e) {
+    processErrorMessage(e,
+        "Có lỗi đã xảy ra trong quá trình xóa người dùng. " +
+        "Vui lòng thử lại sau!")
+  } finally {
+    $refs.get(RefNames.DELETE_BTN + id)?.setLoading(false)
+  }
+}
 
 </script>
 

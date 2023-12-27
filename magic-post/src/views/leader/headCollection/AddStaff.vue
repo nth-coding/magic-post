@@ -63,8 +63,9 @@ import type { FormRules } from 'element-plus'
 import { processErrorMessage } from '@/helper/responseErrorHandle'
 import { ElMessage } from 'element-plus/es'
 import CommonButton from '@/components/common/CommonButton.vue'
-import useRefs from '@/common/useRefs'
+import useRefs from '@/helper/useRef'
 import {UserService} from "@/services/user";
+import {useRouter} from "vue-router";
 
 const show = ref(false)
 const form = ref({
@@ -77,11 +78,23 @@ const form = ref({
   confirmPassword: '',
 })
 
-const { refs, toRef } = useRefs<{
-  MAIN_FORM: InstanceType<any>
-  SUBMIT_BTN: InstanceType<typeof CommonButton>
-}>()
+const RefNames = {
+  MAIN_FORM: 'MAIN_FORM',
+  SUBMIT_BTN: 'SUBMIT_BTN',
+}
 
+const {$refs, toRef} = useRefs()
+
+const props = withDefaults(defineProps<{
+  model?: boolean,
+}>(), {
+  model: false,
+})
+watch(() => props.model, (value, oldValue) => {
+  if (value && !oldValue) {
+    $refs.get(RefNames.MAIN_FORM)?.resetFields()
+  }
+})
 const emit = defineEmits(['close'])
 
 const validateConfirmPassword = (rule: any, value: any, callback: any) => {
@@ -95,63 +108,51 @@ const validateConfirmPassword = (rule: any, value: any, callback: any) => {
 }
 
 const rules = reactive<FormRules>({
-  name: [{ required: true, message: 'Nhập tên người dùng' }],
-  email: [
-    {
-      min: 4,
-      message: 'Email length should be at least 5 characters',
-      trigger: 'blur',
-    },
-    { required: true, message: 'Hãy nhập email đăng ký', trigger: 'blur' },
-    {
-      type: 'email',
-      message: 'Hãy nhập chính xác địa chỉ email',
-      trigger: 'change',
-    },
+  name: [{required: true, message: 'Nhập tên người dùng'}],
+  email: [{
+    min: 4,
+    message: "Email length should be at least 5 characters",
+    trigger: "blur"
+  },
+    {required: true, message: 'Hãy nhập email đăng ký', trigger: 'blur'},
+    {type: 'email', message: 'Hãy nhập chính xác địa chỉ email', trigger: 'change'}
   ],
   password: [
-    { required: true, message: 'Hãy nhập mật khẩu ', trigger: 'blur' },
-    { min: 8, message: 'Mật khẩu tối thiểu 8 kí tự', trigger: 'change' },
+    {required: true, message: 'Hãy nhập mật khẩu ', trigger: 'blur'},
+    {min: 8, message: 'Mật khẩu tối thiểu 8 kí tự', trigger: 'change'}
   ],
   confirmPassword: [
-    { required: true, message: 'Hãy nhập lại mật khẩu ', trigger: 'change' },
-    { min: 8, message: 'Mật khẩu tối thiểu 8 kí tự', trigger: 'change' },
-    { validator: validateConfirmPassword, trigger: 'change' },
-  ],
+    {required: true, message: 'Hãy nhập lại mật khẩu ', trigger: 'change'},
+    {min: 8, message: 'Mật khẩu tối thiểu 8 kí tự', trigger: 'change'},
+    {validator: validateConfirmPassword, trigger: 'change'}
+  ]
 })
 
-watch(
-    () => show.value,
-    (value, oldValue) => {
-      if (value != oldValue && value) {
-        refs.MAIN_FORM?.resetFields()
-      }
-    }
-)
+const router = useRouter()
 
 function submitForm() {
-  refs.MAIN_FORM?.validate(async (valid: boolean) => {
+  $refs.get(RefNames.MAIN_FORM)?.validate(async (valid: boolean) => {
     if (valid) {
-      refs.SUBMIT_BTN?.setLoading(true)
+      $refs.get(RefNames.SUBMIT_BTN)?.setLoading(true)
       try {
-        await UserService.add({
-          username: form.value.username,
-          firstName: form.value.firstName,
-          lastName: form.value.lastName,
-          address: form.value.address,
-          phoneNumber: form.value.phoneNumber,
-          password: form.value.password,
-        })
+        // await UserService.add({
+        //   username: form.value.username,
+        //   firstName: form.value.firstName,
+        //   lastName: form.value.lastName,
+        //   address: form.value.address,
+        //   phoneNumber: form.value.phoneNumber,
+        //   password: form.value.password,
+        // })
         ElMessage({
           message: 'Thêm người dùng thành công!',
           type: 'success',
-          duration: 5000,
+          duration: 5000
         })
         emit('close')
       } catch (e: any) {
         processErrorMessage(e)
       } finally {
-        refs.SUBMIT_BTN?.setLoading(false)
+        $refs.get(RefNames.SUBMIT_BTN)?.setLoading(false)
       }
     } else {
       return false
@@ -176,6 +177,8 @@ defineExpose({
   openModal,
   closeModal,
 })
+
+
 </script>
 <style lang="scss">
 .avatar-image {

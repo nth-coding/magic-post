@@ -2,12 +2,10 @@
   <h1>Quản lý giao dịch viên</h1>
   <br/>
 
-  <CommonButton size="large" @click="refs.FORM_ADD.openModal()">
-    >Thêm tài khoản
-  </CommonButton>
+  <CommonButton size="large" @click="dialogAdd = true; console.log(dialogAdd)">Thêm người dùng</CommonButton>
 
-  <AddUser :model="dialogAdd" @close="closeDialogAdd"></AddUser>
-  <EditUser v-if="idEdit" :id="idEdit" :model="dialogEdit" @close="closeDialogEdit"></EditUser>
+  <AddStaff v-model="dialogAdd" @close="closeDialogAdd"></AddStaff>
+  <EditStaff v-if="idEdit" :id="idEdit" v-model="dialogEdit" @close="closeDialogEdit"></EditStaff>
 
   <el-table
       v-loading="loading"
@@ -96,6 +94,8 @@ import AddCustomer from "@/views/admin/customer/AddCustomer.vue";
 import EditCustomer from "@/views/admin/customer/EditCustomer.vue";
 import {PackageService} from "@/services/package";
 import {useRouter} from "vue-router";
+import AddStaff from "@/views/leader/headCollection/AddStaff.vue";
+import EditStaff from "@/views/leader/headCollection/EditStaff.vue";
 
 const dialogAdd = ref(false)
 const dialogEdit = ref(false)
