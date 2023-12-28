@@ -1,13 +1,18 @@
 <template>
-  <h1>Quản lý đơn hàng</h1>
-  <br />
+  <h1>Quản lý giao dịch viên</h1>
+  <br/>
+
+  <CommonButton size="large" @click="dialogAdd = true; console.log(dialogAdd)">Thêm nhân viên</CommonButton>
+
+  <AddStaff v-model="dialogAdd" @close="closeDialogAdd"></AddStaff>
+  <EditStaff v-if="idEdit" :form-edit="formEdit" v-model="dialogEdit" @close="closeDialogEdit"></EditStaff>
+
   <el-table
-      v-loading="fetching"
+      v-loading="loading"
       empty-text="Không có dữ liệu"
       :data="data"
       border
       style="width: 100%"
-      @sort-change="sortDocument"
   >
     <el-table-column
         prop="id"
@@ -20,179 +25,102 @@
     <el-table-column
         prop="name"
         min-width="180"
-        label="Tên đơn hàng"
-        header-align="center"
-        align="left"
-        sortable
-    />
-    <el-table-column
-        prop="weight"
-        label="Trọng lượng"
-        width="130"
-        header-align="center"
-        align="center"
-        sortable
-    >
-      <template #default="scope">
-        <p v-if="!scope.row.weight" class="text-slate-400">Chưa có thông tin</p>
-      </template>
-    </el-table-column>
-    
-    <el-table-column
-        prop="description"
-        min-width="180"
-        label="Mô tả"
-        header-align="center"
-        align="left"
-    >
-      <template #default="scope">
-        <p v-if="!scope.row.description" class="text-slate-400">Chưa có thông tin</p>
-      </template>
-    </el-table-column>
-
-    <el-table-column
-        prop="type"
-        min-width="180"
-        label="Loại"
+        label="Tên và email"
         header-align="center"
         align="left"
         sortable
     >
       <template #default="scope">
-        <p v-if="!scope.row.type" class="text-slate-400">Chưa có thông tin</p>
+        <strong>{{ scope.row.firstName + scope.row.lastName }}</strong>
+        <br/>
+        {{ scope.row.username }}
+        <br/>
       </template>
     </el-table-column>
-
-    <el-table-column
-        prop="status"
-        min-width="180"
-        label="Trạng thái"
-        header-align="center"
-        align="left"
-        sortable
-    >
-      <template #default="scope">
-        <p v-if="!scope.row.status" class="text-slate-400">Chưa có thông tin</p>
-      </template>
-    </el-table-column>
-
-    <el-table-column
-        prop="senderName"
-        min-width="180"
-        label="Tên người gửi"
-        header-align="center"
-        align="left"
-        
-    >
-      <template #default="scope">
-          <p>{{ scope.row.senderFirstName + ' ' + scope.row.senderLastName }}</p>
-          <p v-if="!scope.row.senderFirstName &&!scope.row.senderLastName" class="text-slate-400">Chưa có thông tin</p>
-      </template>
-    </el-table-column>
-
-    <el-table-column
-        prop="senderAddress"
-        label="Địa chỉ người gửi"
+    <el-table-column 
+        prop="address"
+        label="Địa chỉ"
         width="140"
         header-align="center"
         align="center"
     >
       <template #default="scope">
-        <p v-if="!scope.row.senderAddress" class="text-slate-400">Chưa có thông tin</p>
+        <p v-if="!scope.row.address" class="text-slate-400">Chưa có thông tin</p>
       </template>
     </el-table-column>
-
     <el-table-column
         align="center"
         header-align="center"
-        label="SDT người gửi"
-        prop="senderPhoneNumber"
+        label="SDT"
+        prop="phoneNumber"
         width="160"
     >
       <template #default="scope">
-        <p v-if="!scope.row.senderPhoneNumber" class="text-slate-400">Chưa có thông tin</p>
+        <p v-if="!scope.row.phoneNumber" class="text-slate-400">Chưa có thông tin</p>
       </template>
     </el-table-column>
-
     <el-table-column
-        prop="receiverName"
-        min-width="180"
-        label="Tên người nhận"
-        header-align="center"
-        align="left"
-        
-    >
-      <template #default="scope">
-          <p>{{ scope.row.receiverFirstName + ' ' + scope.row.receiverLastName }}</p>
-          <p v-if="!scope.row.receiverFirstName && !scope.row.receiverLastName" class="text-slate-400">Chưa có thông tin</p>
-      </template>
-    </el-table-column>
-
-    <el-table-column
-        prop="receiverAddress"
-        label="Địa chỉ người nhận"
+        fixed="right"
+        label="Hành động"
         width="150"
         header-align="center"
         align="center"
     >
       <template #default="scope">
-        <p v-if="!scope.row.receiverAddress" class="text-slate-400">Chưa có thông tin</p>
+        <CommonButton
+            link
+            type="primary"
+            @click="handleEdit(scope.row.id)"
+            :ref="toRef(RefNames.EDIT_BTN) + scope.row.id"
+        >Chỉnh sửa
+        </CommonButton>
+        <el-popconfirm
+            :title="`Bạn chắc chắn muốn xóa người dùng '${scope.row.name}'?`"
+            confirm-button-text="Xác nhận"
+            cancel-button-text="Hủy"
+            @confirm="handleDelete(scope.row.id)"
+        >
+          <template #reference>
+            <CommonButton link type="danger" :ref="toRef('DELETE_BTN')"
+            >Xóa
+            </CommonButton>
+          </template>
+        </el-popconfirm>
       </template>
     </el-table-column>
-
-    <el-table-column
-        align="center"
-        header-align="center"
-        label="SDT người nhận"
-        prop="receiverPhoneNumber"
-        width="160"
-    >
-      <template #default="scope">
-        <p v-if="!scope.row.receiverPhoneNumber" class="text-slate-400">Chưa có thông tin</p>
-      </template>
-    </el-table-column>
-    <!--là loại hàng gửi cho người nhận hay hàng nhận để chuyển đến điểm tập kết-->
-    <el-table-column
-        align="center"
-        header-align="center"
-        label="Loại hàng hóa"
-        prop="typeOfGoods"
-        width="160"
-    >
-      <template #default="scope">
-        <p v-if="!scope.row.typeOfGoods" class="text-slate-400">Chưa có thông tin</p>
-      </template>
-    </el-table-column>
-
-    <el-table-column
-        align="center"
-        header-align="center"
-        label="Điểm đến tiếp theo"
-        prop="nextPoint"
-        width="160"
-    >
-      <template #default="scope">
-        <p v-if="!scope.row.nextPoint" class="text-slate-400">Chưa có thông tin</p>
-      </template>
-    </el-table-column>
-
-    
   </el-table>
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import {onMounted, reactive, ref} from 'vue'
 import CommonButton from '@/components/common/CommonButton.vue'
-import { processErrorMessage } from '@/helper/responseErrorHandle'
-import type { FormRules } from 'element-plus'
-import { ElMessage } from 'element-plus'
-import { PropertyEntityFullFilter } from '@/common/models'
-import useRefs from '@/common/useRefs'
-import { useCommonRepository } from '@/services/commonRepository'
-import AddCustomer from "@/views/admin/customer/AddCustomer.vue";
-import EditCustomer from "@/views/admin/customer/EditCustomer.vue";
+import {processErrorMessage} from '@/helper/responseErrorHandle'
+import type {FormRules} from 'element-plus'
+import {ElMessage} from 'element-plus'
+import useRefs from '@/helper/useRef'
+import {useRouter} from "vue-router";
+import AddStaff from "@/views/leader/headCollection/AddStaff.vue";
+import EditStaff from "@/views/leader/headCollection/EditStaff.vue";
 
+const dialogAdd = ref(false)
+const dialogEdit = ref(false)
+
+const loading = ref(false)
+const usersData = ref<any[] | null>(null);
 const idEdit = ref(null as unknown as number)
+
+function closeDialogEdit() {
+  dialogEdit.value = false
+  loadData()
+}
+
+function closeDialogAdd() {
+  dialogAdd.value = false
+  loadData()
+}
+
+let {$refs, toRef} = useRefs();
+
 
 const rules = reactive<FormRules>({})
 const form = ref({
@@ -204,77 +132,97 @@ const form = ref({
   emailConfirmed: null,
 })
 
-const { refs, toRef } = useRefs<{
-  DELETE_BTN: InstanceType<typeof CommonButton>
-  EDIT_BTN: InstanceType<typeof CommonButton>
-  RELOAD_BTN: InstanceType<typeof CommonButton>
-  FORM_FILTER: InstanceType<any>
-  FORM_ADD: InstanceType<typeof AddCustomer>
-  FORM_EDIT: InstanceType<typeof EditCustomer>
-}>()
-
-
 // create for me about 5 example to table has data
 const data = [
   {
     id: 1,
-    name: 'quạt',
-    weight: '2 kg',
-    description: 'hơi to',
-    type: 'hàng nhẹ',
-    status: 'đang vận chuyển',
-
-    senderFirstName: 'John',
-    senderLastName: 'Doe',
-    senderAddress: '123 Main St',
-    senderPhoneNumber: '123-456-7890',
-
-    receiverFirstName: 'Jane',
-    receiverLastName: 'Doe',
-    receiverAddress: '456 Elm St',
-    receiverPhoneNumber: '234-567-8901',
-    
-    typeOfGoods: 'hàng gửi',
-    nextPoint: '',
+    firstName: 'John',
+    lastName: 'Doe',
+    username: 'johndoe@example.com',
+    //address: '123 Main St',
+    phoneNumber: '123-456-7890',
   },
   {
     id: 2,
-    name: 'quạt',
-    weight: '2 kg',
-    description: 'hơi to',
-    type: 'hàng nhẹ',
-    status: 'đang vận chuyển',
-
-    senderFirstName: 'John',
-    senderLastName: 'Doe',
-    senderAddress: '123 Main St',
-    senderPhoneNumber: '123-456-7890',
-
-    receiverFirstName: 'Jane',
-    receiverLastName: 'Doe',
-    receiverAddress: '456 Elm St',
-    receiverPhoneNumber: '234-567-8901',
-
-    typeOfGoods: 'hàng nhận',
-    nextPoint: '456 Elm St',
+    firstName: 'Jane',
+    lastName: 'Doe',
+    username: 'janedoe@example.com',
+    address: '456 Elm St',
+    phoneNumber: '234-567-8901',
+  },
+  {
+    id: 3,
+    firstName: 'Bob',
+    lastName: 'Smith',
+    username: 'bobsmith@example.com',
+    address: '789 Pine St',
+    phoneNumber: '345-678-9012',
+  },
+  {
+    id: 4,
+    firstName: 'Alice',
+    lastName: 'Johnson',
+    username: 'alicejohnson@example.com',
+    address: '1012 Oak St',
+    phoneNumber: '456-789-0123',
+  },
+  {
+    id: 5,
+    firstName: 'Charlie',
+    lastName: 'Brown',
+    username: 'charliebrown@example.com',
+    address: '1234 Maple St',
+    phoneNumber: '567-890-1234',
   },
 ];
 
-async function handleDelete(id: number) {
-  refs.DELETE_BTN?.setLoading(true)
+const RefNames = {
+  DELETE_BTN: 'DELETE_BTN_',
+  EDIT_BTN: 'EDIT_BTN_',
+  TABLE: 'TABLE',
+  FORM_FILTER: 'FORM_FILTER',
+  RELOAD_BTN: 'RELOAD_BTN'
+}
+
+onMounted(async () => {
+  await loadData()
+})
+
+async function loadData() {
   try {
-    await CustomerService.delete(id)
-    await fetchRecords()
-    ElMessage.success('Xóa người dùng thành công!')
+    loading.value = true
+    $refs.get(RefNames.RELOAD_BTN)?.setLoading(true)
+
+
   } catch (e) {
-    processErrorMessage(
-        e,
-        'Có lỗi đã xảy ra trong quá trình xóa người dùng. ' +
-        'Vui lòng thử lại sau!'
-    )
+    processErrorMessage(e, "Có lỗi đã xảy ra trong quá trình tải dữ liệu. " +
+        "Vui lòng thử lại sau!")
   } finally {
-    refs.DELETE_BTN?.setLoading(false)
-    await fetchRecords()
+    $refs.get(RefNames.RELOAD_BTN)?.setLoading(false)
+    loading.value = false
+  }
+}
+
+const router = useRouter()
+let formEdit = {}
+function handleEdit(id: number) {
+  idEdit.value = id
+  dialogEdit.value = true
+  formEdit = data[0]
+}
+
+async function handleDelete(id: number) {
+  $refs.get(RefNames.DELETE_BTN + id)?.setLoading(true)
+  try {
+    // await deleteUser(id)
+    await loadData()
+    ElMessage.success("Xóa người dùng thành công!")
+  } catch (e) {
+    processErrorMessage(e,
+        "Có lỗi đã xảy ra trong quá trình xóa người dùng. " +
+        "Vui lòng thử lại sau!")
+  } finally {
+    $refs.get(RefNames.DELETE_BTN + id)?.setLoading(false)
   }
 }
 </script>
@@ -300,3 +248,4 @@ h1 {
   margin-bottom: 1rem;
 }
 </style>
+  
