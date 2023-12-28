@@ -171,7 +171,7 @@ async function loginWithPassword() {
         ElMessage.error(
             e.response?.data?.data
                 ? e.response?.data?.data
-                : 'Có lỗi xảy ra trong quá trình đăng nhập. Vui lòng thử lại!'
+                : 'Sai thông tin đăng nhập. Vui lòng nhập lại...'
         )
       } finally {
         refs.LOGIN_BTN?.setLoading(false)

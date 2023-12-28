@@ -64,8 +64,11 @@ import { processErrorMessage } from '@/helper/responseErrorHandle'
 import { ElMessage } from 'element-plus/es'
 import CommonButton from '@/components/common/CommonButton.vue'
 import useRefs from '@/helper/useRef'
-import {UserService} from "@/services/user";
+import {StaffService, UserService} from "@/services/user";
 import {useRouter} from "vue-router";
+import {HeadTransactionApi} from "@/constants/API";
+import {useAuthenticationStore} from "@/stores/authentication";
+import {storeToRefs} from "pinia";
 
 const show = ref(false)
 const form = ref({
@@ -90,11 +93,15 @@ const props = withDefaults(defineProps<{
 }>(), {
   model: false,
 })
+
 watch(() => props.model, (value, oldValue) => {
   if (value && !oldValue) {
     $refs.get(RefNames.MAIN_FORM)?.resetFields()
   }
 })
+
+const authenticationStore = useAuthenticationStore()
+const {user} = storeToRefs(authenticationStore)
 const emit = defineEmits(['close'])
 
 const validateConfirmPassword = (rule: any, value: any, callback: any) => {
@@ -135,14 +142,17 @@ function submitForm() {
     if (valid) {
       $refs.get(RefNames.SUBMIT_BTN)?.setLoading(true)
       try {
-        // await UserService.add({
-        //   username: form.value.username,
-        //   firstName: form.value.firstName,
-        //   lastName: form.value.lastName,
-        //   address: form.value.address,
-        //   phoneNumber: form.value.phoneNumber,
-        //   password: form.value.password,
-        // })
+        await StaffService.addForHeadTran({
+          lastName: form.value.lastName,
+          firstName: form.value.firstName,
+
+          username: form.value.username,
+          password: form.value.password,
+
+          phoneNumber: form.value.phoneNumber,
+          address: form.value.address,
+          pointId: user.value?.pointId,
+        })
         ElMessage({
           message: 'Thêm người dùng thành công!',
           type: 'success',

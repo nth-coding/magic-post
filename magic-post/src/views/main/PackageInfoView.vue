@@ -1,97 +1,109 @@
 <template>
   <el-dialog v-model="show">
     <template #header>
-      <div class="dialog-header">ĐƠN HÀNG #{{ packageId }}</div>
+      <div class="dialog-header">Đơn hàng #{{ props.packageId }}</div>
     </template>
-
     <div class="package-info-container">
-      <div class="package-info">
-        <div class="sender-info">
-          <div class="package-info-item">
-            <div class="package-info-item-label">Tên khách hàng</div>
-            <div class="package-info-item-value">{{ packageInfo.senderFirstName + " " + packageInfo.senderLastName }}</div>
-          </div>
-          <div class="package-info-item">
-            <div class="package-info-item-label">Số điện thoại</div>
-            <div class="package-info-item-value">{{ packageInfo.senderPhoneNumber }}</div>
-          </div>
-<!--          <div class="package-info-item">-->
-<!--            <div class="package-info-item-label">Địa chỉ</div>-->
-<!--            <div class="package-info-item-value">{{ packageInfo.customerAddress }}</div>-->
-<!--          </div>-->
-        </div>
-        <div class="receiver-info">
-          <div class="package-info-item">
-            <div class="package-info-item-label">Tên người nhận</div>
-            <div class="package-info-item-value">{{ packageInfo.receiverFirstName + " " + packageInfo.receiverLastName }}</div>
-          </div>
-          <div class="package-info-item">
-            <div class="package-info-item-label">Số điện thoại</div>
-            <div class="package-info-item-value">{{ packageInfo.receiverPhoneNumber }}</div>
-          </div>
-          <div class="package-info-item">
-            <div class="package-info-item-label">Địa chỉ</div>
-            <div class="package-info-item-value">{{ packageInfo.receiverDistrict + ", " + packageInfo.receiverProvince }}</div>
-          </div>
-        </div>
+      <div class="left-column">
+        <h3 class="h3-container">Sender Information</h3>
+        <el-form
+            :model="packageInfo"
+            label-width="120px"
+            class="form-container"
+            :ref="toRef('MAIN_FORM')">
+          <el-form-item label="Name">
+            <el-input v-model="packageInfo.senderName" disabled></el-input>
+          </el-form-item>
+          <el-form-item label="Phone Number">
+            <el-input v-model="packageInfo.senderPhoneNumber" disabled></el-input>
+          </el-form-item>
+          <el-form-item label="Address">
+            <el-input v-model="packageInfo.senderAddress" disabled></el-input>
+          </el-form-item>
+        </el-form>
 
-        <div class="package-info-item">
-          <div class="package-info-item-label">Mã đơn hàng</div>
-          <div class="package-info-item-value">{{ packageInfo.hashKey }}</div>
-        </div>
-        <div class="package-info-item">
-          <div class="package-info-item-label">Tên hàng</div>
-          <div class="package-info-item-value">{{ packageInfo.name }}</div>
-        </div>
-        <div class="package-info-item">
-          <div class="package-info-item-label">Mô tả</div>
-          <div class="package-info-item-value">{{ packageInfo.description }}</div>
-        </div>
-        <div class="package-info-item">
-          <div class="package-info-item-label">Loại hàng hóa</div>
-          <div class="package-info-item-value">{{ packageInfo.type }}</div>
-        </div>
-        <div class="package-info-item">
-          <div class="package-info-item-label">Tình trạng</div>
-          <div class="package-info-item-value">{{ packageInfo.status }}</div>
-        </div>
+        <h3 class="h3-container margin-top-container">Receiver Information</h3>
+        <el-form
+            :model="packageInfo"
+            label-width="120px"
+            class="form-container"
+            :ref="toRef('MAIN_FORM')">
+          <el-form-item label="Name">
+            <el-input v-model="packageInfo.receiverName" disabled></el-input>
+          </el-form-item>
+          <el-form-item label="Province">
+            <el-input v-model="packageInfo.receiverProvince" disabled></el-input>
+          </el-form-item>
+          <el-form-item label="District">
+            <el-input v-model="packageInfo.receiverDistrict" disabled></el-input>
+          </el-form-item>
+          <el-form-item label="Phone Number">
+            <el-input v-model="packageInfo.receiverPhoneNumber" disabled></el-input>
+          </el-form-item>
+        </el-form>
       </div>
-      <div class="time-line">
-        <el-timeline>
-          <el-timeline-item
-              v-for="(activity, index) in activities"
-              :key="index"
-              :timestamp="activity.timestamp"
-          >
-            {{ activity.content }}
-          </el-timeline-item>
-        </el-timeline>
+      <div class="right-column">
+        <el-form
+            :model="packageInfo"
+            label-width="120px"
+            class="form-container"
+            :ref="toRef('MAIN_FORM')">
+          <el-form-item label="Package ID" prop="packageId" class="form-item">
+            <el-input v-model="packageInfo.packageId" class="form-input" disabled></el-input>
+          </el-form-item>
+          <el-form-item label="Weight" prop="weight">
+            <el-input v-model="packageInfo.weight" disabled></el-input>
+          </el-form-item>
+          <el-form-item label="Name">
+            <el-input v-model="packageInfo.name" disabled></el-input>
+          </el-form-item>
+          <el-form-item label="Description">
+            <el-input v-model="packageInfo.description" disabled></el-input>
+          </el-form-item>
+          <el-form-item label="Type">
+            <el-input v-model="packageInfo.type" disabled></el-input>
+          </el-form-item>
+        </el-form>
+
+        <div class="time-line">
+          <el-timeline>
+            <el-timeline-item
+                :timestamp="packageInfo.timeArriveFirstPoint"
+                :color="getStatusColor(packageInfo.firstTranPointStatus)"
+            >
+              <el-input v-model="packageInfo.firstTranPoint" disabled></el-input>
+            </el-timeline-item>
+            <el-timeline-item
+                :timestamp="packageInfo.timeArriveFirstColPoint"
+                :color="getStatusColor(packageInfo.firstColPointStatus)"
+            >
+              <el-input v-model="packageInfo.firstColPoint" disabled></el-input>
+            </el-timeline-item>
+            <el-timeline-item
+                :timestamp="packageInfo.timeArriveSecondColPoint"
+                :color="getStatusColor(packageInfo.secondColPointStatus)"
+            >
+              <el-input v-model="packageInfo.secondColPoint" disabled></el-input>
+            </el-timeline-item>
+            <el-timeline-item
+                :timestamp="packageInfo.timeArriveSecondTranPoint"
+                :color="getStatusColor(packageInfo.secondTranPointStatus)"
+            >
+              <el-input v-model="packageInfo.secondTranPoint" disabled></el-input>
+            </el-timeline-item>
+          </el-timeline>
+        </div>
       </div>
     </div>
-
   </el-dialog>
+
 </template>
 
 <script setup lang="ts">
-import {onMounted, ref, toRefs, watch} from 'vue';
+import {ref, watch} from 'vue';
 import useRefs from "@/helper/useRef";
 import {PackageService} from "@/services/package";
-import { MoreFilled } from '@element-plus/icons-vue'
 
-const activities = [
-  {
-    content: 'Event start',
-    timestamp: '2018-04-15',
-  },
-  {
-    content: 'Approved',
-    timestamp: '2018-04-13',
-  },
-  {
-    content: 'Success',
-    timestamp: '2018-04-11',
-  },
-]
 let packageInfo = ref({
   packageId: '',
   weight: 0.0,
@@ -99,12 +111,11 @@ let packageInfo = ref({
   description: '',
   type: '',
 
-  senderFirstName: '',
-  senderLastName: '',
+  senderName: '',
   senderPhoneNumber: '',
+  senderAddress: '',
 
-  receiverFirstName: '',
-  receiverLastName: '',
+  receiverName: '',
   receiverProvince: '',
   receiverDistrict: '',
   receiverPhoneNumber: '',
@@ -130,6 +141,20 @@ let packageInfo = ref({
   secondColPointStatus: '',
   timeArriveSecondColPoint: '',
 })
+const activities = [
+  {
+    content: '',
+    timestamp: '',
+  },
+  {
+    content: 'Approved',
+    timestamp: '2018-04-13',
+  },
+  {
+    content: 'Success',
+    timestamp: '2018-04-11',
+  },
+]
 const show = ref(false)
 const {$refs, toRef} = useRefs()
 const RefNames = {
@@ -139,7 +164,7 @@ const RefNames = {
 
 const emit = defineEmits(['close'])
 const props = withDefaults(defineProps<{
-  packageId: string,
+  packageId: any,
   model?: boolean,
 }>(), {
   model: false,
@@ -151,48 +176,63 @@ watch(() => props.model, (value, oldValue) => {
   }
 })
 
-onMounted(async () => {
-  await getPackageInfo()
-})
+watch(() => props.packageId, async (newVal, oldVal) => {
+  if (newVal !== oldVal) {
+    await getPackageInfo();
+  }
+});
+
+function getStatusColor(status: string) {
+  if (status === 'TRANSFERED') {
+    return 'green'
+  } else {
+    return 'gray'
+  }
+}
 
 async function getPackageInfo() {
-  const packageInfolist = await PackageService.getInfo(props.packageId)
-  packageInfo = packageInfolist.map((item: any) => {
-    return {
-      packageId: item.packageId,
-      weight: item.weight,
-      name: item.name,
-      description: item.description,
-      type: item.type,
+  try {
+    const packageInfoData = await PackageService.getInfo(props.packageId)
+    packageInfo.value = {
+      packageId: packageInfoData.packageId,
+      weight: packageInfoData.weight,
+      name: packageInfoData.name,
+      description: packageInfoData.description,
+      type: packageInfoData.type,
 
-      receiverFirstName: item.receiverFirstName,
-      receiverLastName: item.receiverLastName,
-      receiverProvince: item.receiverProvince,
-      receiverDistrict: item.receiverDistrict,
-      receiverPhoneNumber: item.receiverPhoneNumber,
+      senderName: packageInfoData.userDto.firstName + ' ' + packageInfoData.userDto.firstName,
+      senderPhoneNumber: packageInfoData.userDto.phoneNumber,
+      senderAddress: packageInfoData.userDto.address,
 
-      hashKey: item.hashKey,
-      pointHistory: item.pointHistoryDtoList,
-      currentPoint: item.currentPoint,
-      status: item.status,
+      receiverName: packageInfoData.receiverFirstName + ' ' + packageInfoData.receiverLastName,
+      receiverProvince: packageInfoData.receiverProvince,
+      receiverDistrict: packageInfoData.receiverDistrict,
+      receiverPhoneNumber: packageInfoData.receiverPhoneNumber,
 
-      firstTranPoint: item.firstTranPoint,
-      firstTranPointStatus: item.firstTranPointStatus,
-      timeArriveFirstPoint: item.timeArriveFirstPoint,
+      hashKey: packageInfoData.hashKey,
+      pointHistory: packageInfoData.pointHistory,
+      currentPoint: packageInfoData.currentPoint,
+      status: packageInfoData.status,
 
-      secondTranPoint: item.secondTranPoint,
-      secondTranPointStatus: item.secondTranPointStatus,
-      timeArriveSecondTranPoint: item.timeArriveSecondTranPoint,
+      firstTranPoint: packageInfoData.firstTranPoint.name,
+      firstTranPointStatus: packageInfoData.firstTranPointStatus,
+      timeArriveFirstPoint: packageInfoData.timeArriveFirstPoint,
 
-      firstColPoint: item.firstColPoint,
-      firstColPointStatus: item.firstColPointStatus,
-      timeArriveFirstColPoint: item.timeArriveFirstColPoint,
+      secondTranPoint: packageInfoData.secondTranPoint.name,
+      secondTranPointStatus: packageInfoData.secondTranPointStatus,
+      timeArriveSecondTranPoint: packageInfoData.timeArriveSecondTranPoint,
 
-      secondColPoint: item.secondColPoint,
-      secondColPointStatus: item.secondColPointStatus,
-      timeArriveSecondColPoint: item.timeArriveSecondColPoint,
+      firstColPoint: packageInfoData.firstColPoint.name,
+      firstColPointStatus: packageInfoData.firstColPointStatus,
+      timeArriveFirstColPoint: packageInfoData.timeArriveFirstColPoint,
+
+      secondColPoint: packageInfoData.secondColPoint.name,
+      secondColPointStatus: packageInfoData.secondColPointStatus,
+      timeArriveSecondColPoint: packageInfoData.timeArriveSecondColPoint,
     }
-  })
+  } catch (error) {
+    console.error('Error fetching package info:', error)
+  }
 }
 
 function openModal() {
@@ -215,6 +255,12 @@ defineExpose({
 </script>
 
 <style scoped>
+h3 {
+  font-size: 15px;
+  font-weight: bold;
+  color: #333333;
+}
+
 .dialog-header {
   font-size: 24px;
   font-weight: bold;
@@ -226,6 +272,7 @@ defineExpose({
 .package-info-container {
   display: flex;
   justify-content: space-between;
+  column-gap: 50px;
   padding: 20px;
 }
 
@@ -236,21 +283,15 @@ defineExpose({
 
 .time-line {
   flex: 1;
-  margin-left: 10px;
+  margin-left: 50px;
+  margin-top: 70px;
 }
 
-.package-info-item {
-  margin-bottom: 10px;
+.h3-container {
+  margin-bottom: 20px;
 }
 
-.package-info-item-label {
-  font-size: 16px;
-  font-weight: bold;
-  color: #333333;
-}
-
-.package-info-item-value {
-  font-size: 14px;
-  color: #666666;
+.margin-top-container {
+  margin-top: 80px;
 }
 </style>

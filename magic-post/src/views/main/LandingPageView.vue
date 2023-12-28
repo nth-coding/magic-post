@@ -212,16 +212,17 @@
 import {ref} from 'vue';
 import LayoutNav from '/src/components/landingPage/Nav.vue'
 import LayoutFooter from '/src/components/landingPage/Footer.vue'
-import CommonButton from "@/components/common/CommonButton.vue";
 import PackageInfoView from "@/views/main/PackageInfoView.vue";
-import AddStaff from "@/views/leader/headCollection/AddStaff.vue";
+import {PackageService} from "@/services/package";
+
+
 
 const dialogView = ref(false)
 const inputValue = ref('')
 
 let packageId = ref('');
 
-function checkOpenDialogView() {
+async function checkOpenDialogView() {
   if (inputValue.value === '') {
     alert('Please enter package ID')
   } else {

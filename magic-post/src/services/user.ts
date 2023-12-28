@@ -1,5 +1,5 @@
 import http from '@/services/http'
-import { AdminApi, AuthAPI } from '@/constants/API'
+import {AdminApi, AuthAPI, HeadCollectionApi, HeadTransactionApi} from '@/constants/API'
 
 export const UserService = {
     listForAdmin: async (params: any) => {
@@ -31,6 +31,9 @@ export const UserService = {
 }
 
 export const StaffService = {
+    addForHeadTran: async (payload: any) => {
+        return await http.post(HeadTransactionApi.HEAD_TRAN_USER_MANAGE, payload)
+    },
     listForBoss: async () => {
         return (
             await http.get(AdminApi.STAFF_BOSS_MANAGE, {})
@@ -38,12 +41,12 @@ export const StaffService = {
     },
     listForHeadCol: async () => {
         return (
-            await http.get(AdminApi.HEAD_COL_USER_MANAGE, {})
+            await http.get(HeadCollectionApi.HEAD_COL_USER_MANAGE, {})
         ).data
     },
     listForHeadTran: async () => {
         return (
-            await http.get(AdminApi.HEAD_TRAN_USER_MANAGE, {})
+            await http.get(HeadTransactionApi.HEAD_TRAN_USER_MANAGE, {})
         ).data
     },
 }

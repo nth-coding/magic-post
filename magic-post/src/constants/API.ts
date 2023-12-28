@@ -34,16 +34,30 @@ export const AdminApi = {
     COLLECTION_POINT_MANAGE: '/boss/col-points',
     PACKAGE_BOSS_MANAGE: '/boss/packages',
     STAFF_BOSS_MANAGE: '/boss/staff',
+}
+
+export const HeadCollectionApi = {
+    HEAD_COL_ADD_STAFF: '/auth/register/staff/col',
 
     HEAD_COL_USER_MANAGE: '/manager/col/staff',
     HEAD_COL_SENT_ORDER_MANAGE: '/manager/col/sent-packages',
     HEAD_COL_CURRENT_ORDER_MANAGE: '/manager/col/curr-packages',
     HEAD_COL_RECEIVED_ORDER_MANAGE: '/manager/col/rec-packages',
+}
+
+export const HeadTransactionApi = {
+    HEAD_TRAN_ADD_STAFF: '/auth/register/staff/tran',
 
     HEAD_TRAN_USER_MANAGE: '/manager/tran/staff',
     HEAD_TRAN_SENT_ORDER_MANAGE: '/manager/tran/sent-packages',
     HEAD_TRAN_CURRENT_ORDER_MANAGE: '/manager/tran/curr-packages',
     HEAD_TRAN_RECEIVED_ORDER_MANAGE: '/manager/tran/rec-packages',
+}
 
+export const StaffApi = {
+
+}
+
+export const CustomerApi = {
     CUSTOMER_GET_PACKAGE_INFO: '/customer/package',
 }

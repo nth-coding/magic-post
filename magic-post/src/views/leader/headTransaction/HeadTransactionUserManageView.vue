@@ -2,7 +2,7 @@
   <h1>Quản lý giao dịch viên</h1>
   <br/>
 
-  <CommonButton size="large" @click="dialogAdd = true; console.log(dialogAdd)">Thêm nhân viên</CommonButton>
+  <CommonButton size="large" @click="dialogAdd = true">Thêm nhân viên</CommonButton>
 
   <AddStaff v-model="dialogAdd" @close="closeDialogAdd"></AddStaff>
   <EditStaff v-if="idEdit" :form-edit="formEdit" v-model="dialogEdit" @close="closeDialogEdit"></EditStaff>
@@ -31,7 +31,7 @@
         sortable
     >
       <template #default="scope">
-        <strong>{{ scope.row.firstName + scope.row.lastName }}</strong>
+        <strong>{{ scope.row.firstName + " " + scope.row.lastName }}</strong>
         <br/>
         {{ scope.row.username }}
         <br/>
