@@ -44,4 +44,6 @@ export const AdminApi = {
     HEAD_TRAN_SENT_ORDER_MANAGE: '/manager/tran/sent-packages',
     HEAD_TRAN_CURRENT_ORDER_MANAGE: '/manager/tran/curr-packages',
     HEAD_TRAN_RECEIVED_ORDER_MANAGE: '/manager/tran/rec-packages',
+
+    CUSTOMER_GET_PACKAGE_INFO: '/customer/package',
 }

@@ -41,7 +41,7 @@ export const PackageService = {
     },
     getInfo: async (id: string) => {
         return (
-            await http.get(AdminApi.PACKAGE_BOSS_MANAGE + '/' + id, {})
+            await http.get(AdminApi.CUSTOMER_GET_PACKAGE_INFO + '/' + id, {})
         ).data
     },
 }

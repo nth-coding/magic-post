@@ -6,37 +6,54 @@
 
     <div class="package-info-container">
       <div class="package-info">
+        <div class="sender-info">
+          <div class="package-info-item">
+            <div class="package-info-item-label">Tên khách hàng</div>
+            <div class="package-info-item-value">{{ packageInfo.senderFirstName + " " + packageInfo.senderLastName }}</div>
+          </div>
+          <div class="package-info-item">
+            <div class="package-info-item-label">Số điện thoại</div>
+            <div class="package-info-item-value">{{ packageInfo.senderPhoneNumber }}</div>
+          </div>
+<!--          <div class="package-info-item">-->
+<!--            <div class="package-info-item-label">Địa chỉ</div>-->
+<!--            <div class="package-info-item-value">{{ packageInfo.customerAddress }}</div>-->
+<!--          </div>-->
+        </div>
+        <div class="receiver-info">
+          <div class="package-info-item">
+            <div class="package-info-item-label">Tên người nhận</div>
+            <div class="package-info-item-value">{{ packageInfo.receiverFirstName + " " + packageInfo.receiverLastName }}</div>
+          </div>
+          <div class="package-info-item">
+            <div class="package-info-item-label">Số điện thoại</div>
+            <div class="package-info-item-value">{{ packageInfo.receiverPhoneNumber }}</div>
+          </div>
+          <div class="package-info-item">
+            <div class="package-info-item-label">Địa chỉ</div>
+            <div class="package-info-item-value">{{ packageInfo.receiverDistrict + ", " + packageInfo.receiverProvince }}</div>
+          </div>
+        </div>
+
         <div class="package-info-item">
-          <div class="package-info-item-label">Tên khách hàng</div>
-          <div class="package-info-item-value">{{ packageInfoData.customerName }}</div>
+          <div class="package-info-item-label">Mã đơn hàng</div>
+          <div class="package-info-item-value">{{ packageInfo.hashKey }}</div>
         </div>
         <div class="package-info-item">
-          <div class="package-info-item-label">Số điện thoại</div>
-          <div class="package-info-item-value">{{ packageInfoData.customerPhone }}</div>
+          <div class="package-info-item-label">Tên hàng</div>
+          <div class="package-info-item-value">{{ packageInfo.name }}</div>
         </div>
         <div class="package-info-item">
-          <div class="package-info-item-label">Địa chỉ</div>
-          <div class="package-info-item-value">{{ packageInfoData.customerAddress }}</div>
+          <div class="package-info-item-label">Mô tả</div>
+          <div class="package-info-item-value">{{ packageInfo.description }}</div>
         </div>
         <div class="package-info-item">
-          <div class="package-info-item-label">Trạng thái</div>
-          <div class="package-info-item-value">{{ packageInfoData.status }}</div>
+          <div class="package-info-item-label">Loại hàng hóa</div>
+          <div class="package-info-item-value">{{ packageInfo.type }}</div>
         </div>
         <div class="package-info-item">
-          <div class="package-info-item-label">Ngày tạo</div>
-          <div class="package-info-item-value">{{ packageInfoData.createdAt }}</div>
-        </div>
-        <div class="package-info-item">
-          <div class="package-info-item-label">Ngày cập nhật</div>
-          <div class="package-info-item-value">{{ packageInfoData.updatedAt }}</div>
-        </div>
-        <div class="package-info-item">
-          <div class="package-info-item-label">Người tạo</div>
-          <div class="package-info-item-value">{{ packageInfoData.createdBy }}</div>
-        </div>
-        <div class="package-info-item">
-          <div class="package-info-item-label">Người cập nhật</div>
-          <div class="package-info-item-value">{{ packageInfoData.updatedBy }}</div>
+          <div class="package-info-item-label">Tình trạng</div>
+          <div class="package-info-item-value">{{ packageInfo.status }}</div>
         </div>
       </div>
       <div class="time-line">
@@ -61,18 +78,6 @@ import useRefs from "@/helper/useRef";
 import {PackageService} from "@/services/package";
 import { MoreFilled } from '@element-plus/icons-vue'
 
-const packageInfoData = {
-  customerName: 'Nguyễn Văn A',
-  customerPhone: '0123456789',
-  customerAddress: 'Hà Nội',
-  status: 'Đang giao hàng',
-  createdAt: '2021-04-15',
-  updatedAt: '2021-04-15',
-  createdBy: 'Nguyễn Văn B',
-  updatedBy: 'Nguyễn Văn C',
-
-}
-
 const activities = [
   {
     content: 'Event start',
@@ -87,7 +92,44 @@ const activities = [
     timestamp: '2018-04-11',
   },
 ]
-let packageInfo = ref({})
+let packageInfo = ref({
+  packageId: '',
+  weight: 0.0,
+  name: '',
+  description: '',
+  type: '',
+
+  senderFirstName: '',
+  senderLastName: '',
+  senderPhoneNumber: '',
+
+  receiverFirstName: '',
+  receiverLastName: '',
+  receiverProvince: '',
+  receiverDistrict: '',
+  receiverPhoneNumber: '',
+
+  hashKey: '',
+  pointHistory: null,
+  currentPoint: '',
+  status: '',
+
+  firstTranPoint: '',
+  firstTranPointStatus: '',
+  timeArriveFirstPoint: '',
+
+  secondTranPoint: '',
+  secondTranPointStatus: '',
+  timeArriveSecondTranPoint: '',
+
+  firstColPoint: '',
+  firstColPointStatus: '',
+  timeArriveFirstColPoint: '',
+
+  secondColPoint: '',
+  secondColPointStatus: '',
+  timeArriveSecondColPoint: '',
+})
 const show = ref(false)
 const {$refs, toRef} = useRefs()
 const RefNames = {
@@ -97,7 +139,7 @@ const RefNames = {
 
 const emit = defineEmits(['close'])
 const props = withDefaults(defineProps<{
-  packageId: Object,
+  packageId: string,
   model?: boolean,
 }>(), {
   model: false,
@@ -109,12 +151,48 @@ watch(() => props.model, (value, oldValue) => {
   }
 })
 
-onMounted(() => {
-
+onMounted(async () => {
+  await getPackageInfo()
 })
 
 async function getPackageInfo() {
-  packageInfo = await PackageService.getPackageInfo(props.packageId)
+  const packageInfolist = await PackageService.getInfo(props.packageId)
+  packageInfo = packageInfolist.map((item: any) => {
+    return {
+      packageId: item.packageId,
+      weight: item.weight,
+      name: item.name,
+      description: item.description,
+      type: item.type,
+
+      receiverFirstName: item.receiverFirstName,
+      receiverLastName: item.receiverLastName,
+      receiverProvince: item.receiverProvince,
+      receiverDistrict: item.receiverDistrict,
+      receiverPhoneNumber: item.receiverPhoneNumber,
+
+      hashKey: item.hashKey,
+      pointHistory: item.pointHistoryDtoList,
+      currentPoint: item.currentPoint,
+      status: item.status,
+
+      firstTranPoint: item.firstTranPoint,
+      firstTranPointStatus: item.firstTranPointStatus,
+      timeArriveFirstPoint: item.timeArriveFirstPoint,
+
+      secondTranPoint: item.secondTranPoint,
+      secondTranPointStatus: item.secondTranPointStatus,
+      timeArriveSecondTranPoint: item.timeArriveSecondTranPoint,
+
+      firstColPoint: item.firstColPoint,
+      firstColPointStatus: item.firstColPointStatus,
+      timeArriveFirstColPoint: item.timeArriveFirstColPoint,
+
+      secondColPoint: item.secondColPoint,
+      secondColPointStatus: item.secondColPointStatus,
+      timeArriveSecondColPoint: item.timeArriveSecondColPoint,
+    }
+  })
 }
 
 function openModal() {

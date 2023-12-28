@@ -51,7 +51,18 @@
         width="200"
         header-align="center"
         align="center"
-    />
+    >
+      <template #default="scope">
+        <div v-if="(scope.row.receiverProvince && scope.row.receiverDistrict)">
+          <strong>{{ scope.row.receiverProvince }}</strong>
+          <br />
+          {{ scope.row.receiverDistrict }}
+        </div>
+        <div v-else>
+          Chưa có thông tin...
+        </div>
+      </template>
+    </el-table-column>
     <el-table-column
         prop="receiverPhoneNumber"
         label="Receiver Phone Number"
@@ -117,7 +128,11 @@
         width="160"
         header-align="center"
         align="center"
-    />
+    >
+      <template #default="scope">
+        <FAIcon v-if="scope.row.status == 'SHIP_DONE'" icon="fa-solid fa-check"></FAIcon>
+      </template>
+    </el-table-column>
     <el-table-column
         prop="pointType"
         label="Point Type"
@@ -240,7 +255,8 @@ async function loadData() {
         type: item.type,
         status: item.status,
         receiverName: item.receiverFirstName + item.receiverLastName,
-        receiverAddress: item.receiverAddress,
+        receiverProvince: item.receiverProvince,
+        receiverDistrict: item.receiverDistrict,
         receiverPhoneNumber: item.receiverPhoneNumber,
         sender: item.userDto.firstName + " " + item.userDto.lastName,
         pointDto: item.pointDto,
