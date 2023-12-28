@@ -288,8 +288,7 @@
 
 
 // create for me about 5 example to table has data
-import AddStaff from "@/views/leader/headCollection/AddStaff.vue";
-import EditStaff from "@/views/leader/headCollection/EditStaff.vue";
+
 import {onMounted, reactive, ref} from "vue";
 import {ElMessage, type FormRules} from "element-plus";
 import useRefs from "@/helper/useRef";

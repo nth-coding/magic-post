@@ -138,12 +138,15 @@
         align="center"
     />
     <el-table-column
-        prop="isManager"
         label="Is Manager"
         width="180"
         header-align="center"
         align="center"
-    />
+    >
+      <template #default="scope">
+        <FAIcon v-if="scope.row.isManager" icon="fa-solid fa-check"></FAIcon>
+      </template>
+    </el-table-column>
     <el-table-column
         prop="type"
         label="Type"
@@ -169,6 +172,7 @@ import {ElMessage} from 'element-plus'
 import useRefs from '@/helper/useRef'
 import {StaffService} from "@/services/user";
 import {useRouter} from "vue-router";
+import FAIcon from '@/components/common/FAIcon.vue'
 
 const dialogAdd = ref(false)
 const dialogEdit = ref(false)

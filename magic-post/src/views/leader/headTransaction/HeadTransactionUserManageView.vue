@@ -2,10 +2,10 @@
   <h1>Quản lý giao dịch viên</h1>
   <br/>
 
-  <CommonButton size="large" @click="dialogAdd = true; console.log(dialogAdd)">Thêm người dùng</CommonButton>
+  <CommonButton size="large" @click="dialogAdd = true; console.log(dialogAdd)">Thêm nhân viên</CommonButton>
 
   <AddStaff v-model="dialogAdd" @close="closeDialogAdd"></AddStaff>
-  <EditStaff v-if="idEdit" :id="idEdit" v-model="dialogEdit" @close="closeDialogEdit"></EditStaff>
+  <EditStaff v-if="idEdit" :form-edit="formEdit" v-model="dialogEdit" @close="closeDialogEdit"></EditStaff>
 
   <el-table
       v-loading="loading"
@@ -43,14 +43,22 @@
         width="140"
         header-align="center"
         align="center"
-    />
+    >
+      <template #default="scope">
+        <p v-if="!scope.row.address" class="text-slate-400">Chưa có thông tin</p>
+      </template>
+    </el-table-column>
     <el-table-column
         align="center"
         header-align="center"
         label="SDT"
         prop="phoneNumber"
         width="160"
-    />
+    >
+      <template #default="scope">
+        <p v-if="!scope.row.phoneNumber" class="text-slate-400">Chưa có thông tin</p>
+      </template>
+    </el-table-column>
     <el-table-column
         fixed="right"
         label="Hành động"
@@ -90,9 +98,6 @@ import {processErrorMessage} from '@/helper/responseErrorHandle'
 import type {FormRules} from 'element-plus'
 import {ElMessage} from 'element-plus'
 import useRefs from '@/helper/useRef'
-import AddCustomer from "@/views/admin/customer/AddCustomer.vue";
-import EditCustomer from "@/views/admin/customer/EditCustomer.vue";
-import {PackageService} from "@/services/package";
 import {useRouter} from "vue-router";
 import AddStaff from "@/views/leader/headCollection/AddStaff.vue";
 import EditStaff from "@/views/leader/headCollection/EditStaff.vue";
@@ -169,6 +174,7 @@ async function loadData() {
 }
 
 const router = useRouter()
+let formEdit = {}
 
 function handleEdit(id: number) {
   idEdit.value = id
