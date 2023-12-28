@@ -114,6 +114,7 @@ function logout() {
 </script>
 
 <style scoped lang="scss">
+
 .desktop-logo-container {
   display: flex;
   justify-content: center;
@@ -135,6 +136,7 @@ function logout() {
 
 .desktop-navigation-container {
   height: 100%;
+  
 }
 
 .desktop-navigation-menu {

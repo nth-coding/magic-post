@@ -15,6 +15,7 @@
         <p class="service-card-p">{{ service.description }}</p>
       </div>
     </div>
+    
   </div>
 </template>
 
@@ -24,7 +25,7 @@ import type {UserInfo} from "@/constants/Interfaces";
 import {useAuthenticationStore} from "@/stores/authentication";
 import {storeToRefs} from "pinia";
 import {roles} from "@/constants/Role";
-
+import BossChart from "@/views/admin/BossChart.vue"
 const form = ref({
   firstName: '',
   lastName: '',
