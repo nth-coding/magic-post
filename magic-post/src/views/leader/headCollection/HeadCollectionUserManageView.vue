@@ -1,11 +1,11 @@
 <template>
-  <h1>Quản lý giao dịch viên</h1>
+  <h1>Quản lý nhân viên tập kết</h1>
   <br/>
 
-  <CommonButton size="large" @click="dialogAdd = true; console.log(dialogAdd)">Thêm người dùng</CommonButton>
+  <CommonButton size="large" @click="dialogAdd = true; console.log(dialogAdd)">Thêm nhân viên</CommonButton>
 
   <AddStaff v-model="dialogAdd" @close="closeDialogAdd"></AddStaff>
-  <EditStaff v-if="idEdit" :id="idEdit" v-model="dialogEdit" @close="closeDialogEdit"></EditStaff>
+  <EditStaff v-if="idEdit" :form-edit="formEdit" v-model="dialogEdit" @close="closeDialogEdit"></EditStaff>
 
   <el-table
       v-loading="loading"
@@ -204,10 +204,11 @@ async function loadData() {
 }
 
 const router = useRouter()
-
+let formEdit = {}
 function handleEdit(id: number) {
   idEdit.value = id
   dialogEdit.value = true
+  formEdit = data[0]
 }
 
 async function handleDelete(id: number) {
