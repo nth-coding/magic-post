@@ -67,9 +67,8 @@
         align="center"
     />
     <el-table-column
-        prop="type"
         label="Type"
-        width="160"
+        width="90"
         header-align="center"
         align="center"
     >
