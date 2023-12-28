@@ -32,7 +32,11 @@
         header-align="center"
         align="center"
         sortable
-    />
+    >
+      <template #default="scope">
+        <p v-if="!scope.row.weight" class="text-slate-400">Chưa có thông tin</p>
+      </template>
+    </el-table-column>
     
     <el-table-column
         prop="description"
@@ -40,7 +44,11 @@
         label="Mô tả"
         header-align="center"
         align="left"
-    />
+    >
+      <template #default="scope">
+        <p v-if="!scope.row.description" class="text-slate-400">Chưa có thông tin</p>
+      </template>
+    </el-table-column>
 
     <el-table-column
         prop="type"
@@ -49,7 +57,11 @@
         header-align="center"
         align="left"
         sortable
-    />
+    >
+      <template #default="scope">
+        <p v-if="!scope.row.type" class="text-slate-400">Chưa có thông tin</p>
+      </template>
+    </el-table-column>
 
     <el-table-column
         prop="status"
@@ -58,7 +70,11 @@
         header-align="center"
         align="left"
         sortable
-    />
+    >
+      <template #default="scope">
+        <p v-if="!scope.row.status" class="text-slate-400">Chưa có thông tin</p>
+      </template>
+    </el-table-column>
 
     <el-table-column
         prop="senderName"
@@ -69,7 +85,8 @@
         
     >
       <template #default="scope">
-          <strong>{{ scope.row.senderFirstName + ' ' + scope.row.senderLastName }}</strong>
+          <p>{{ scope.row.senderFirstName + ' ' + scope.row.senderLastName }}</p>
+          <p v-if="!scope.row.senderFirstName &&!scope.row.senderLastName" class="text-slate-400">Chưa có thông tin</p>
       </template>
     </el-table-column>
 
@@ -79,7 +96,11 @@
         width="140"
         header-align="center"
         align="center"
-    />
+    >
+      <template #default="scope">
+        <p v-if="!scope.row.senderAddress" class="text-slate-400">Chưa có thông tin</p>
+      </template>
+    </el-table-column>
 
     <el-table-column
         align="center"
@@ -87,7 +108,11 @@
         label="SDT người gửi"
         prop="senderPhoneNumber"
         width="160"
-    />
+    >
+      <template #default="scope">
+        <p v-if="!scope.row.senderPhoneNumber" class="text-slate-400">Chưa có thông tin</p>
+      </template>
+    </el-table-column>
 
     <el-table-column
         prop="receiverName"
@@ -98,7 +123,8 @@
         
     >
       <template #default="scope">
-          <strong>{{ scope.row.receiverFirstName + ' ' + scope.row.receiverLastName }}</strong>
+          <p>{{ scope.row.receiverFirstName + ' ' + scope.row.receiverLastName }}</p>
+          <p v-if="!scope.row.receiverFirstName && !scope.row.receiverLastName" class="text-slate-400">Chưa có thông tin</p>
       </template>
     </el-table-column>
 
@@ -108,7 +134,11 @@
         width="150"
         header-align="center"
         align="center"
-    />
+    >
+      <template #default="scope">
+        <p v-if="!scope.row.receiverAddress" class="text-slate-400">Chưa có thông tin</p>
+      </template>
+    </el-table-column>
 
     <el-table-column
         align="center"
@@ -116,7 +146,11 @@
         label="SDT người nhận"
         prop="receiverPhoneNumber"
         width="160"
-    />
+    >
+      <template #default="scope">
+        <p v-if="!scope.row.receiverPhoneNumber" class="text-slate-400">Chưa có thông tin</p>
+      </template>
+    </el-table-column>
     <!--là loại hàng gửi cho người nhận hay hàng nhận để chuyển đến điểm tập kết-->
     <el-table-column
         align="center"
@@ -124,7 +158,11 @@
         label="Loại hàng hóa"
         prop="typeOfGoods"
         width="160"
-    />
+    >
+      <template #default="scope">
+        <p v-if="!scope.row.typeOfGoods" class="text-slate-400">Chưa có thông tin</p>
+      </template>
+    </el-table-column>
 
     <el-table-column
         align="center"
@@ -132,7 +170,11 @@
         label="Điểm đến tiếp theo"
         prop="nextPoint"
         width="160"
-    />
+    >
+      <template #default="scope">
+        <p v-if="!scope.row.nextPoint" class="text-slate-400">Chưa có thông tin</p>
+      </template>
+    </el-table-column>
 
     
   </el-table>

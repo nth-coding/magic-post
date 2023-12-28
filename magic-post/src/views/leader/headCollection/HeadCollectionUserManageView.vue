@@ -37,20 +37,28 @@
         <br/>
       </template>
     </el-table-column>
-    <el-table-column
+    <el-table-column 
         prop="address"
         label="Địa chỉ"
         width="140"
         header-align="center"
         align="center"
-    />
+    >
+      <template #default="scope">
+        <p v-if="!scope.row.address" class="text-slate-400">Chưa có thông tin</p>
+      </template>
+    </el-table-column>
     <el-table-column
         align="center"
         header-align="center"
         label="SDT"
         prop="phoneNumber"
         width="160"
-    />
+    >
+      <template #default="scope">
+        <p v-if="!scope.row.phoneNumber" class="text-slate-400">Chưa có thông tin</p>
+      </template>
+    </el-table-column>
     <el-table-column
         fixed="right"
         label="Hành động"
@@ -90,9 +98,6 @@ import {processErrorMessage} from '@/helper/responseErrorHandle'
 import type {FormRules} from 'element-plus'
 import {ElMessage} from 'element-plus'
 import useRefs from '@/helper/useRef'
-import AddCustomer from "@/views/admin/customer/AddCustomer.vue";
-import EditCustomer from "@/views/admin/customer/EditCustomer.vue";
-import {PackageService} from "@/services/package";
 import {useRouter} from "vue-router";
 import AddStaff from "@/views/leader/headCollection/AddStaff.vue";
 import EditStaff from "@/views/leader/headCollection/EditStaff.vue";
@@ -134,7 +139,7 @@ const data = [
     firstName: 'John',
     lastName: 'Doe',
     username: 'johndoe@example.com',
-    address: '123 Main St',
+    //address: '123 Main St',
     phoneNumber: '123-456-7890',
   },
   {

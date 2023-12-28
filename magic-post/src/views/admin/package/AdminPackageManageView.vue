@@ -67,9 +67,8 @@
         align="center"
     />
     <el-table-column
-        prop="type"
         label="Type"
-        width="160"
+        width="90"
         header-align="center"
         align="center"
     >
@@ -107,7 +106,11 @@
         width="200"
         header-align="center"
         align="center"
-    />
+    >
+      <template #default="scope">
+        <FAIcon v-if="scope.row.status == 'SHIP_DONE'" icon="fa-solid fa-check"></FAIcon>
+      </template>
+    </el-table-column>
     <el-table-column
         prop="pointDto.name"
         label="Point"
@@ -122,6 +125,7 @@
         header-align="center"
         align="center"
     />
+    
     <el-table-column
         fixed="right"
         label="Hành động"
