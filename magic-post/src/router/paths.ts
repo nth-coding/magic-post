@@ -11,6 +11,7 @@ export const Paths = {
     REGISTRATION_RESEND_ACTIVATION_SUCCESS: '/registration-resend-activation-success',
     LOGIN_ADDIN_SUCCESS: '/login-addin-success',
     CONFIRM_REGISTRATION: '/confirm-registration',
+    CHANGE_PASSWORD: '/change-password',
 
     MANAGE_USER: '/manage-user',
     ADMIN_MANAGE_USER: '/admin/customers',

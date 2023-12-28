@@ -20,20 +20,31 @@
       </div>
       <br/>
       <br/>
+      <el-form-item label="Role" prop="username">
+        <el-input class="b-form-item" v-model="form.role" placeholder="Chưa có thông tin..." disabled/>
+      </el-form-item>
+      <br>
       <el-form-item label="Email" prop="username">
         <el-input class="b-form-item" v-model="form.username" placeholder="Chưa có thông tin..." disabled/>
       </el-form-item>
+      <br>
       <el-form-item label="First name" prop="firstName">
         <el-input class="b-form-item" v-model="form.firstName" placeholder="Chưa có thông tin..."/>
       </el-form-item>
+      <br>
       <el-form-item label="Last name" prop="lastName">
         <el-input class="b-form-item" v-model="form.lastName" placeholder="Chưa có thông tin..."/>
       </el-form-item>
+      <br>
       <el-form-item label="Phone number" prop="phoneNumber">
         <el-input class="b-form-item" v-model="form.phoneNumber" placeholder="Chưa có thông tin..."/>
       </el-form-item>
+      <br>
       <el-form-item label="Address" prop="address">
         <el-input class="b-form-item" v-model="form.address" placeholder="Chưa có thông tin..."/>
+      </el-form-item>
+      
+      <el-form-item label="Password">
         <el-link
             :underline="false"
             class="btn-function"
@@ -41,7 +52,6 @@
         >Thay đổi mật khẩu
         </el-link>
       </el-form-item>
-
 
       <el-form-item>
         <CommonButton
@@ -176,6 +186,7 @@ const form = ref({
   lastName: '',
   phoneNumber: '',
   address: '',
+  role: '',
 })
 const turnOnFormPassword = ref(false)
 const formPassword = ref({
@@ -189,13 +200,13 @@ const imgUrl = ref(
 )
 
 const authenticationStore = useAuthenticationStore()
-const {authenticated, user} = storeToRefs(authenticationStore)
+const {authenticated, user, roleList} = storeToRefs(authenticationStore)
 
 watch(
     authenticated,
     (newAuth) => {
       if (newAuth && user.value) {
-        updateUserInfo(user.value as UserInfo)
+        updateUserInfo(user.value as UserInfo, roleList.value)
       }
     },
     {
@@ -203,13 +214,14 @@ watch(
     }
 )
 
-function updateUserInfo(userInfo: UserInfo) {
+function updateUserInfo(userInfo: UserInfo, roleList: string[]) {
   form.value = {
     username: userInfo.username,
     firstName: userInfo.firstName,
     lastName: userInfo.lastName,
     phoneNumber: userInfo.phoneNumber,
     address: userInfo.address,
+    role: roleList[0],
   }
 }
 
@@ -267,7 +279,7 @@ function submitFormChangePassword() {
 }
 
 function resetForm() {
-  if (user.value) updateUserInfo(user.value as UserInfo)
+  if (user.value) updateUserInfo(user.value as UserInfo, roleList.value)
 }
 </script>
 <style scoped>
@@ -288,10 +300,7 @@ function resetForm() {
   padding-top: 3px;
 }
 
-.b-form-item {
-  padding-top: 10px;
-  margin-bottom: 10px;
-}
+
 h1 {
   color: #333;
   font-size: 2em;

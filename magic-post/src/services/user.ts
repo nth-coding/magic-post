@@ -27,6 +27,9 @@ export const UserService = {
     },
     editProfile: async (payload: any) => {
         return await http.post(AuthAPI.EDIT_PROFILE, payload)
+    },
+    changePassword: async (payload: any) => {
+        return await http.post(AuthAPI.CHANGE_PASSWORD, payload)
     }
 }
 
