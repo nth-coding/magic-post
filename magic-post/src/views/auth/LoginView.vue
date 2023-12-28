@@ -137,8 +137,8 @@ const rules = reactive<FormRules>({
   password: [
     { required: true, message: 'Vui lòng nhập mật khẩu', trigger: 'blur' },
     {
-      min: 5,
-      message: 'Mật khẩu được nhập phải có ít nhất 5 ký tự',
+      min: 2,
+      message: 'Mật khẩu được nhập phải có ít nhất 2 ký tự',
       trigger: 'blur',
     },
   ],

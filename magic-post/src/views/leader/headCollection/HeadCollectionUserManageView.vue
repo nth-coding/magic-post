@@ -1,5 +1,5 @@
 <template>
-  <h1>Quản lý giao dịch viên</h1>
+  <h1>Quản lý tập kết viên</h1>
   <br/>
 
   <CommonButton size="large" @click="dialogAdd = true; console.log(dialogAdd)">Thêm người dùng</CommonButton>
@@ -10,7 +10,7 @@
   <el-table
       v-loading="loading"
       empty-text="Không có dữ liệu"
-      :data="data"
+      :data="usersData"
       border
       style="width: 100%"
   >
@@ -96,6 +96,7 @@ import {PackageService} from "@/services/package";
 import {useRouter} from "vue-router";
 import AddStaff from "@/views/leader/headCollection/AddStaff.vue";
 import EditStaff from "@/views/leader/headCollection/EditStaff.vue";
+import {StaffService} from "@/services/user";
 
 const dialogAdd = ref(false)
 const dialogEdit = ref(false)
@@ -127,50 +128,6 @@ const form = ref({
   emailConfirmed: null,
 })
 
-// create for me about 5 example to table has data
-const data = [
-  {
-    id: 1,
-    firstName: 'John',
-    lastName: 'Doe',
-    username: 'johndoe@example.com',
-    address: '123 Main St',
-    phoneNumber: '123-456-7890',
-  },
-  {
-    id: 2,
-    firstName: 'Jane',
-    lastName: 'Doe',
-    username: 'janedoe@example.com',
-    address: '456 Elm St',
-    phoneNumber: '234-567-8901',
-  },
-  {
-    id: 3,
-    firstName: 'Bob',
-    lastName: 'Smith',
-    username: 'bobsmith@example.com',
-    address: '789 Pine St',
-    phoneNumber: '345-678-9012',
-  },
-  {
-    id: 4,
-    firstName: 'Alice',
-    lastName: 'Johnson',
-    username: 'alicejohnson@example.com',
-    address: '1012 Oak St',
-    phoneNumber: '456-789-0123',
-  },
-  {
-    id: 5,
-    firstName: 'Charlie',
-    lastName: 'Brown',
-    username: 'charliebrown@example.com',
-    address: '1234 Maple St',
-    phoneNumber: '567-890-1234',
-  },
-];
-
 const RefNames = {
   DELETE_BTN: 'DELETE_BTN_',
   EDIT_BTN: 'EDIT_BTN_',
@@ -188,7 +145,20 @@ async function loadData() {
     loading.value = true
     $refs.get(RefNames.RELOAD_BTN)?.setLoading(true)
 
-
+    let users = await StaffService.listForHeadCol()
+    usersData.value = users.map((user: any) => {
+      return {
+        id: user.userDto.id,
+        firstName: user.userDto.firstName,
+        lastName: user.userDto.lastName,
+        username: user.userDto.username,
+        address: user.userDto.address,
+        phoneNumber: user.userDto.phoneNumber,
+        isManager: user.isManager,
+        type: user.type.substring(5),
+        point: user.pointDto.name
+      }
+    })
   } catch (e) {
     processErrorMessage(e, "Có lỗi đã xảy ra trong quá trình tải dữ liệu. " +
         "Vui lòng thử lại sau!")

@@ -207,7 +207,7 @@ async function loadData() {
     loading.value = true
     $refs.get(RefNames.RELOAD_BTN)?.setLoading(true)
 
-    let users = await StaffService.list()
+    let users = await StaffService.listForHeadCol()
     usersData.value = users.map((user: any) => {
       let userDTO = user.userDto
       let fname = userDTO.firstName ? userDTO.firstName : ""

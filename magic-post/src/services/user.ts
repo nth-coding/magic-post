@@ -31,9 +31,14 @@ export const UserService = {
 }
 
 export const StaffService = {
-    list: async () => {
+    listForHeadCol: async () => {
         return (
-            await http.get(AdminApi.STAFF_BOSS_MANAGE, {})
+            await http.get(AdminApi.HEAD_COL_USER_MANAGE, {})
+        ).data
+    },
+    listForHeadTran: async () => {
+        return (
+            await http.get(AdminApi.HEAD_TRAN_USER_MANAGE, {})
         ).data
     },
 }
