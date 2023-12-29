@@ -82,7 +82,7 @@
               </div>
   
               <div class="w-full xl:w-1/3 px-3">
-                <p class="text-xl font-semibold mb-4">Số lượng đơn hàng</p>
+                <p class="text-xl font-semibold mb-4">Lượng hàng trong tuần gần nhất</p>
   
                 <div class="w-full bg-white border rounded-lg p-4 mb-8 xl:mb-0">
                   <canvas id="count-chart" width="600" height="400"></canvas>
@@ -123,39 +123,47 @@
               }
             },
             countData: {
-                type: 'bar',
-                data: {
-                    labels : ["Điểm A","Điểm B","Điểm C","Điểm D","Điểm E"],
-                    datasets:[{
-                        backgroundColor : "rgba(99,179,237,0.4)",
-                        strokeColor : "#63b3ed",
-                        pointColor : "#fff",
-                        pointStrokeColor : "#63b3ed",
-                        data : [203,156,99,251,305]
-                    }]
-                },
-                options: {
-                    legend: {
-                        display: false
-                    },
-                    scales: {
-                        yAxes: [{
-                            gridLines: {
-                                display:false
-                            },  
-                            ticks: {
-                                display: false
-                            }
-                        }],
-                        xAxes: [{
-                            gridLines: {
-                                display: false
-                            }
-                        }]
-                    }
-                }
-  
-            },
+              type: 'line',
+              data: {
+                  labels : ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
+                  datasets:[{
+                      label:"Hàng đi",
+                      backgroundColor : "rgba(99,179,237,0.4)",
+                      strokeColor : "#63b3ed",
+                      pointColor : "#fff",
+                      pointStrokeColor : "#63b3ed",
+                      data : [203,156,99,251,305,247,256]
+                  },
+                  {
+                      label: "Hàng đến",
+                      backgroundColor : "rgba(198,198,198,0.4)",
+                      strokeColor : "#f7fafc",
+                      pointColor : "#fff",
+                      pointStrokeColor : "#f7fafc",
+                      data : [86,97,144,114,94,108,156]
+                  }]
+              },
+              options: {
+                  legend: {
+                      display: false
+                  },
+                  scales: {
+                      yAxes: [{
+                          gridLines: {
+                              display:false
+                          },  
+                          ticks: {
+                              display: false
+                          }
+                      }],
+                      xAxes: [{
+                          gridLines: {
+                              display: false
+                          }
+                      }]
+                  }
+              }
+          },
             efficiency: {
               type: 'doughnut',
               data:{
