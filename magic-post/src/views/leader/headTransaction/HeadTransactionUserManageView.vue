@@ -2,7 +2,9 @@
   <h1>Quản lý giao dịch viên</h1>
   <br/>
 
-  <CommonButton size="large" @click="dialogAdd = true">Thêm nhân viên</CommonButton>
+  <CommonButton size="large"
+   class="mx-auto lg:mx-0 hover:underline text-white bg-sky-500 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+   @click="dialogAdd = true">Thêm nhân viên</CommonButton>
 
   <AddStaff v-model="dialogAdd" @close="closeDialogAdd"></AddStaff>
   <EditStaff v-if="idEdit" :id="idEdit" v-model="dialogEdit" @close="closeDialogEdit"></EditStaff>
