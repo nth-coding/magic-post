@@ -34,8 +34,11 @@ export const UserService = {
 }
 
 export const StaffService = {
+    addForHeadCol: async (payload: any) => {
+        return await http.post(HeadCollectionApi.HEAD_COL_ADD_STAFF, payload)
+    },
     addForHeadTran: async (payload: any) => {
-        return await http.post(HeadTransactionApi.HEAD_TRAN_USER_MANAGE, payload)
+        return await http.post(HeadTransactionApi.HEAD_TRAN_ADD_STAFF, payload)
     },
     listForBoss: async () => {
         return (
@@ -52,4 +55,19 @@ export const StaffService = {
             await http.get(HeadTransactionApi.HEAD_TRAN_USER_MANAGE, {})
         ).data
     },
+    getOneForHeadTran: async (id: any) => {
+        return (
+            await http.get(HeadTransactionApi.HEAD_TRAN_USER_MANAGE + '/' + id)
+        ).data
+    },
+    editForHeadTran: async (id: any, payload: any) => {
+        return (
+            await http.put(HeadTransactionApi.HEAD_TRAN_USER_MANAGE + '/' + id, payload)
+        ).data
+    },
+    deleteForHeadTran: async (id: any) => {
+        return (
+            await http.delete(HeadTransactionApi.HEAD_TRAN_USER_MANAGE + '/' + id)
+        ).data
+    }
 }

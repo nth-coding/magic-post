@@ -21,6 +21,8 @@ import HeadCollectionUserManageView from "@/views/leader/headCollection/HeadColl
 import HeadTransactionUserManageView from "@/views/leader/headTransaction/HeadTransactionUserManageView.vue";
 import HeadCollectionPackageManageView from "@/views/leader/headCollection/HeadCollectionPackageManageView.vue";
 import HeadTransactionPackageManageView from "@/views/leader/headTransaction/HeadTransactionPackageManageView.vue";
+import StaffCollectionPackageManageView from "@/views/staff/collection/StaffCollectionPackageManageView.vue";
+import StaffTransactionPackageManageView from "@/views/staff/transaction/StaffTransactionPackageManageView.vue";
 
 export const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -68,6 +70,14 @@ export const router = createRouter({
                 {
                     path: Paths.HEADTRAN_MANAGE_ORDER,
                     component: HeadTransactionPackageManageView,
+                },
+                {
+                    path: Paths.STAFF_COL_MANAGE_ORDER,
+                    component: StaffCollectionPackageManageView,
+                },
+                {
+                    path: Paths.STAFF_TRAN_MANAGE_ORDER,
+                    component: StaffTransactionPackageManageView,
                 }
             ]
         },

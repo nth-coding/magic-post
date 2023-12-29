@@ -23,8 +23,8 @@ export const Paths = {
     HEADCOL_MANAGE_USER: '/col-leader/customers',
     HEADCOL_MANAGE_ORDER: '/col-leader/order',
 
-    LEADER_MANAGE_USER: '/leader/customers',
-    LEADER_MANAGE_ORDER: '/leader/order',
+    STAFF_TRAN_MANAGE_ORDER: '/staff/customers',
+    STAFF_COL_MANAGE_ORDER: '/staff/order',
 }
 
 export const ANONYMOUS_ALLOW_PATHS = [

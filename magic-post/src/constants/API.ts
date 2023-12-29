@@ -37,7 +37,7 @@ export const AdminApi = {
 }
 
 export const HeadCollectionApi = {
-    HEAD_COL_ADD_STAFF: '/auth/register/staff/col',
+    HEAD_COL_ADD_STAFF: '/manager/col/register/staff',
 
     HEAD_COL_USER_MANAGE: '/manager/col/staff',
     HEAD_COL_SENT_ORDER_MANAGE: '/manager/col/sent-packages',
@@ -46,7 +46,7 @@ export const HeadCollectionApi = {
 }
 
 export const HeadTransactionApi = {
-    HEAD_TRAN_ADD_STAFF: '/auth/register/staff/tran',
+    HEAD_TRAN_ADD_STAFF: '/manager/tran/register/staff',
 
     HEAD_TRAN_USER_MANAGE: '/manager/tran/staff',
     HEAD_TRAN_SENT_ORDER_MANAGE: '/manager/tran/sent-packages',

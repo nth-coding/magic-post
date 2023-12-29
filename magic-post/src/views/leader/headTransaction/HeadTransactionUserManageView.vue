@@ -5,8 +5,8 @@
   <CommonButton size="large" @click="dialogAdd = true">Thêm nhân viên</CommonButton>
 
   <AddStaff v-model="dialogAdd" @close="closeDialogAdd"></AddStaff>
-  <EditStaff v-if="idEdit" :form-edit="formEdit" v-model="dialogEdit" @close="closeDialogEdit"></EditStaff>
-
+  <EditStaff v-if="idEdit" :id="idEdit" v-model="dialogEdit" @close="closeDialogEdit"></EditStaff>
+  <div class="packages-list-container">
   <el-table
       v-loading="loading"
       empty-text="Không có dữ liệu"
@@ -75,7 +75,7 @@
         >Chỉnh sửa
         </CommonButton>
         <el-popconfirm
-            :title="`Bạn chắc chắn muốn xóa người dùng '${scope.row.name}'?`"
+            :title="`Bạn chắc chắn muốn xóa người dùng #'${scope.row.id}'?`"
             confirm-button-text="Xác nhận"
             cancel-button-text="Hủy"
             @confirm="handleDelete(scope.row.id)"
@@ -89,6 +89,7 @@
       </template>
     </el-table-column>
   </el-table>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -99,8 +100,8 @@ import type {FormRules} from 'element-plus'
 import {ElMessage} from 'element-plus'
 import useRefs from '@/helper/useRef'
 import {useRouter} from "vue-router";
-import AddStaff from "@/views/leader/headCollection/AddStaff.vue";
-import EditStaff from "@/views/leader/headCollection/EditStaff.vue";
+import AddStaff from "@/views/leader/headTransaction/AddStaff.vue";
+import EditStaff from "@/views/leader/headTransaction/EditStaff.vue";
 import {StaffService} from "@/services/user";
 
 const dialogAdd = ref(false)
@@ -184,7 +185,7 @@ function handleEdit(id: number) {
 async function handleDelete(id: number) {
   $refs.get(RefNames.DELETE_BTN + id)?.setLoading(true)
   try {
-    // await deleteUser(id)
+    await StaffService.deleteForHeadTran(id)
     await loadData()
     ElMessage.success("Xóa người dùng thành công!")
   } catch (e) {
@@ -195,26 +196,32 @@ async function handleDelete(id: number) {
     $refs.get(RefNames.DELETE_BTN + id)?.setLoading(false)
   }
 }
+
 </script>
 
 <style scoped>
-.add-user-btn {
-  float: right;
-  margin-bottom: 1.5rem;
-}
-
-.pagination-block {
-  margin-top: 15px;
-  float: right;
-}
-
-.el-table .warning-row {
-  background: oldlace;
+.packages-list-container {
+  margin: 2rem 0;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
   color: #333;
   font-size: 2em;
   margin-bottom: 1rem;
+}
+
+h2 {
+  color: #666;
+  font-size: 1.5em;
+  margin-bottom: 1rem;
+}
+
+.el-table {
+  width: 100%;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <el-dialog v-model="show">
     <template #header>
-      <div class="dialog-header">Thêm người dùng</div>
+      <div class="dialog-header">Thêm nhân viên </div>
     </template>
     <el-form
         label-position="left"
@@ -64,7 +64,7 @@ import { processErrorMessage } from '@/helper/responseErrorHandle'
 import { ElMessage } from 'element-plus/es'
 import CommonButton from '@/components/common/CommonButton.vue'
 import useRefs from '@/helper/useRef'
-import {UserService} from "@/services/user";
+import {StaffService, UserService} from "@/services/user";
 import {useRouter} from "vue-router";
 
 const show = ref(false)
@@ -108,7 +108,7 @@ const validateConfirmPassword = (rule: any, value: any, callback: any) => {
 }
 
 const rules = reactive<FormRules>({
-  name: [{required: true, message: 'Nhập tên người dùng'}],
+  name: [{required: true, message: 'Nhập tên nhân viên'}],
   email: [{
     min: 4,
     message: "Email length should be at least 5 characters",
@@ -135,16 +135,16 @@ function submitForm() {
     if (valid) {
       $refs.get(RefNames.SUBMIT_BTN)?.setLoading(true)
       try {
-        // await UserService.add({
-        //   username: form.value.username,
-        //   firstName: form.value.firstName,
-        //   lastName: form.value.lastName,
-        //   address: form.value.address,
-        //   phoneNumber: form.value.phoneNumber,
-        //   password: form.value.password,
-        // })
+        await StaffService.addForHeadTran({
+          firstName: form.value.firstName,
+          lastName: form.value.lastName,
+          username: form.value.username,
+          password: form.value.password,
+          phoneNumber: form.value.phoneNumber,
+          address: form.value.address,
+        })
         ElMessage({
-          message: 'Thêm người dùng thành công!',
+          message: 'Thêm nhân viên thành công!',
           type: 'success',
           duration: 5000
         })

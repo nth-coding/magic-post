@@ -72,9 +72,30 @@
           Quản lý đơn hàng
         </el-menu-item>
       </el-menu-item-group>
+      <el-menu-item-group v-if="roleList.includes(roles.ROLE_OFFICERTRAN)">
+        <template #title>Giao dịch viên</template>
+        <el-menu-item
+            :route="Paths.STAFF_TRAN_MANAGE_ORDER"
+            v-if="roleList.includes(roles.ROLE_OFFICERTRAN)"
+            :index="Paths.STAFF_TRAN_MANAGE_ORDER"
+        >
+          <FAIcon icon="fa-solid fa-box"/>
+          Quản lý đơn hàng
+        </el-menu-item>
+      </el-menu-item-group>
+      <el-menu-item-group v-if="roleList.includes(roles.ROLE_OFFICERCOL)">
+        <template #title>Tập kết viên</template>
+        <el-menu-item
+            :route="Paths.STAFF_COL_MANAGE_ORDER"
+            v-if="roleList.includes(roles.ROLE_OFFICERCOL)"
+            :index="Paths.STAFF_COL_MANAGE_ORDER"
+        >
+          <FAIcon icon="fa-solid fa-box"/>
+          Quản lý đơn hàng
+        </el-menu-item>
+      </el-menu-item-group>
       <el-menu-item-group>
         <template #title> Cá nhân</template>
-
         <el-menu-item :route="Paths.MANAGE_USER" :index="Paths.MANAGE_USER">
           <FAIcon icon="fas fa-user" />
           Tài khoản
