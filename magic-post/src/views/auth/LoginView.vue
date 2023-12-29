@@ -3,7 +3,7 @@
     <el-card 
     class="w-[640px] h-[550px] mx-auto mt-[5px] bg-white rounded-3xl border border-stone-500 border-opacity-50 flex  justify-center">
       <div class="mt-[20px] flex-col justify-center flex">
-        <div class="text-center text-zinc-800 text-[32px] font-medium  ">Đăng nhập</div>
+        <div class="text-center text-zinc-800 text-[32px] font-medium  font-['Poppins']">Đăng nhập</div>
           
           <el-form
               class="login-form"
@@ -17,7 +17,7 @@
           <div class="mt-[40px] flex-col justify-start items-start flex">
 
             <el-form-item prop="email" class="w-[528px] h-[87px] flex-col justify-start items-start  inline-flex">
-              <div class="text-stone-500 text-base font-normal ">Tài khoản email của bạn:</div>
+              <div class="text-stone-500 text-base font-normal font-['Poppins']">Tài khoản email của bạn:</div>
               <el-input
                   class="w-[528px] h-14 relative"
                   type="email"
@@ -27,7 +27,7 @@
             </el-form-item>
 
             <el-form-item prop="password" class="w-[528px] h-[87px] flex-col justify-start items-start  inline-flex">
-              <div class="text-stone-500 text-base font-normal ">Mật khẩu của bạn:</div>
+              <div class="text-stone-500 text-base font-normal font-['Poppins']">Mật khẩu của bạn:</div>
               <el-input
                   class="w-[528px] h-14 relative"
                   v-model="formLogin.password"
@@ -41,7 +41,7 @@
                   <CommonButton
                       :ref="toRef('LOGIN_BTN')"
                       class="w-[528px] h-16 pt-[15px] bg-blue-500 pb-4 rounded-[40px] inline-flex 
-                             text-center text-white text-[22px] font-medium "
+                             text-center text-white text-[22px] font-medium font-['Poppins']"
                       size="large"
                       type="primary"
                       native-type="submit"
@@ -53,7 +53,7 @@
           </div>
           
           <el-row >
-            <el-col :span="12" class="text-center">
+            <el-col :span="12" class="text-center font-['Poppins']">
               <router-link
                   class="is-underline forgot-password"
                   type="primary"
@@ -193,7 +193,7 @@ body {
   background:linear-gradient(to right, #017a6e, #0dc2af);
   display: flex;
   align-items: center;
-  font-family: 'Times New Roman', Times, serif
+  
 }
 
 .google-btn {
