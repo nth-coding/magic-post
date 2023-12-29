@@ -23,8 +23,11 @@ export const Paths = {
     HEADCOL_MANAGE_USER: '/col-leader/customers',
     HEADCOL_MANAGE_ORDER: '/col-leader/order',
 
-    STAFF_TRAN_MANAGE_ORDER: '/staff/customers',
-    STAFF_COL_MANAGE_ORDER: '/staff/order',
+    STAFF_TRAN_MANAGE_ORDER: '/trans-staff/customers',
+    STAFF_COL_MANAGE_ORDER: '/col-staff/order',
+    STAFF_COL_MANAGE_ADD_ORDER: '/col-staff/add-order',
+    STAFF_TRAN_MANAGE_ADD_ORDER: '/trans-staff/add-order',
+
     STAFF_TRAN_RECEIPT: '/staff/receipt',
 }
 

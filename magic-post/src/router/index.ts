@@ -81,6 +81,14 @@ export const router = createRouter({
                     component: StaffTransactionPackageManageView,
                 },
                 {
+                    path: Paths.STAFF_COL_MANAGE_ADD_ORDER,
+                    component: StaffCollectionPackageManageView,
+                },
+                {
+                    path: Paths.STAFF_TRAN_MANAGE_ADD_ORDER,
+                    component: StaffTransactionPackageManageView,
+                },
+                {
                     path: Paths.STAFF_TRAN_RECEIPT,
                     component: Bill,
                 }

@@ -141,7 +141,7 @@
           align="center"
       >
         <template #default="scope">
-          {{ scope.row.receiverDistrict }} , {{ scope.row.Province }}
+          {{ scope.row.receiverDistrict }} , {{ scope.row.receiverProvince }}
         </template>
       </el-table-column>
 
@@ -443,6 +443,8 @@ async function loadData() {
         receiverLastName: p.receiverLastName,
         receiverAddress: p.receiverAddress,
         receiverPhoneNumber: p.receiverPhoneNumber,
+        receiverDistrict: p.receiverDistrict,
+        receiverProvince: p.receiverProvince,
         // nextPoint: p.nextPoint
       }
     })

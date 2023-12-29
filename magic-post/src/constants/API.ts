@@ -55,9 +55,24 @@ export const HeadTransactionApi = {
 }
 
 export const StaffApi = {
+    STAFF_TRAN_SENT_ORDER_MANAGE: '/staff/tran/sent-packages',
+    STAFF_TRAN_CURRENT_ORDER_MANAGE: '/staff/tran/curr-packages',
+    STAFF_TRAN_RECEIVED_ORDER_MANAGE: '/staff/tran/rec-packages',
+    STAFF_TRAN_PENDING_ORDER_MANAGE: '/staff/tran/pending-packages',
+    STAFF_TRAN_CREATE_TC_RECEIPT: '/staff/tran/receipt-tc',
 
+    STAFF_COL_SENT_ORDER_MANAGE: '/staff/col/sent-packages',
+    STAFF_COL_CURRENT_ORDER_MANAGE: '/staff/col/curr-packages',
+    STAFF_COL_RECEIVED_ORDER_MANAGE: '/staff/col/rec-packages',
+    STAFF_COL_PENDING_ORDER_MANAGE: '/staff/col/pending-packages',
+    STAFF_COL_CREATE_CC_RECEIPT: '/staff/col/receipt-cc',
+    STAFF_COL_CREATE_CT_RECEIPT: '/staff/col/receipt-ct',
+
+    STAFF_COL_CONFIRM_RECEIPT_CC: '/staff/col/receipt-cc/confirm',
+    STAFF_COL_CONFIRM_RECEIPT_TC: '/staff/col/receipt-tc/confirm',
 }
 
 export const CustomerApi = {
     CUSTOMER_GET_PACKAGE_INFO: '/customer/package',
+    CUSTOMER_GET_RECEIPT: '/customer-receipt',
 }

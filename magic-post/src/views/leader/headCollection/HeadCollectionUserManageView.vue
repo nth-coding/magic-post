@@ -109,7 +109,7 @@ const dialogAdd = ref(false)
 const dialogEdit = ref(false)
 
 const loading = ref(false)
-const usersData = ref<any[] | null>(null);
+const usersData = ref<any[] | null>(null)
 const idEdit = ref(null as unknown as number)
 
 function closeDialogEdit() {

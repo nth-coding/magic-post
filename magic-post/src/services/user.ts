@@ -1,5 +1,5 @@
 import http from '@/services/http'
-import {AdminApi, AuthAPI, HeadCollectionApi, HeadTransactionApi} from '@/constants/API'
+import {AdminApi, AuthAPI, CustomerApi, HeadCollectionApi, HeadTransactionApi} from '@/constants/API'
 
 
 export const UserService = {
@@ -87,4 +87,12 @@ export const StaffService = {
             await http.put(HeadCollectionApi.HEAD_COL_USER_MANAGE + '/' + id, payload)
         ).data
     },
+}
+
+export const CustomerService = {
+    getCustomerReceipt: async (id: any, payload: any) => {
+        return (
+            await http.get(CustomerApi.CUSTOMER_GET_RECEIPT + '/' + id, {})
+        ).data
+    }
 }
