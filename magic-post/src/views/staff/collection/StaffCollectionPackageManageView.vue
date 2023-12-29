@@ -342,6 +342,46 @@
         </template>
       </el-table-column>
       <el-table-column
+          prop="receiverName"
+          min-width="180"
+          label="Tên người nhận"
+          header-align="center"
+          align="left"
+          sortable
+      >
+        <template #default="scope">
+          {{ scope.row.receiverFirstName + ' ' + scope.row.receiverLastName }}
+        </template>
+      </el-table-column>
+
+      <el-table-column
+          prop="receiverAddress"
+          label="Địa chỉ người nhận"
+          width="150"
+          header-align="center"
+          align="center"
+      >
+        <template #default="scope">
+          {{ scope.row.receiverDistrict }} , {{ scope.row.receiverProvince }}
+        </template>
+      </el-table-column>
+
+      <el-table-column
+          align="center"
+          header-align="center"
+          label="SDT người nhận"
+          prop="receiverPhoneNumber"
+          width="160"
+      />
+      <el-table-column
+          align="center"
+          header-align="center"
+          label="SentFrom"
+          prop="sentFrom"
+          width="160"
+      >
+      </el-table-column>
+      <el-table-column
           fixed="right"
           label="Hành động"
           width="150"
@@ -368,7 +408,7 @@
     <el-table
         v-loading="loading"
         empty-text="Không có dữ liệu"
-        :data="packagesSentData"
+        :data="packagesReceivedData"
         border
         style="width: 100%"
 
@@ -553,6 +593,7 @@ async function loadData() {
         receiverPhoneNumber: p.receiverPhoneNumber,
         receiverDistrict: p.receiverDistrict,
         receiverProvince: p.receiverProvince,
+        sentFrom: p.sentFrom,
         // nextPoint: p.nextPoint
       }
     })
@@ -570,6 +611,13 @@ async function loadData() {
         senderLastName: p.sender.user.lastName,
         senderAddress: p.sender.user.address,
         senderPhoneNumber: p.sender.user.phoneNumber,
+        receiverFirstName: p.receiverFirstName,
+        receiverLastName: p.receiverLastName,
+        receiverAddress: p.receiverAddress,
+        receiverPhoneNumber: p.receiverPhoneNumber,
+        receiverDistrict: p.receiverDistrict,
+        receiverProvince: p.receiverProvince,
+        sentFrom: p.sentFrom,
         // nextPoint: p.nextPoint
       }
     })
@@ -591,6 +639,7 @@ async function loadData() {
         receiverLastName: p.receiverLastName,
         receiverAddress: p.receiverAddress,
         receiverPhoneNumber: p.receiverPhoneNumber,
+        sentFrom: p.sentFrom,
         // nextPoint: p.nextPoint
       }
     })
@@ -617,6 +666,7 @@ async function handleConfirm(id: any, sentFrom: any) {
     await PackageService.confirmPackageTC(id)
   else if (sentFrom === 'Collection Point')
     await PackageService.confirmPackageCC(id)
+  await loadData()
 }
 
 async function handleDelete(id: number) {

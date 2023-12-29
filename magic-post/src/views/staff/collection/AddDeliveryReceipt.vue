@@ -96,16 +96,13 @@ const formCT = ref({
   transactionPoint: '',
 });
 const collectionList = ref([
-  { value: '1', label: 'Điểm tập kết 1' },
-  { value: '2', label: 'Điểm tập kết 2' },
-  { value: '3', label: 'Điểm tập kết 3' },
-  { value: '4', label: 'Điểm tập kết 4' },
+  { value: '1', label: 'Hà Nội' },
+  { value: '2', label: 'HCM' },
 ]);
 const transactionList = ref([
-  { value: '1', label: 'Giao dịch 1' },
-  { value: '2', label: 'Giao dịch 2' },
-  { value: '3', label: 'Giao dịch 3' },
-  { value: '4', label: 'Giao dịch 4' },
+  { value: '1', label: 'Cầu Giấy, Hà Nội' },
+  { value: '2', label: 'Hai Bà Trưng, Hà Nội' },
+  { value : '3', label: 'Quận 10, HCM' }
 ]);
 
 let { $refs, toRef } = useRefs();

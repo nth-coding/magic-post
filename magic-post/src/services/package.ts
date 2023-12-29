@@ -96,7 +96,7 @@ export const PackageService = {
         return res.data
     },
     addDeliveryReceiptTC: async (packageId: any, receivePointId: any, payload: any) => {
-        const res = await http.post(StaffApi.STAFF_TRAN_CREATE_TC_RECEIPT + '/' + receivePointId + packageId + '/', payload)
+        const res = await http.post(StaffApi.STAFF_TRAN_CREATE_TC_RECEIPT + '/' + receivePointId + '/' + packageId, payload)
         return res.data
     },
     addPackageWithAccount: async (phoneNumber: any, payload: any) => {

@@ -77,5 +77,5 @@ export const StaffApi = {
 
 export const CustomerApi = {
     CUSTOMER_GET_PACKAGE_INFO: '/customer/package',
-    CUSTOMER_GET_RECEIPT: '/customer-receipt',
+    CUSTOMER_GET_RECEIPT: 'staff/tran/customer-receipt',
 }

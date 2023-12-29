@@ -2,8 +2,9 @@
   <h1>Quản lý đơn hàng</h1>
   <br />
   <CommonButton size="large" @click="dialogAdd = true">Tạo đơn hàng</CommonButton>
+  <AddPackage v-model="dialogAdd" @close="closeDialogAdd" @update:billData="updateBillData" ></AddPackage>
+<!--  <Bill :data="billData" v-model="dialogAddB" @close="closeDialogAddB"></Bill>-->
 
-  <AddPackage v-model="dialogAdd" @close="closeDialogAdd"></AddPackage>
   <div class="packages-list-container">
     <h2>Pending packages</h2>
     <br />
@@ -459,8 +460,10 @@ import {PackageService} from "@/services/package";
 import AddDeliveryReceipt from "@/views/staff/transaction/AddDeliveryReceipt.vue";
 import AddStaff from "@/views/leader/headCollection/AddStaff.vue";
 import AddPackage from "@/views/staff/transaction/AddPackage.vue";
+import Bill from "@/helper/receiptPrint/js-version/bill.vue";
 
 const dialogAdd = ref(false)
+const dialogAddB = ref(false)
 const dialogEdit = ref(false)
 const dialogConfirm = ref(false)
 
@@ -473,6 +476,12 @@ const packagesSentData = ref<any[] | null>(null);
 const packagesReceivedData = ref<any[] | null>(null);
 const packagesCurrentData = ref<any[] | null>(null);
 const packagesPendingData = ref<any[] | null>(null);
+
+let billData = null;
+
+function updateBillData(newBillData: any) {
+  billData = newBillData;
+}
 
 const rules = reactive<FormRules>({})
 const form = ref({
@@ -495,6 +504,11 @@ function closeDialogAdd() {
   dialogAdd.value = false
   loadData()
 }
+
+function closeDialogAddB() {
+  dialogAddB.value = false
+}
+
 
 let {$refs, toRef} = useRefs();
 

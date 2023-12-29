@@ -90,9 +90,11 @@ export const StaffService = {
 }
 
 export const CustomerService = {
-    getCustomerReceipt: async (id: any, payload: any) => {
+    postCustomerReceipt: async (id: any, payload: any) => {
         return (
-            await http.get(CustomerApi.CUSTOMER_GET_RECEIPT + '/' + id, {})
+            await http.post(CustomerApi.CUSTOMER_GET_RECEIPT + '/' + id, {
+                fee: 2000,
+            })
         ).data
     }
 }
