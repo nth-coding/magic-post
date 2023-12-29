@@ -41,7 +41,7 @@
     <el-table-column
         prop="address"
         label="Địa chỉ"
-        width="140"
+        width="211"
         header-align="center"
         align="center"
     >

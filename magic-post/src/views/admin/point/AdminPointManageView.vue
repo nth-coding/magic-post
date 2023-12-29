@@ -127,7 +127,11 @@
       empty-text="Không có dữ liệu"
       :data="usersData"
       border
-      style="width: 100%"
+      style="width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);"
   >
     <el-table-column
         prop="id"

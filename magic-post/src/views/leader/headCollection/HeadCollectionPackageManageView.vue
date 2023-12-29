@@ -40,7 +40,7 @@
 
       <el-table-column
           prop="description"
-          min-width="180"
+          min-width="200"
           label="Mô tả"
           header-align="center"
           align="left"
@@ -87,9 +87,13 @@
           min-width="180"
           label="Trạng thái"
           header-align="center"
-          align="left"
+          align="center"
           sortable
-      />
+      >
+        <template #default="scope">
+          <FAIcon v-if="scope.row.status == 'SHIP_DONE'" class="fa-solid fa-check"/>
+        </template>
+      </el-table-column>
 
       <el-table-column
           prop="senderName"
@@ -193,7 +197,7 @@
 
       <el-table-column
           prop="description"
-          min-width="180"
+          min-width="200"
           label="Mô tả"
           header-align="center"
           align="left"
@@ -240,9 +244,13 @@
           min-width="180"
           label="Trạng thái"
           header-align="center"
-          align="left"
+          align="center"
           sortable
-      />
+      >
+        <template #default="scope">
+          <FAIcon v-if="scope.row.status == 'SHIP_DONE'" class="fa-solid fa-check"/>
+        </template>
+      </el-table-column>
 
       <el-table-column
           prop="senderName"
@@ -297,7 +305,7 @@
 
       <el-table-column
           prop="description"
-          min-width="180"
+          min-width="200"
           label="Mô tả"
           header-align="center"
           align="left"
@@ -344,9 +352,13 @@
           min-width="180"
           label="Trạng thái"
           header-align="center"
-          align="left"
+          align="center"
           sortable
-      />
+      >
+        <template #default="scope">
+          <FAIcon v-if="scope.row.status == 'SHIP_DONE'" class="fa-solid fa-check"/>
+        </template>
+      </el-table-column>
 
       <el-table-column
           prop="senderName"
@@ -378,6 +390,7 @@ import {processErrorMessage} from "@/helper/responseErrorHandle";
 import {useRouter} from "vue-router";
 import CommonButton from "@/components/common/CommonButton.vue";
 import {PackageService} from "@/services/package";
+import FAIcon from "@/components/common/FAIcon.vue";
 
 const dialogAdd = ref(false)
 const dialogEdit = ref(false)

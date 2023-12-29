@@ -1,22 +1,7 @@
 <template>
-  <div class="home-page">
-    <div class="user-info">
-      <div class="user-role">Role: <span class="role-name">
-        {{ form.role.substring(5) }}
-      </span></div>
-      <h1 class="user-greeting">Xin chào,
-        <span v-if="form.firstName">{{ form.firstName }}</span>
-        <span v-if="form.lastName">{{ form.lastName }}</span>
-      </h1>
-    </div>
-    <div class="services">
-      <div class="service-card" v-for="service in services" :key="service.id">
-        <h2 class="service-card-h2">{{ service.name }}</h2>
-        <p class="service-card-p">{{ service.description }}</p>
-      </div>
-    </div>
-    
-  </div>
+    <BossChart v-if="form.role == 'ROLE_BOSS'" :first-name="form.firstName" :last-name="form.lastName"/>
+    <CollectionChart v-if="form.role == 'ROLE_HEADCOL'" :first-name="form.firstName" :last-name="form.lastName"/>
+    <TransactionChart v-if="form.role == 'ROLE_HEADTRAN'" :first-name="form.firstName" :last-name="form.lastName"/>
 </template>
 
 <script setup lang="ts">
@@ -26,6 +11,8 @@ import {useAuthenticationStore} from "@/stores/authentication";
 import {storeToRefs} from "pinia";
 import {roles} from "@/constants/Role";
 import BossChart from "@/views/admin/BossChart.vue"
+import CollectionChart from "@/views/leader/headCollection/CollectionChart.vue"
+import TransactionChart from '../leader/headTransaction/TransactionChart.vue';
 const form = ref({
   firstName: '',
   lastName: '',
@@ -65,6 +52,9 @@ function updateUserInfo(userInfo: UserInfo, roleList: string[]) {
 </script>
 
 <style scoped lang="scss">
+body {
+  background-color: #f7fafc;
+}
 :root {
   --spacing: 2rem;
   --max-card-width: 250px;
