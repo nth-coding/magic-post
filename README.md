@@ -4,14 +4,17 @@ MagicPost là công ty hoạt động trong lĩnh vực chuyển phát. Công ty
 
 Người gửi, có hàng cần gửi, đem hàng đến một điểm giao dịch (thường là gần nhất) để gửi. Hàng, sau đó, được đưa đến điểm tập kết ứng với điểm giao dịch của người gửi, rồi được chuyển đến điểm tập kết ứng với điểm giao dịch của người nhận. Tại điểm giao dịch của người nhận, nhân viên giao hàng sẽ chuyển hàng đến tận tay người nhận.
 
+
+
 ## Thành viên và công việc
 
- ### Nguyễn Tiến Hải - 21020066:
+### Nguyễn Tiến Hải - 21020066:
 -  Phụ trách thiết kế giao diện, frontend, kết nối với các API.
- ### Đào Quang Huy - 21020329:
+### Đào Quang Huy - 21020329:
 -  Phụ trách phát triển frontend, giao diện ứng dụng.
- ### Nguyễn Ngọc Hiệp - 21020317:
+### Nguyễn Ngọc Hiệp - 21020317:
 -  Phụ trách phát triển backend, thiết kế database, kiểm thử.
+### Đường dẫn tới Backend: https://github.com/hiepuet1705/magic-post-backend
 
 
 ## Liên hệ
