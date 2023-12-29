@@ -2,6 +2,24 @@
     <BossChart v-if="form.role == 'ROLE_BOSS'" :first-name="form.firstName" :last-name="form.lastName"/>
     <CollectionChart v-if="form.role == 'ROLE_HEADCOL'" :first-name="form.firstName" :last-name="form.lastName"/>
     <TransactionChart v-if="form.role == 'ROLE_HEADTRAN'" :first-name="form.firstName" :last-name="form.lastName"/>
+    <div v-else class="home-page">
+    <div class="user-info">
+      <div class="user-role">Role: <span class="role-name">
+        {{ form.role.substring(5) }}
+      </span></div>
+      <h1 class="user-greeting">Good evening,
+        <span v-if="form.firstName">{{ form.firstName }}</span>
+        <span v-if="form.lastName">{{ form.lastName }}</span>
+      </h1>
+    </div>
+    <div class="services">
+      <div class="service-card" v-for="service in services" :key="service.id" >
+        <h2 class="service-card-h2">{{ service.name }}</h2>
+        <p class="service-card-p">{{ service.description }}</p>
+      </div>
+    </div>
+    
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -13,6 +31,7 @@ import {roles} from "@/constants/Role";
 import BossChart from "@/views/admin/BossChart.vue"
 import CollectionChart from "@/views/leader/headCollection/CollectionChart.vue"
 import TransactionChart from '../leader/headTransaction/TransactionChart.vue';
+import {Paths} from "@/router/paths";
 const form = ref({
   firstName: '',
   lastName: '',
@@ -29,7 +48,7 @@ const services = ref([
 
 const authenticationStore = useAuthenticationStore()
 const {authenticated, user, roleList} = storeToRefs(authenticationStore)
-
+  
 watch(
     authenticated,
     (newAuth) => {
