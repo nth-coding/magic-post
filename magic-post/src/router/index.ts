@@ -30,7 +30,7 @@ export const router = createRouter({
     routes: [
         {
             path: Paths.HOME,
-            component: HeadTransactionUserManageView,
+            component: LandingPageView,
         },
         {
             path: Paths.MAIN,
