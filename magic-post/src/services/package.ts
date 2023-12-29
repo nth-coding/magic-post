@@ -100,11 +100,11 @@ export const PackageService = {
         return res.data
     },
     addPackageWithAccount: async (phoneNumber: any, payload: any) => {
-        const res = await http.post(AdminApi.PACKAGE_BOSS_MANAGE + '/' + phoneNumber, payload)
+        const res = await http.post(StaffApi.STAFF_TRAN_REGISTER_WITH_ACCOUNT + '/' + phoneNumber, payload)
         return res.data
     },
     addPackageWithoutAccount: async (payload: any) => {
-        const res = await http.post(AdminApi.PACKAGE_BOSS_MANAGE, payload)
+        const res = await http.post(StaffApi.STAFF_TRAN_REGISTER, payload)
         return res.data
     },
     confirmPackageCC: async (packageId: any) => {

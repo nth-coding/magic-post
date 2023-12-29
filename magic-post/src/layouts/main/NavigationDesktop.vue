@@ -82,6 +82,14 @@
           <FAIcon icon="fa-solid fa-box"/>
           Quản lý đơn hàng
         </el-menu-item>
+        <el-menu-item
+            :route="Paths.STAFF_TRAN_MANAGE_RECEIPT"
+            v-if="roleList.includes(roles.ROLE_OFFICERTRAN)"
+            :index="Paths.STAFF_TRAN_MANAGE_RECEIPT"
+        >
+          <FAIcon icon="fa-solid fa-box"/>
+          In đơn hàng
+        </el-menu-item>
 
       </el-menu-item-group>
       <el-menu-item-group v-if="roleList.includes(roles.ROLE_OFFICERCOL)">

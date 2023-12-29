@@ -28,6 +28,7 @@ export const Paths = {
     STAFF_COL_MANAGE_ADD_ORDER: '/col-staff/add-order',
     STAFF_TRAN_MANAGE_ADD_ORDER: '/trans-staff/add-order',
 
+    STAFF_TRAN_MANAGE_RECEIPT: '/trans-staff/receipt',
     STAFF_TRAN_RECEIPT: '/staff/receipt',
 }
 

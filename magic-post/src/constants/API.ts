@@ -70,6 +70,9 @@ export const StaffApi = {
 
     STAFF_COL_CONFIRM_RECEIPT_CC: '/staff/col/receipt-cc/confirm',
     STAFF_COL_CONFIRM_RECEIPT_TC: '/staff/col/receipt-tc/confirm',
+
+    STAFF_TRAN_REGISTER: '/staff/tran/package/stranger',
+    STAFF_TRAN_REGISTER_WITH_ACCOUNT: '/staff/tran/package',
 }
 
 export const CustomerApi = {
