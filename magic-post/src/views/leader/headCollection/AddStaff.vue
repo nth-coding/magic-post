@@ -1,7 +1,7 @@
 <template>
   <el-dialog v-model="show">
     <template #header>
-      <div class="dialog-header">Thêm nhân viên </div>
+      <div class="dialog-header">Thêm nhân viên</div>
     </template>
     <el-form
         label-position="left"
@@ -66,6 +66,8 @@ import CommonButton from '@/components/common/CommonButton.vue'
 import useRefs from '@/helper/useRef'
 import {StaffService, UserService} from "@/services/user";
 import {useRouter} from "vue-router";
+import {useAuthenticationStore} from "@/stores/authentication";
+import {storeToRefs} from "pinia";
 
 const show = ref(false)
 const form = ref({
@@ -90,11 +92,15 @@ const props = withDefaults(defineProps<{
 }>(), {
   model: false,
 })
+
 watch(() => props.model, (value, oldValue) => {
   if (value && !oldValue) {
     $refs.get(RefNames.MAIN_FORM)?.resetFields()
   }
 })
+
+const authenticationStore = useAuthenticationStore()
+const {user} = storeToRefs(authenticationStore)
 const emit = defineEmits(['close'])
 
 const validateConfirmPassword = (rule: any, value: any, callback: any) => {
@@ -108,7 +114,7 @@ const validateConfirmPassword = (rule: any, value: any, callback: any) => {
 }
 
 const rules = reactive<FormRules>({
-  name: [{required: true, message: 'Nhập tên nhân viên'}],
+  name: [{required: true, message: 'Nhập tên người dùng'}],
   email: [{
     min: 4,
     message: "Email length should be at least 5 characters",
@@ -135,13 +141,16 @@ function submitForm() {
     if (valid) {
       $refs.get(RefNames.SUBMIT_BTN)?.setLoading(true)
       try {
-        await StaffService.addForHeadTran({
-          firstName: form.value.firstName,
+        await StaffService.addForHeadCol({
           lastName: form.value.lastName,
+          firstName: form.value.firstName,
+
           username: form.value.username,
           password: form.value.password,
+
           phoneNumber: form.value.phoneNumber,
           address: form.value.address,
+          pointId: user.value?.pointId,
         })
         ElMessage({
           message: 'Thêm nhân viên thành công!',

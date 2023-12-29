@@ -5,7 +5,8 @@
   <CommonButton size="large" @click="dialogAdd = true; console.log(dialogAdd)">Thêm nhân viên</CommonButton>
 
   <AddStaff v-model="dialogAdd" @close="closeDialogAdd"></AddStaff>
-  <EditStaff v-if="idEdit" :form-edit="formEdit" v-model="dialogEdit" @close="closeDialogEdit"></EditStaff>
+  <EditStaff v-if="idEdit" :id="idEdit" v-model="dialogEdit" @close="closeDialogEdit"></EditStaff>
+  <div class="packages-list-container">
 
   <el-table
       v-loading="loading"
@@ -75,7 +76,7 @@
         >Chỉnh sửa
         </CommonButton>
         <el-popconfirm
-            :title="`Bạn chắc chắn muốn xóa người dùng '${scope.row.name}'?`"
+            :title="`Bạn chắc chắn muốn xóa người dùng '${scope.row.id}'?`"
             confirm-button-text="Xác nhận"
             cancel-button-text="Hủy"
             @confirm="handleDelete(scope.row.id)"
@@ -89,6 +90,7 @@
       </template>
     </el-table-column>
   </el-table>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -174,17 +176,15 @@ async function loadData() {
 }
 
 const router = useRouter()
-let formEdit = {}
 function handleEdit(id: number) {
   idEdit.value = id
   dialogEdit.value = true
-  formEdit = data[0]
 }
 
 async function handleDelete(id: number) {
   $refs.get(RefNames.DELETE_BTN + id)?.setLoading(true)
   try {
-    // await deleteUser(id)
+    await StaffService.deleteForHeadCol(id)
     await loadData()
     ElMessage.success("Xóa người dùng thành công!")
   } catch (e) {
@@ -198,6 +198,14 @@ async function handleDelete(id: number) {
 </script>
 
 <style scoped>
+.packages-list-container {
+  margin: 2rem 0;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 .add-user-btn {
   float: right;
   margin-bottom: 1.5rem;
@@ -216,6 +224,14 @@ h1 {
   color: #333;
   font-size: 2em;
   margin-bottom: 1rem;
+}
+h2 {
+  color: #666;
+  font-size: 1.5em;
+  margin-bottom: 1rem;
+}
+.el-table {
+  width: 100%;
 }
 </style>
   

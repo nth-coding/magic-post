@@ -48,7 +48,7 @@
 
       <el-table-column
           prop="type"
-          min-width="180"
+          min-width="90"
           label="Loại"
           header-align="center"
           align="left"
@@ -201,7 +201,7 @@
 
       <el-table-column
           prop="type"
-          min-width="180"
+          min-width="90"
           label="Loại"
           header-align="center"
           align="left"
@@ -305,7 +305,7 @@
 
       <el-table-column
           prop="type"
-          min-width="180"
+          min-width="90"
           label="Loại"
           header-align="center"
           align="left"
