@@ -25,6 +25,7 @@ export const Paths = {
 
     STAFF_TRAN_MANAGE_ORDER: '/staff/customers',
     STAFF_COL_MANAGE_ORDER: '/staff/order',
+    STAFF_TRAN_RECEIPT: '/staff/receipt',
 }
 
 export const ANONYMOUS_ALLOW_PATHS = [

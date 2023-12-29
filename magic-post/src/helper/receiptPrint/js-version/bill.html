@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipt</title>
+    <style>
+        .receipt-container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            padding-bottom: 120px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+
+        .receipt-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo, .qr-code {
+            width: 100px;
+        }
+
+        .info-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .sender-info, .receiver-info {
+            width: 45%;
+        }
+
+        .package-section {
+            margin-top: 20px;
+        }
+
+        .amount-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        .amount-table th, .amount-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<div class="receipt-container">
+    <header class="receipt-header">
+        <img src="../../../assets/images/logo.svg" alt="Company Logo" class="logo">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIQAAACECAYAAABRRIOnAAAAAklEQVR4AewaftIAAAOVSURBVO3BO67kWgIDwcwD7X/LnDaeQUuAoKrbn2GE+YWZ/xxmymGmHGbKYaYcZsphphxmymGmHGbKYaYcZsphphxmymGmHGbKxUsqPykJn6TSkvCESktCU/lJSXjjMFMOM+UwUy4+LAmfpPJJKk+o3EnCE0n4JJVPOsyUw0w5zJSLL1N5IglPqDyRhKbyhkpLwhMqTyThmw4z5TBTDjPl4h+ThKbSVFoSmkpLwv+Tw0w5zJTDTLn4x6i0JDSVpvKGSkvC3+wwUw4z5TBTLr4sCb+Tyhsq35SEP8lhphxmymGmXHyYyu+UhKbSktBUWhKaSktCU3lC5U92mCmHmXKYKeYX/mIqbyThDZWWhL/ZYaYcZsphply8pNKS0FQ+KQktCXdUnlB5Igl3VD4pCd90mCmHmXKYKRcfpvJEEr4pCU3lThKeULmThKbSkvCESkvCJx1mymGmHGbKYaaYX/gglZaEpnInCXdUWhKaSkvCGyotCU3lThKaSkvCGyotCW8cZsphphxmysWXqdxJwh2VloQnVFoS7qg8kYSm0lTuqLQkNJWfdJgph5lymCkXL6m0JDSVN5LQVFoSWhKeULmThDsqd5LQVFoSmkpLQlNpSfikw0w5zJTDTLn4w6jcScIdlZaEO0loKk3lDZU7Km+otCS8cZgph5lymCkXX5aEpvJEEppKS8IbKi0JTaUloancSUJTuZOEO0loKp90mCmHmXKYKRc/LAlPqLyh0pJwR+WTVN5QaUloSfikw0w5zJTDTDG/8BdTaUl4Q6UloancScITKneS8JMOM+UwUw4z5eIllZ+UhJaEptKS0FTuJKGptCQ0lTsqLQl3ktBUnkjCG4eZcpgph5ly8WFJ+CSVOyp3VO4k4ZuS8IRKS8JPOsyUw0w5zJSLL1N5IglvJOGOyhNJaCp3VN5IQlN5IglvHGbKYaYcZsrFP06lJaGp3ElCS0JTaUloKi0JTaWp/E6HmXKYKYeZcvGPS8KdJDSVptKS0JJwJwl3ktBU7iShqXzSYaYcZsphplx8WRK+KQlN5U4SmsqdJDSVJ5LQVJ5Iwk86zJTDTDnMlIsPU/lJKi0JbyShqbQk/CSVn3SYKYeZcpgp5hdm/nOYKYeZcpgph5lymCmHmXKYKYeZcpgph5lymCmHmXKYKYeZcpgp/wOBdYNA7Yhm3QAAAABJRU5ErkJggg=="
+             alt="QR Code">
+    </header>
+
+    <section class="info-section">
+        <div class="sender-info">
+            <h2>Sender Information</h2>
+            <p id="sender-name">Name: </p>
+            <p id="sender-address">Address: </p>
+            <p id="sender-phone-number">Phone Number: </p>
+            <p id="package-id">Package ID: </p>
+        </div>
+
+        <div class="receiver-info">
+            <h2>Receiver Information</h2>
+            <p id="receiver-name">Name: </p>
+            <p id="receiver-address">Address: </p>
+            <p id="receiver-phone-number">Phone Number: </p>
+        </div>
+    </section>
+
+    <section class="package-section">
+        <h2>Package Type</h2>
+        <label><input type="checkbox" name="packageType" value="Type1">Tài liệu</label>
+
+        <label><input type="checkbox" name="packageType" value="Type2">Hàng hóa</label>
+    </section>
+
+    <table class="amount-table">
+        <tr>
+            <th>Thông tin đơn hàng</th>
+            <th>Giá trị</th>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Weight</td>
+            <td></td>
+        </tr>
+    </table>
+
+    <br><br><br>
+    <h3>Cam kết của người gửi</h3>
+    <p>Tôi chấp nhận các điều khoản tại mặt sau phiếu gửi và cam đoan bưu gửi này không chứa những mặt hàng nguy hiểm,
+        cấm gửi. Trường hợp không phát được hãy thực hiện chỉ dẫn tại mục 6, tôi sẽ trả cước chuyển hoàn.</p>
+
+    <br>
+    Ngày giờ gửi:
+    <br><br><br>
+    <div style="display: flex; justify-content: space-between">
+        <div style="width: 40%">
+            <p>Người gửi</p>
+            <p>(Ký, ghi rõ họ tên)</p>
+        </div>
+        <div style="width: 40%">
+            <p>Người nhận</p>
+            <p>(Ký, ghi rõ họ tên)</p>
+        </div>
+        <div>
+            <p>Bưu cục</p>
+            <p>(Ký, ghi rõ họ tên)</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

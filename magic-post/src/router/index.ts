@@ -23,6 +23,7 @@ import HeadCollectionPackageManageView from "@/views/leader/headCollection/HeadC
 import HeadTransactionPackageManageView from "@/views/leader/headTransaction/HeadTransactionPackageManageView.vue";
 import StaffCollectionPackageManageView from "@/views/staff/collection/StaffCollectionPackageManageView.vue";
 import StaffTransactionPackageManageView from "@/views/staff/transaction/StaffTransactionPackageManageView.vue";
+import Bill from "@/helper/receiptPrint/js-version/bill.vue";
 
 export const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -78,6 +79,10 @@ export const router = createRouter({
                 {
                     path: Paths.STAFF_TRAN_MANAGE_ORDER,
                     component: StaffTransactionPackageManageView,
+                },
+                {
+                    path: Paths.STAFF_TRAN_RECEIPT,
+                    component: Bill,
                 }
             ]
         },
