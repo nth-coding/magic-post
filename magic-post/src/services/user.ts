@@ -1,6 +1,7 @@
 import http from '@/services/http'
 import {AdminApi, AuthAPI, HeadCollectionApi, HeadTransactionApi} from '@/constants/API'
 
+
 export const UserService = {
     listForAdmin: async (params: any) => {
         const bodyData = (
@@ -69,5 +70,21 @@ export const StaffService = {
         return (
             await http.delete(HeadTransactionApi.HEAD_TRAN_USER_MANAGE + '/' + id)
         ).data
-    }
+    },
+
+    deleteForHeadCol: async (id: any) => {
+        return (
+            await http.delete(HeadCollectionApi.HEAD_COL_USER_MANAGE + '/' + id)
+        ).data
+    },
+    getOneForHeadCol: async (id: any) => {
+        return (
+            await http.get(HeadCollectionApi.HEAD_COL_USER_MANAGE + '/' +id)
+        ).data
+    },
+    editForHeadCol: async (id: any, payload: any) => {
+        return (
+            await http.put(HeadCollectionApi.HEAD_COL_USER_MANAGE + '/' + id, payload)
+        ).data
+    },
 }

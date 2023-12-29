@@ -175,7 +175,6 @@ async function loadData() {
 }
 
 const router = useRouter()
-let formEdit = {}
 
 function handleEdit(id: number) {
   idEdit.value = id
