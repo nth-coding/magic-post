@@ -42,8 +42,10 @@
       </el-form-item>
     </el-form>
     <template #footer>
-      <CommonButton @click="resetForm" type="default">Hủy bỏ</CommonButton>
+      <CommonButton @click="resetForm" type="default" class="mx-auto lg:mx-0 hover:underline text-white bg-sky-500 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+      >Hủy bỏ</CommonButton>
       <CommonButton
+          class="mx-auto lg:mx-0 hover:underline text-white bg-sky-500 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
           type="primary"
           @click="submitForm"
           :ref="toRef('SUBMIT_BTN')"

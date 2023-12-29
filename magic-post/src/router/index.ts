@@ -24,7 +24,6 @@ import HeadTransactionPackageManageView from "@/views/leader/headTransaction/Hea
 import StaffCollectionPackageManageView from "@/views/staff/collection/StaffCollectionPackageManageView.vue";
 import StaffTransactionPackageManageView from "@/views/staff/transaction/StaffTransactionPackageManageView.vue";
 import Bill from "@/helper/receiptPrint/js-version/bill.vue";
-import BossChart from '@/views/admin/BossChart.vue'
 
 export const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
