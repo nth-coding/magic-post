@@ -130,7 +130,7 @@
     <el-table-column
         prop="address"
         label="Address"
-        width="180"
+        width="211"
         header-align="center"
         align="center"
     />

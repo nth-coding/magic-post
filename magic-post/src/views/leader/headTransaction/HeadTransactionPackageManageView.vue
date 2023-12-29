@@ -40,7 +40,7 @@
 
       <el-table-column
           prop="description"
-          min-width="180"
+          min-width="200"
           label="Mô tả"
           header-align="center"
           align="left"
@@ -87,9 +87,14 @@
           min-width="180"
           label="Trạng thái"
           header-align="center"
-          align="left"
+          align="center"
+          
           sortable
-      />
+      >
+        <template #default="scope">
+          <FAIcon v-if="scope.row.status == 'SHIP_DONE'" class="fa-solid fa-check"/>
+        </template>
+      </el-table-column>
 
       <el-table-column
           prop="senderName"
@@ -193,7 +198,7 @@
 
       <el-table-column
           prop="description"
-          min-width="180"
+          min-width="200"
           label="Mô tả"
           header-align="center"
           align="left"
@@ -240,9 +245,13 @@
           min-width="180"
           label="Trạng thái"
           header-align="center"
-          align="left"
+          align="center"
           sortable
-      />
+      >
+        <template #default="scope">
+          <FAIcon v-if="scope.row.status == 'SHIP_DONE'" class="fa-solid fa-check"/>
+        </template>
+      </el-table-column>
 
       <el-table-column
           prop="senderName"
@@ -297,7 +306,7 @@
 
       <el-table-column
           prop="description"
-          min-width="180"
+          min-width="200"
           label="Mô tả"
           header-align="center"
           align="left"
@@ -344,9 +353,13 @@
           min-width="180"
           label="Trạng thái"
           header-align="center"
-          align="left"
+          align="center"
           sortable
-      />
+      >
+        <template #default="scope">
+          <FAIcon v-if="scope.row.status == 'SHIP_DONE'" class="fa-solid fa-check"/>
+        </template>
+      </el-table-column>
 
       <el-table-column
           prop="senderName"
